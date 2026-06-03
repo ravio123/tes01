@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">tes01</string>
+    <string name="title_activity_main">tes01</string>
+    <string name="package_name">com.tes01.app</string>
+    <string name="custom_url_scheme">com.tes01.app</string>
+</resources>
