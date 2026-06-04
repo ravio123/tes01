@@ -1,0 +1,19 @@
+# Keystore dan password
+my-release-key.jks
+keystore.txt
+android/key.properties
+android/app/my-release-key.jks
+
+# Node modules
+node_modules/
+
+# Build Android
+android/app/build/
+android/build/
+
+# Capacitor
+android/.gradle/
+
+# Sistem
+.DS_Store
+Thumbs.db
