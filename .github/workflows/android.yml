@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -16,23 +15,22 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Show package.json
-  run: cat package.json
+        run: cat package.json
 
-- name: Install dependencies
-  run: npm install
+      - name: Install dependencies
+        run: npm install
 
-- name: Show installed packages
-  run: npm list --depth=0
+      - name: Show installed packages
+        run: npm list --depth=0
 
-- name: Check Capacitor
-  run: npx cap --version
+      - name: Check Capacitor
+        run: npx cap --version
 
-- name: Sync Android
-  run: npx cap sync android
-
+      - name: Sync Android
+        run: npx cap sync android
 
       - uses: actions/setup-java@v4
         with:
