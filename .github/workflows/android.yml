@@ -18,9 +18,16 @@ jobs:
         with:
           node-version: 20
 
-      - run: npm install
+      - name: Install dependencies
+  run: npm install
 
-      - run: npx cap sync android
+- name: Check Capacitor
+  run: |
+    npx cap --version
+
+- name: Sync Capacitor
+  run: |
+    npx cap sync android
 
       - uses: actions/setup-java@v4
         with:
