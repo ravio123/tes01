@@ -1,5 +1,9 @@
 {
-  "appId": "com.tes01.app",
-  "appName": "tes01",
-  "webDir": "www"
+  "appId": "com.alovera.id",
+  "appName": "Alovera",
+  "webDir": "www",
+  "server": {
+    "url": "https://www.alovera.id",
+    "cleartext": false
+  }
 }
