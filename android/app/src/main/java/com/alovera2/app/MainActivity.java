@@ -1,4 +1,4 @@
-package com.tes01.app;
+package com.alovera2.app;
 
 import com.getcapacitor.BridgeActivity;
 
