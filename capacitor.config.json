@@ -1,9 +1,5 @@
 {
-  "appId": "com.alovera.id",
-  "appName": "Alovera App",
-  "webDir": "www",
-  "server": {
-    "url": "https://www.alovera.id/AloveraS-DesignUpda30+2DeUpHos",
-    "cleartext": false
-  }
+  "appId": "com.alovera.ai",
+  "appName": "Alovera AI",
+  "webDir": "www"
 }

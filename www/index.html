@@ -1,74 +1,1105 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loading Modern</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alovera Magic AI — Pembuat Gambar AI Realistis</title>
+
+    <!-- Font Awesome 6 untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111118;
+            --bg-card: #16161f;
+            --bg-card-hover: #1c1c28;
+            --bg-input: #1a1a26;
+            --border: #252535;
+            --border-focus: #5b5bff;
+            --text-primary: #e8e8f0;
+            --text-secondary: #a0a0b8;
+            --text-muted: #6b6b80;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.35);
+            --gradient-1: #6366f1;
+            --gradient-2: #a855f7;
+            --gradient-3: #ec4899;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --radius-sm: 10px;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 40px var(--accent-glow);
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Animasi background bergerak */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(ellipse at 25% 25%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 75% 60%, rgba(168, 85, 247, 0.05) 0%, transparent 60%),
+                radial-gradient(ellipse at 40% 80%, rgba(236, 72, 153, 0.04) 0%, transparent 55%);
+            z-index: 0;
+            pointer-events: none;
+            animation: bgDrift 20s ease-in-out infinite;
+        }
+        @keyframes bgDrift {
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+            33% {
+                transform: translate(1%, -1%);
+            }
+            66% {
+                transform: translate(-1%, 1%);
+            }
+        }
+
+        /* === HEADER / NAVBAR === */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.3px;
+            cursor: default;
+        }
+        .navbar-brand .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #fff;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+        .navbar-brand span {
+            background: linear-gradient(135deg, #e8e8f0 0%, #c4c4d8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: -0.2px;
+        }
+        .nav-badge .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--success);
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+            }
+        }
+
+        /* === MAIN CONTAINER === */
+        .main-container {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 28px 24px 40px;
+            gap: 28px;
+        }
+
+        /* === HERO / HEADLINE === */
+        .hero-section {
+            text-align: center;
+            padding: 10px 0 0;
+        }
+        .hero-section h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            line-height: 1.15;
+            margin-bottom: 8px;
+        }
+        .hero-section h1 .gradient-text {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
+            background-size: 200% 200%;
+        }
+        @keyframes gradientShift {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        .hero-section p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-weight: 400;
+            letter-spacing: -0.2px;
+        }
+
+        /* === GENERATOR CARD === */
+        .generator-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 30px;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+        .generator-card:hover {
+            border-color: #2e2e45;
+            box-shadow: var(--shadow-card), 0 0 60px rgba(99, 102, 241, 0.06);
+        }
+        .input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .prompt-input-wrapper {
+            flex: 1;
+            min-width: 260px;
+            position: relative;
+        }
+        .prompt-input-wrapper input {
+            width: 100%;
+            padding: 14px 18px;
+            padding-right: 50px;
+            background: var(--bg-input);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-family: inherit;
+            letter-spacing: -0.2px;
+            transition: var(--transition);
+            outline: none;
+        }
+        .prompt-input-wrapper input::placeholder {
+            color: var(--text-muted);
+        }
+        .prompt-input-wrapper input:focus {
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
+        }
+        .prompt-input-wrapper .sparkle-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        .prompt-input-wrapper .sparkle-btn:hover {
+            color: var(--accent-light);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        /* Style selector */
+        .style-selector {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .style-chip {
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1.5px solid var(--border);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 500;
+            font-family: inherit;
+            letter-spacing: -0.2px;
+            transition: var(--transition);
+            white-space: nowrap;
+            user-select: none;
+        }
+        .style-chip:hover {
+            border-color: #3e3e5a;
+            color: var(--text-primary);
+            background: var(--bg-card-hover);
+        }
+        .style-chip.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        /* Generate button */
+        .generate-btn {
+            width: 100%;
+            padding: 15px 24px;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            border: none;
+            border-radius: var(--radius);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            letter-spacing: -0.2px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 30px var(--accent-glow);
+            position: relative;
+            overflow: hidden;
+        }
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.45);
+        }
+        .generate-btn:active {
+            transform: scale(0.98);
+        }
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            filter: grayscale(30%);
+        }
+        .generate-btn .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2.5px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        .generate-btn.loading .spinner {
+            display: block;
+        }
+        .generate-btn.loading .btn-text {
+            display: none;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* === RESULT AREA === */
+        .result-area {
+            display: none;
+            animation: fadeInUp 0.4s ease;
+        }
+        .result-area.visible {
+            display: block;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .result-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+        .result-image-container {
+            position: relative;
+            width: 100%;
+            background: #0d0d16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .result-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .result-image-container:hover img {
+            transform: scale(1.03);
+        }
+        .result-image-container .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .result-image-container:hover .image-overlay {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .result-image-container .overlay-icon {
+            opacity: 0;
+            font-size: 2.5rem;
+            color: #fff;
+            transition: var(--transition);
+        }
+        .result-image-container:hover .overlay-icon {
+            opacity: 1;
+        }
+        .result-actions {
+            display: flex;
+            gap: 10px;
+            padding: 16px 20px;
+            flex-wrap: wrap;
+        }
+        .action-btn {
+            padding: 10px 18px;
+            border-radius: 50px;
+            border: 1.5px solid var(--border);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: inherit;
+            letter-spacing: -0.2px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .action-btn:hover {
+            border-color: #4a4a68;
+            background: var(--bg-card-hover);
+        }
+        .action-btn.primary-action {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            font-weight: 600;
+        }
+        .action-btn.primary-action:hover {
+            background: #5558e0;
+            box-shadow: 0 4px 18px var(--accent-glow);
+        }
+
+        /* === HISTORY GALLERY === */
+        .history-section {
+            margin-top: 8px;
+        }
+        .history-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 14px;
+        }
+        .history-item {
+            aspect-ratio: 1 / 1;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            background: var(--bg-card);
+            border: 2px solid transparent;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .history-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(99, 102, 241, 0.25);
+        }
+        .history-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .history-item .history-prompt {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 20px 10px 8px;
+            opacity: 0;
+            transition: var(--transition);
+            line-height: 1.3;
+            pointer-events: none;
+        }
+        .history-item:hover .history-prompt {
+            opacity: 1;
+        }
+        .history-empty {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+        }
+
+        /* === LIGHTBOX === */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+            padding: 40px;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 75vh;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1.4rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: scale(1.05);
+        }
+        .lightbox-download {
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: none;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            letter-spacing: -0.2px;
+        }
+        .lightbox-download:hover {
+            background: #5558e0;
+            box-shadow: 0 8px 28px var(--accent-glow);
+        }
+
+        /* === TOAST === */
+        .toast-container {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .toast {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 14px 20px;
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            font-weight: 500;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.35s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 380px;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .toast.success {
+            border-left: 3px solid var(--success);
+        }
+        .toast.error {
+            border-left: 3px solid var(--error);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+            .hero-section p {
+                font-size: 0.9rem;
+            }
+            .generator-card {
+                padding: 20px 16px;
+            }
+            .input-group {
+                flex-direction: column;
+            }
+            .style-selector {
+                gap: 6px;
+            }
+            .style-chip {
+                padding: 7px 12px;
+                font-size: 0.75rem;
+            }
+            .history-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 10px;
+            }
+            .result-actions {
+                flex-direction: column;
+            }
+            .action-btn {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div id="loadingScreen">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            
+            <!--
+            <div class="logo-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            -->
+            
+            <span>Alovera Magic</span>
+        </div>
+        <div class="nav-badge">
+            <span class="dot"></span> AI Ready
+        </div>
+    </nav>
 
-    <div class="topbar">
-        <div class="avatar shimmer"></div>
+    <!-- MAIN CONTENT -->
+    <div class="main-container">
+        <!-- Hero -->
+        <div class="hero-section">
+            <h1>Ubah Imajinasi Jadi <span class="gradient-text">Gambar Realistis</span></h1>
+            <p>Deskripsikan gambar yang Anda inginkan, dan AI akan mewujudkannya dalam hitungan detik.</p>
+        </div>
 
-        <div class="top-icons">
-            <div class="icon shimmer"></div>
-            <div class="icon shimmer"></div>
-            <div class="profile shimmer"></div>
+        <!-- Generator Card -->
+        <div class="generator-card">
+            <div class="input-group">
+                <div class="prompt-input-wrapper">
+                    <input
+                    type="text"
+                    id="promptInput"
+                    placeholder="Contoh: A majestic dragon perched on a neon-lit skyscraper at night, photorealistic, 8K..."
+                    autocomplete="off"
+                    >
+                    <button class="sparkle-btn" id="randomPromptBtn" title="Prompt acak">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="style-selector" id="styleSelector">
+                <button class="style-chip active" data-style="photorealistic">Fotorealistik</button>
+                <button class="style-chip" data-style="cinematic">Sinematik</button>
+                <button class="style-chip" data-style="anime"> Anime</button>
+                <button class="style-chip" data-style="digital-art">Digital Art</button>
+                <button class="style-chip" data-style="oil-painting">Lukisan</button>
+                <button class="style-chip" data-style="3d-render"> 3D Render</button>
+                <button class="style-chip" data-style="fantasy">Fantasi</button>
+                <button class="style-chip" data-style="cyberpunk">Cyberpunk</button>
+            </div>
+            <button class="generate-btn" id="generateBtn">
+                <span class="btn-text"><i class="fa-solid fa-bolt"></i> Generate Gambar</span>
+                <span class="spinner"></span>
+            </button>
+        </div>
+
+        <!-- Result Area -->
+        <div class="result-area" id="resultArea">
+            <div class="result-card">
+                <div class="result-image-container" id="resultImageContainer">
+                    <img id="resultImage" src="" alt="Generated AI Image">
+                    <div class="image-overlay">
+                        <span class="overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                    </div>
+                </div>
+                <div class="result-actions">
+                    <button class="action-btn primary-action" id="downloadBtn">
+                        <i class="fa-solid fa-download"></i> Unduh Gambar
+                    </button>
+                    <button class="action-btn" id="regenerateBtn">
+                        <i class="fa-solid fa-rotate-right"></i> Buat Ulang
+                    </button>
+                    <button class="action-btn" id="copyPromptBtn">
+                        <i class="fa-solid fa-copy"></i> Salin Prompt
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Gallery -->
+        <div class="history-section" id="historySection">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Generasi</h3>
+            <div class="history-grid" id="historyGrid">
+                <p class="history-empty">Belum ada gambar yang dibuat. Mulailah dengan menulis prompt di atas! 🎨</p>
+            </div>
         </div>
     </div>
 
-    <div class="search shimmer"></div>
-
-    <div class="menu-card">
-        <div class="menu-item">
-            <div class="title shimmer"></div>
-            <div class="subtitle shimmer"></div>
-            <div class="thumb shimmer"></div>
-        </div>
-
-        <div class="menu-item">
-            <div class="title shimmer"></div>
-            <div class="subtitle shimmer"></div>
-            <div class="thumb shimmer"></div>
-        </div>
-
-        <div class="menu-item">
-            <div class="title shimmer"></div>
-            <div class="subtitle shimmer"></div>
-            <div class="thumb shimmer"></div>
-        </div>
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-xmark"></i></button>
+        <img id="lightboxImage" src="" alt="Preview">
+        <button class="lightbox-download" id="lightboxDownload">
+            <i class="fa-solid fa-download"></i> Unduh Gambar HD
+        </button>
     </div>
 
-    <div class="banner shimmer"></div>
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
 
-    <div class="circle-row">
-        <div class="circle shimmer"></div>
-        <div class="circle shimmer"></div>
-        <div class="circle shimmer"></div>
-        <div class="circle shimmer"></div>
-        <div class="circle shimmer"></div>
-    </div>
+    <script>
+        (function() {
+            // === DOM ELEMENTS ===
+            const promptInput = document.getElementById('promptInput');
+            const generateBtn = document.getElementById('generateBtn');
+            const resultArea = document.getElementById('resultArea');
+            const resultImage = document.getElementById('resultImage');
+            const resultImageContainer = document.getElementById('resultImageContainer');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const regenerateBtn = document.getElementById('regenerateBtn');
+            const copyPromptBtn = document.getElementById('copyPromptBtn');
+            const styleSelector = document.getElementById('styleSelector');
+            const historyGrid = document.getElementById('historyGrid');
+            const historySection = document.getElementById('historySection');
+            const randomPromptBtn = document.getElementById('randomPromptBtn');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxDownload = document.getElementById('lightboxDownload');
+            const toastContainer = document.getElementById('toastContainer');
 
-    <div class="btn-row">
-        <div class="btn shimmer"></div>
-        <div class="btn shimmer"></div>
-    </div>
+            // === STATE ===
+            let selectedStyle = 'photorealistic';
+            let currentPrompt = '';
+            let currentImageUrl = '';
+            let history = []; // { prompt, style, imageUrl, timestamp }
 
-    <div class="grid">
-        <div class="card shimmer"></div>
-        <div class="card shimmer"></div>
-        <div class="card shimmer"></div>
-    </div>
+            // Load history dari localStorage
+            try {
+                const saved = localStorage.getItem('visionforge_history');
+                if (saved) history = JSON.parse(saved);
+            } catch (e) {
+                history = [];
+            }
 
-</div>
+            // === RANDOM PROMPTS ===
+            const randomPrompts = [
+                'A futuristic city floating in the clouds at sunset, photorealistic, 8K',
+                'A cozy cabin in a snowy forest with warm lights glowing from the windows, cinematic',
+                'A majestic white tiger with icy blue eyes in a mystical forest, fantasy art',
+                'An astronaut playing electric guitar on the moon with Earth in the background, digital art',
+                'A steampunk airship sailing through golden clouds at dawn, highly detailed',
+                'A beautiful mermaid sitting on a rock under the moonlight, oil painting style',
+                'A cyberpunk street market in Tokyo at night with neon signs, rain, and reflections',
+                'A giant ancient tree with a glowing door in its trunk, surrounded by fireflies',
+                'A crystal castle on a floating island above a purple ocean, fantasy, magical atmosphere',
+                'A samurai warrior standing in a field of cherry blossoms at sunrise, photorealistic',
+                'A dragon made of galaxies and stars coiled around a planet, cosmic art',
+                'A vintage coffee shop on a rainy Paris street, warm lighting, cinematic mood',
+            ];
 
-<div id="appContent" style="display:none;">
-    <h1></h1>
-</div>
+            function getRandomPrompt() {
+                const random = randomPrompts[Math.floor(Math.random() * randomPrompts.length)];
+                promptInput.value = random;
+                promptInput.focus();
+            }
 
-<script src="script.js"></script>
+            // === STYLE SELECTOR ===
+            styleSelector.addEventListener('click', (e) => {
+                const chip = e.target.closest('.style-chip');
+                if (!chip) return;
+                document.querySelectorAll('.style-chip').forEach(c => c.classList.remove(
+                'active'));
+                chip.classList.add('active');
+                selectedStyle = chip.dataset.style;
+            });
+
+            // === BUILD STYLE PROMPT SUFFIX ===
+            function getStyleSuffix() {
+                const styleMap = {
+                    'photorealistic': ', photorealistic, highly detailed, 8K, realistic lighting, sharp focus',
+                    'cinematic': ', cinematic lighting, film grain, anamorphic lens, dramatic atmosphere, movie poster quality',
+                    'anime': ', anime style, studio ghibli, vibrant colors, clean lines, manga aesthetic',
+                    'digital-art': ', digital art, trending on artstation, concept art, detailed illustration',
+                    'oil-painting': ', oil painting on canvas, thick brush strokes, classical art, masterpiece',
+                    '3d-render': ', 3D render, octane render, unreal engine 5, ray tracing, hyperrealistic CGI',
+                    'fantasy': ', fantasy art, magical, ethereal, glowing, mythical, enchanting atmosphere',
+                    'cyberpunk': ', cyberpunk, neon lights, futuristic, blade runner aesthetic, rain, reflections',
+                };
+                return styleMap[selectedStyle] || '';
+            }
+
+            // === GENERATE IMAGE ===
+            async function generateImage(prompt, style) {
+                const fullPrompt = prompt + getStyleSuffix();
+                // Gunakan seed acak untuk variasi
+                const seed = Math.floor(Math.random() * 999999);
+                const encodedPrompt = encodeURIComponent(fullPrompt);
+                // Pollinations.ai API - gratis, tanpa API key
+                const url =
+                    `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&seed=${seed}&nologo=true&model=flux`;
+                return url;
+            }
+
+            // === RENDER HISTORY ===
+            function renderHistory() {
+                if (history.length === 0) {
+                    historyGrid.innerHTML =
+                        '<p class="history-empty">Belum ada gambar yang dibuat. Mulailah dengan menulis prompt di atas! 🎨</p>';
+                } else {
+                    historyGrid.innerHTML = history.slice().reverse().map((item, index) => `
+                            <div class="history-item" data-index="${history.length - 1 - index}" title="${escapeHtml(item.prompt)}">
+                                <img src="${item.imageUrl}" alt="Generated image" loading="lazy">
+                                <div class="history-prompt">${escapeHtml(item.prompt.substring(0, 60))}${item.prompt.length > 60 ? '...' : ''}</div>
+                            </div>
+                        `).join('');
+                }
+                // Simpan ke localStorage
+                try {
+                    localStorage.setItem('visionforge_history', JSON.stringify(history));
+                } catch (e) {
+                    // localStorage penuh, hapus item lama
+                    if (history.length > 20) {
+                        history = history.slice(-20);
+                        localStorage.setItem('visionforge_history', JSON.stringify(history));
+                    }
+                }
+            }
+
+            function escapeHtml(str) {
+                const div = document.createElement('div');
+                div.textContent = str;
+                return div.innerHTML;
+            }
+
+            // === ADD TO HISTORY ===
+            function addToHistory(prompt, style, imageUrl) {
+                history.push({
+                    prompt,
+                    style,
+                    imageUrl,
+                    timestamp: Date.now(),
+                });
+                // Batasi 50 item
+                if (history.length > 50) history = history.slice(-50);
+                renderHistory();
+            }
+
+            // === SHOW RESULT ===
+            function showResult(imageUrl) {
+                currentImageUrl = imageUrl;
+                resultImage.src = imageUrl;
+                resultArea.classList.add('visible');
+                resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            // === TOAST ===
+            function showToast(message, type = 'success') {
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                const icons = { success: 'fa-circle-check', error: 'fa-circle-exclamation' };
+                toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.success}"></i> ${message}`;
+                toastContainer.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateX(40px)';
+                    toast.style.transition = '0.3s ease';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+
+            // === HANDLE GENERATE ===
+            async function handleGenerate() {
+                const prompt = promptInput.value.trim();
+                if (!prompt) {
+                    showToast('Silakan tulis deskripsi gambar terlebih dahulu.', 'error');
+                    promptInput.focus();
+                    return;
+                }
+                currentPrompt = prompt;
+
+                // Disable button & show loading
+                generateBtn.classList.add('loading');
+                generateBtn.disabled = true;
+
+                try {
+                    const imageUrl = await generateImage(prompt, selectedStyle);
+                    // Preload image untuk memastikan sudah tersedia
+                    const img = new Image();
+                    img.src = imageUrl;
+                    await new Promise((resolve, reject) => {
+                        img.onload = resolve;
+                        img.onerror = () => reject(new Error('Gagal memuat gambar'));
+                        // Timeout 30 detik
+                        setTimeout(() => reject(new Error('Timeout - server AI sibuk')), 30000);
+                    });
+
+                    showResult(imageUrl);
+                    addToHistory(prompt, selectedStyle, imageUrl);
+                    showToast('🎉 Gambar berhasil dibuat!');
+                } catch (error) {
+                    console.error(error);
+                    showToast('⚠️ Gagal membuat gambar: ' + (error.message ||
+                        'Coba lagi nanti'), 'error');
+                } finally {
+                    generateBtn.classList.remove('loading');
+                    generateBtn.disabled = false;
+                }
+            }
+
+            // === DOWNLOAD IMAGE ===
+            async function downloadImage(url, filename = 'visionforge-image.png') {
+                try {
+                    showToast('⏳ Menyiapkan unduhan...');
+                    const response = await fetch(url);
+                    const blob = await response.blob();
+                    const blobUrl = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = blobUrl;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(blobUrl);
+                    showToast('✅ Gambar berhasil diunduh!');
+                } catch (e) {
+                    // Fallback: buka di tab baru
+                    window.open(url, '_blank');
+                    showToast('📥 Gambar dibuka di tab baru untuk diunduh.');
+                }
+            }
+
+            // === EVENT LISTENERS ===
+            generateBtn.addEventListener('click', handleGenerate);
+            promptInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') handleGenerate();
+            });
+            randomPromptBtn.addEventListener('click', getRandomPrompt);
+
+            downloadBtn.addEventListener('click', () => {
+                if (currentImageUrl) {
+                    const filename = `visionforge-${Date.now()}.png`;
+                    downloadImage(currentImageUrl, filename);
+                }
+            });
+
+            regenerateBtn.addEventListener('click', () => {
+                if (currentPrompt) {
+                    promptInput.value = currentPrompt;
+                    handleGenerate();
+                } else {
+                    handleGenerate();
+                }
+            });
+
+            copyPromptBtn.addEventListener('click', () => {
+                if (currentPrompt) {
+                    navigator.clipboard.writeText(currentPrompt).then(() => {
+                        showToast('📋 Prompt disalin ke clipboard!');
+                    }).catch(() => {
+                        showToast('Gagal menyalin prompt.', 'error');
+                    });
+                }
+            });
+
+            // Lightbox
+            resultImageContainer.addEventListener('click', () => {
+                if (currentImageUrl) {
+                    lightboxImage.src = currentImageUrl;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+            lightboxClose.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            lightboxDownload.addEventListener('click', () => {
+                if (currentImageUrl) {
+                    downloadImage(currentImageUrl, `visionforge-hd-${Date.now()}.png`);
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // History item click
+            historyGrid.addEventListener('click', (e) => {
+                const item = e.target.closest('.history-item');
+                if (!item) return;
+                const index = parseInt(item.dataset.index);
+                if (index >= 0 && index < history.length) {
+                    const historyItem = history[index];
+                    currentPrompt = historyItem.prompt;
+                    currentImageUrl = historyItem.imageUrl;
+                    selectedStyle = historyItem.style;
+                    promptInput.value = historyItem.prompt;
+                    // Update style chip
+                    document.querySelectorAll('.style-chip').forEach(c => {
+                        c.classList.remove('active');
+                        if (c.dataset.style === historyItem.style) c.classList.add('active');
+                    });
+                    showResult(historyItem.imageUrl);
+                    showToast('📂 Gambar dari riwayat dimuat.');
+                }
+            });
+
+            // === INIT ===
+            renderHistory();
+
+            // Jika ada history terakhir, set style chip sesuai
+            if (history.length > 0) {
+                const last = history[history.length - 1];
+                selectedStyle = last.style || 'photorealistic';
+                document.querySelectorAll('.style-chip').forEach(c => {
+                    c.classList.remove('active');
+                    if (c.dataset.style === selectedStyle) c.classList.add('active');
+                });
+            }
+
+            console.log('🚀 VisionForge AI siap digunakan!');
+            console.log('✨ Didukung oleh Pollinations.ai (gratis, tanpa API key)');
+            console.log('📝 Tulis prompt, pilih style, lalu klik Generate!');
+        })();
+    </script>
 </body>
 </html>
