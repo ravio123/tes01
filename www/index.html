@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Geodora AI — Pembuat Gambar AI Realistis</title>
 
     <!-- Font Awesome 6 untuk ikon -->
@@ -45,6 +45,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -57,6 +58,7 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
         /* Animasi background bergerak */
@@ -76,16 +78,9 @@
             animation: bgDrift 20s ease-in-out infinite;
         }
         @keyframes bgDrift {
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-            33% {
-                transform: translate(1%, -1%);
-            }
-            66% {
-                transform: translate(-1%, 1%);
-            }
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(1%, -1%); }
+            66% { transform: translate(-1%, 1%); }
         }
 
         /* === SIDEBAR TOGGLE BUTTON - DI KIRI === */
@@ -106,6 +101,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            -webkit-tap-highlight-color: transparent;
         }
         .sidebar-toggle:hover {
             background: var(--bg-card-hover);
@@ -221,6 +217,7 @@
             font-size: 0.92rem;
             font-weight: 500;
             text-align: left;
+            -webkit-tap-highlight-color: transparent;
         }
         .menu-item:hover {
             background: var(--bg-card);
@@ -308,6 +305,8 @@
             font-size: 0.9rem;
             transition: var(--transition);
             outline: none;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .settings-group select:focus,
         .settings-group input:focus {
@@ -338,6 +337,7 @@
             border: 2px solid var(--border);
             position: relative;
             flex-shrink: 0;
+            -webkit-tap-highlight-color: transparent;
         }
         .toggle-switch.active {
             background: var(--accent);
@@ -391,6 +391,9 @@
         .info-panel ul li {
             margin-bottom: 4px;
         }
+        .info-panel ul li i {
+            margin-right: 8px;
+        }
 
         /* === NAVBAR === */
         .navbar {
@@ -411,25 +414,13 @@
         }
         .navbar-brand {
             display: flex;
+            margin-right: 187px;
             align-items: center;
             gap: 12px;
             font-weight: 700;
             font-size: 1.25rem;
             letter-spacing: -0.3px;
             cursor: default;
-            margin-right: 195px;
-        }
-        .navbar-brand .logo-icon {
-            width: 0px;
-            height: 0px;
-            border-radius: var(--radius-sm);
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: #fff;
-            box-shadow: 0 4px 15px var(--accent-glow);
         }
         .navbar-brand span {
             background: linear-gradient(135deg, #e8e8f0 0%, #c4c4d8 100%);
@@ -451,7 +442,6 @@
             letter-spacing: -0.2px;
             position: absolute;
             right: 24px;
-            
         }
         .nav-badge .dot {
             width: 7px;
@@ -461,13 +451,8 @@
             animation: pulse-dot 2s infinite;
         }
         @keyframes pulse-dot {
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
-            }
-            50% {
-                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
-            }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+            50% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
         }
 
         /* === MAIN CONTAINER === */
@@ -505,13 +490,8 @@
             background-size: 200% 200%;
         }
         @keyframes gradientShift {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         .hero-section p {
             color: var(--text-secondary);
@@ -557,6 +537,8 @@
             letter-spacing: -0.2px;
             transition: var(--transition);
             outline: none;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .prompt-input-wrapper input::placeholder {
             color: var(--text-muted);
@@ -578,6 +560,7 @@
             padding: 8px;
             border-radius: 50%;
             transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
         }
         .prompt-input-wrapper .sparkle-btn:hover {
             color: var(--accent-light);
@@ -605,6 +588,7 @@
             transition: var(--transition);
             white-space: nowrap;
             user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
         .style-chip:hover {
             border-color: #3e3e5a;
@@ -639,6 +623,7 @@
             box-shadow: 0 8px 30px var(--accent-glow);
             position: relative;
             overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
         .generate-btn:hover {
             transform: translateY(-2px);
@@ -670,9 +655,7 @@
             display: none;
         }
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
 
         /* === RESULT AREA === */
@@ -684,14 +667,8 @@
             display: block;
         }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .result-card {
             background: var(--bg-card);
@@ -763,6 +740,7 @@
             display: flex;
             align-items: center;
             gap: 7px;
+            -webkit-tap-highlight-color: transparent;
         }
         .action-btn:hover {
             border-color: #4a4a68;
@@ -808,6 +786,7 @@
             border: 2px solid transparent;
             transition: var(--transition);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            -webkit-tap-highlight-color: transparent;
         }
         .history-item:hover {
             border-color: var(--accent);
@@ -853,6 +832,7 @@
             z-index: 999;
             background: rgba(0, 0, 0, 0.92);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
             flex-direction: column;
@@ -885,6 +865,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            -webkit-tap-highlight-color: transparent;
         }
         .lightbox-close:hover {
             background: rgba(255, 255, 255, 0.18);
@@ -905,6 +886,7 @@
             gap: 8px;
             transition: var(--transition);
             letter-spacing: -0.2px;
+            -webkit-tap-highlight-color: transparent;
         }
         .lightbox-download:hover {
             background: #5558e0;
@@ -937,14 +919,8 @@
             max-width: 380px;
         }
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         .toast.success {
             border-left: 3px solid var(--success);
@@ -1003,6 +979,58 @@
             }
             .nav-badge {
                 display: none;
+            }
+            .toast-container {
+                bottom: 16px;
+                right: 16px;
+                left: 16px;
+            }
+            .toast {
+                max-width: 100%;
+                font-size: 0.82rem;
+                padding: 12px 16px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-section h1 {
+                font-size: 1.5rem;
+            }
+            .generator-card {
+                padding: 16px 12px;
+            }
+            .prompt-input-wrapper input {
+                font-size: 0.85rem;
+                padding: 12px 14px;
+                padding-right: 44px;
+            }
+            .style-chip {
+                font-size: 0.7rem;
+                padding: 5px 10px;
+            }
+            .generate-btn {
+                font-size: 0.9rem;
+                padding: 13px 20px;
+            }
+        }
+
+        /* === ANDROID WEBVIEW SPECIFIC === */
+        @media (max-width: 480px) and (orientation: portrait) {
+            .result-image-container {
+                min-height: 200px;
+            }
+        }
+
+        /* Safe area for notch phones */
+        @supports (padding: max(0px)) {
+            .main-container {
+                padding-left: max(24px, env(safe-area-inset-left));
+                padding-right: max(24px, env(safe-area-inset-right));
+                padding-bottom: max(40px, env(safe-area-inset-bottom));
+            }
+            .sidebar {
+                padding-top: max(20px, env(safe-area-inset-top));
+                padding-bottom: max(30px, env(safe-area-inset-bottom));
             }
         }
     </style>
@@ -1126,9 +1154,10 @@
                         <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Gambar:</strong> Gambar yang dihasilkan hanya disimpan di perangkat Anda saat Anda mengunduhnya.</li>
                         <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>API:</strong> Aplikasi ini menggunakan Pollinations.ai untuk menghasilkan gambar. Data prompt dikirim ke API mereka untuk diproses.</li>
                         <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Cookie:</strong> Aplikasi ini tidak menggunakan cookie.</li>
+                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Izin:</strong> Aplikasi hanya memerlukan izin penyimpanan untuk menyimpan gambar yang diunduh.</li>
                     </ul>
                     <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);">
-                        <i class="fa-regular fa-clock"></i> Terakhir diperbarui: 15 Juli 2026
+                        <i class="fa-regular fa-clock"></i> Terakhir diperbarui: 15 Januari 2025
                     </p>
                 </div>
             </div>
@@ -1169,11 +1198,12 @@
                     <h3><i class="fa-solid fa-info-circle"></i> Tentang Geodora</h3>
                     <p><strong>Geodora</strong> adalah aplikasi pembuat gambar berbasis kecerdasan buatan yang memungkinkan Anda menghasilkan gambar berkualitas tinggi hanya dengan menulis deskripsi.</p>
                     <ul>
-                        <li><i class="fa-solid fa-robot" style="color:var(--accent);"></i> <strong>Versi:</strong> 2.0.0</li>
-                        <li><i class="fa-solid fa-calendar" style="color:var(--accent);"></i> <strong>Rilis:</strong> Juli 2026</li>
+                        <li><i class="fa-solid fa-robot" style="color:var(--accent);"></i> <strong>Versi:</strong> 2.0.1</li>
+                        <li><i class="fa-solid fa-calendar" style="color:var(--accent);"></i> <strong>Rilis:</strong> Januari 2025</li>
                         <li><i class="fa-solid fa-server" style="color:var(--accent);"></i> <strong>Teknologi:</strong> Pollinations.ai API</li>
                         <li><i class="fa-solid fa-mobile" style="color:var(--accent);"></i> <strong>Platform:</strong> Web & Android (WebView)</li>
                         <li><i class="fa-solid fa-gem" style="color:var(--accent);"></i> <strong>Lisensi:</strong> Freeware - Gratis untuk semua pengguna</li>
+                        <li><i class="fa-solid fa-shield" style="color:var(--accent);"></i> <strong>Kebijakan Privasi:</strong> Tersedia di menu</li>
                     </ul>
                     <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);">
                         <i class="fa-regular fa-heart" style="color:var(--gradient-3);"></i> Dibuat dengan cinta untuk semua pecinta seni AI.
@@ -1184,7 +1214,7 @@
 
         <div class="sidebar-footer">
             <div style="font-size:0.7rem; color:var(--text-muted); padding:8px 14px; text-align:center; border-top:1px solid var(--border); padding-top:12px;">
-                <i class="fa-regular fa-copyright"></i> Geodora v2.0
+                <i class="fa-regular fa-copyright"></i> Geodora v2.0.1
             </div>
         </div>
     </aside>
@@ -1414,7 +1444,6 @@
 
             // === MENU NAVIGATION ===
             function showPage(page) {
-                // Update active menu
                 menuItems.forEach(item => {
                     item.classList.remove('active');
                     if (item.dataset.page === page) {
@@ -1422,7 +1451,6 @@
                     }
                 });
 
-                // Hide all panels
                 [settingsPanel, privacyPanel, helpPanel, aboutPanel].forEach(p => {
                     if (p) p.classList.remove('active');
                 });
@@ -1442,8 +1470,6 @@
                     case 'about':
                         if (aboutPanel) aboutPanel.classList.add('active');
                         break;
-                    default:
-                        break;
                 }
             }
 
@@ -1451,7 +1477,6 @@
                 item.addEventListener('click', () => {
                     const page = item.dataset.page;
                     showPage(page);
-                    // Jangan tutup sidebar agar user bisa melihat konten
                 });
             });
 
@@ -1483,7 +1508,7 @@
             // === APPLY SETTINGS ===
             applySettingsBtn.addEventListener('click', function() {
                 saveSettings();
-                showToast('✅ Pengaturan berhasil diterapkan!', 'success');
+                showToast('Pengaturan berhasil diterapkan!', 'success');
             });
 
             // === STYLE SELECTOR ===
@@ -1618,7 +1643,7 @@
             async function handleGenerate() {
                 const prompt = promptInput.value.trim();
                 if (!prompt) {
-                    showToast('⚠️ Silakan tulis deskripsi gambar terlebih dahulu.', 'error');
+                    showToast('Silakan tulis deskripsi gambar terlebih dahulu.', 'error');
                     promptInput.focus();
                     return;
                 }
@@ -1639,53 +1664,116 @@
 
                     showResult(imageUrl);
                     addToHistory(prompt, selectedStyle, imageUrl);
-                    showToast(' Gambar berhasil dibuat!', 'success');
+                    showToast('Gambar berhasil dibuat!', 'success');
                 } catch (error) {
                     console.error(error);
-                    showToast('Gagal membuat gambar: ' + (error.message || 'Coba lagi nanti'), 'error');
+                    showToast(' Gagal membuat gambar: ' + (error.message || 'Coba lagi nanti'), 'error');
                 } finally {
                     generateBtn.classList.remove('loading');
                     generateBtn.disabled = false;
                 }
             }
 
-            // === DOWNLOAD IMAGE ===
-            async function downloadImage(url, filename = 'geodora-image.png') {
-                try {
-                    showToast('⏳ Menyiapkan unduhan...', 'info');
-                    const response = await fetch(url);
-                    if (!response.ok) throw new Error('Gagal mengunduh gambar');
-                    const blob = await response.blob();
-                    const blobUrl = URL.createObjectURL(blob);
-
-                    const isAndroid = /android/i.test(navigator.userAgent);
-                    if (isAndroid) {
-                        const a = document.createElement('a');
-                        a.href = blobUrl;
-                        a.download = filename;
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                        setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
-                        showToast('✅ Gambar berhasil diunduh!', 'success');
-                    } else {
-                        const a = document.createElement('a');
-                        a.href = blobUrl;
-                        a.download = filename;
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                        URL.revokeObjectURL(blobUrl);
-                        showToast('✅ Gambar berhasil diunduh!', 'success');
-                    }
-                } catch (e) {
-                    console.error('Download error:', e);
-                    try {
+            // === DOWNLOAD IMAGE - FIXED FOR ANDROID ===
+            function downloadImageAndroid(url, filename = 'geodora-image.png') {
+                // Cek apakah ini Android WebView
+                const isAndroid = /android/i.test(navigator.userAgent);
+                
+                if (isAndroid) {
+                    // Method 1: Gunakan XMLHttpRequest untuk fetch gambar
+                    showToast(' Menyiapkan unduhan...', 'info');
+                    
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', url, true);
+                    xhr.responseType = 'blob';
+                    
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            try {
+                                // Buat link download
+                                const blob = xhr.response;
+                                const blobUrl = URL.createObjectURL(blob);
+                                
+                                // Buat elemen anchor dan trigger download
+                                const a = document.createElement('a');
+                                a.href = blobUrl;
+                                a.download = filename;
+                                document.body.appendChild(a);
+                                a.click();
+                                document.body.removeChild(a);
+                                
+                                // Revoke URL setelah beberapa detik
+                                setTimeout(() => {
+                                    URL.revokeObjectURL(blobUrl);
+                                }, 10000);
+                                
+                                showToast(' Gambar berhasil diunduh!', 'success');
+                            } catch (e) {
+                                console.error('Download error:', e);
+                                // Fallback: buka di tab baru
+                                window.open(url, '_blank');
+                                showToast(' Gambar dibuka di tab baru untuk diunduh.', 'info');
+                            }
+                        } else {
+                            showToast(' Gagal mengunduh gambar. Status: ' + xhr.status, 'error');
+                        }
+                    };
+                    
+                    xhr.onerror = function() {
+                        // Fallback: buka di browser
+                        showToast(' Coba unduh melalui browser default', 'info');
                         window.open(url, '_blank');
-                        showToast('📥 Gambar dibuka di tab baru untuk diunduh.', 'info');
-                    } catch (err) {
-                        showToast('⚠️ Gagal mengunduh gambar. Coba tekan lama pada gambar.', 'error');
+                    };
+                    
+                    xhr.send();
+                } else {
+                    // Desktop / browser biasa
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    showToast(' Gambar berhasil diunduh!', 'success');
+                }
+            }
+
+            // === DOWNLOAD IMAGE WITH FETCH (Alternative) ===
+            async function downloadImageWithFetch(url, filename = 'geodora-image.png') {
+                const isAndroid = /android/i.test(navigator.userAgent);
+                
+                if (isAndroid) {
+                    try {
+                        showToast(' Mengunduh gambar...', 'info');
+                        const response = await fetch(url);
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        
+                        const blob = await response.blob();
+                        const blobUrl = URL.createObjectURL(blob);
+                        
+                        const a = document.createElement('a');
+                        a.href = blobUrl;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        
+                        setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+                        showToast(' Gambar berhasil diunduh!', 'success');
+                    } catch (e) {
+                        console.error('Fetch download error:', e);
+                        // Fallback ke XMLHttpRequest
+                        downloadImageAndroid(url, filename);
                     }
+                } else {
+                    // Desktop
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    showToast(' Gambar berhasil diunduh!', 'success');
                 }
             }
 
@@ -1698,9 +1786,11 @@
 
             downloadBtn.addEventListener('click', () => {
                 if (currentImageUrl) {
-                    downloadImage(currentImageUrl, `geodora-${Date.now()}.png`);
+                    const filename = `geodora-${Date.now()}.png`;
+                    // Gunakan downloadImageAndroid untuk Android
+                    downloadImageAndroid(currentImageUrl, filename);
                 } else {
-                    showToast('⚠️ Tidak ada gambar untuk diunduh.', 'error');
+                    showToast(' Tidak ada gambar untuk diunduh.', 'error');
                 }
             });
 
@@ -1715,15 +1805,33 @@
 
             copyPromptBtn.addEventListener('click', () => {
                 if (currentPrompt) {
-                    navigator.clipboard.writeText(currentPrompt).then(() => {
-                        showToast('📋 Prompt disalin ke clipboard!', 'success');
-                    }).catch(() => {
-                        showToast('⚠️ Gagal menyalin prompt.', 'error');
-                    });
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(currentPrompt).then(() => {
+                            showToast(' Prompt disalin ke clipboard!', 'success');
+                        }).catch(() => {
+                            fallbackCopyPrompt();
+                        });
+                    } else {
+                        fallbackCopyPrompt();
+                    }
                 } else {
-                    showToast('⚠️ Tidak ada prompt untuk disalin.', 'error');
+                    showToast(' Tidak ada prompt untuk disalin.', 'error');
                 }
             });
+
+            function fallbackCopyPrompt() {
+                try {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = currentPrompt;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    showToast(' Prompt disalin ke clipboard!', 'success');
+                } catch (e) {
+                    showToast(' Gagal menyalin prompt.', 'error');
+                }
+            }
 
             // Lightbox
             resultImageContainer.addEventListener('click', () => {
@@ -1745,7 +1853,8 @@
             });
             lightboxDownload.addEventListener('click', () => {
                 if (currentImageUrl) {
-                    downloadImage(currentImageUrl, `geodora-hd-${Date.now()}.png`);
+                    const filename = `geodora-hd-${Date.now()}.png`;
+                    downloadImageAndroid(currentImageUrl, filename);
                 }
             });
             document.addEventListener('keydown', (e) => {
@@ -1764,14 +1873,14 @@
                     const historyItem = history[index];
                     currentPrompt = historyItem.prompt;
                     currentImageUrl = historyItem.imageUrl;
-                    selectedStyle = historyItem.style;
+                    selectedStyle = historyItem.style || 'photorealistic';
                     promptInput.value = historyItem.prompt;
                     document.querySelectorAll('.style-chip').forEach(c => {
                         c.classList.remove('active');
-                        if (c.dataset.style === historyItem.style) c.classList.add('active');
+                        if (c.dataset.style === selectedStyle) c.classList.add('active');
                     });
                     showResult(historyItem.imageUrl);
-                    showToast('📂 Gambar dari riwayat dimuat.', 'success');
+                    showToast(' Gambar dari riwayat dimuat.', 'success');
                 }
             });
 
@@ -1807,9 +1916,14 @@
                 });
             }
 
+            // Detect Android and log
+            if (/android/i.test(navigator.userAgent)) {
+                console.log('📱 Android device detected - download method optimized');
+            }
+
             console.log(' Geodora Magic AI siap digunakan!');
-            console.log('Didukung oleh Pollinations.ai (gratis, tanpa API key)');
-            console.log(' Tulis prompt, pilih style, lalu klik Generate!');
+            console.log(' Didukung oleh Pollinations.ai (gratis, tanpa API key)');
+            console.log('Tulis prompt, pilih style, lalu klik Generate!');
 
         })();
     </script>
