@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alovera Magic AI — Pembuat Gambar AI Realistis</title>
+    <title>Geodora AI — Pembuat Gambar AI Realistis</title>
 
     <!-- Font Awesome 6 untuk ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -38,6 +38,7 @@
             --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
             --shadow-glow: 0 0 40px var(--accent-glow);
             --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --sidebar-width: 340px;
         }
 
         * {
@@ -87,7 +88,311 @@
             }
         }
 
-        /* === HEADER / NAVBAR === */
+        /* === SIDEBAR TOGGLE BUTTON - DI KIRI === */
+        .sidebar-toggle {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 200;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sidebar-toggle:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* === SIDEBAR OVERLAY === */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 150;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .sidebar-overlay.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* === SIDEBAR - DARI KIRI === */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            max-width: 92vw;
+            height: 100vh;
+            z-index: 200;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 18px 30px;
+            box-shadow: 8px 0 40px rgba(0, 0, 0, 0.6);
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        .sidebar-header h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-primary);
+        }
+        .sidebar-header h2 i {
+            color: var(--accent);
+        }
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .sidebar-close:hover {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        /* Menu Items */
+        .sidebar-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .sidebar-menu .menu-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+            padding: 12px 10px 6px;
+            font-weight: 600;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border: none;
+            background: none;
+            width: 100%;
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 500;
+            text-align: left;
+        }
+        .menu-item:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+        .menu-item.active {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            border-left: 3px solid var(--accent);
+        }
+        .menu-item i {
+            width: 22px;
+            font-size: 1.1rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .menu-item .menu-badge {
+            margin-left: auto;
+            background: var(--accent);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .sidebar-footer .menu-item {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .sidebar-footer .menu-item:hover {
+            color: var(--text-secondary);
+        }
+
+        /* === PANELS (di dalam sidebar) === */
+        .panel-content {
+            display: none;
+            padding: 8px 0 16px;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .panel-content.active {
+            display: flex;
+        }
+
+        /* Settings Panel */
+        .settings-group {
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+        }
+        .settings-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .settings-group .setting-description {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .settings-group select,
+        .settings-group input[type="number"],
+        .settings-group input[type="text"] {
+            width: 100%;
+            padding: 10px 14px;
+            background: var(--bg-input);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            outline: none;
+        }
+        .settings-group select:focus,
+        .settings-group input:focus {
+            border-color: var(--border-focus);
+        }
+        .settings-group select option {
+            background: var(--bg-primary);
+        }
+
+        /* Toggle switch */
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .toggle-row span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .toggle-switch {
+            width: 44px;
+            height: 24px;
+            background: var(--bg-input);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid var(--border);
+            position: relative;
+            flex-shrink: 0;
+        }
+        .toggle-switch.active {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        .toggle-switch .toggle-knob {
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: var(--transition);
+        }
+        .toggle-switch.active .toggle-knob {
+            left: 22px;
+        }
+
+        /* Privacy, Help, About Panel */
+        .info-panel {
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            padding: 18px 20px;
+            border: 1px solid var(--border);
+        }
+        .info-panel h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-primary);
+        }
+        .info-panel h3 i {
+            color: var(--accent);
+        }
+        .info-panel p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        .info-panel ul {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            padding-left: 20px;
+        }
+        .info-panel ul li {
+            margin-bottom: 4px;
+        }
+
+        /* === NAVBAR === */
         .navbar {
             position: sticky;
             top: 0;
@@ -100,8 +405,9 @@
             height: 64px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             flex-shrink: 0;
+            padding-left: 68px;
         }
         .navbar-brand {
             display: flex;
@@ -111,10 +417,11 @@
             font-size: 1.25rem;
             letter-spacing: -0.3px;
             cursor: default;
+            margin-right: 195px;
         }
         .navbar-brand .logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 0px;
+            height: 0px;
             border-radius: var(--radius-sm);
             background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
             display: flex;
@@ -142,6 +449,9 @@
             align-items: center;
             gap: 6px;
             letter-spacing: -0.2px;
+            position: absolute;
+            right: 24px;
+            
         }
         .nav-badge .dot {
             width: 7px;
@@ -642,6 +952,9 @@
         .toast.error {
             border-left: 3px solid var(--error);
         }
+        .toast.info {
+            border-left: 3px solid var(--accent);
+        }
 
         /* === RESPONSIVE === */
         @media (max-width: 768px) {
@@ -674,20 +987,212 @@
             .action-btn {
                 justify-content: center;
             }
+            .sidebar {
+                width: 100%;
+                max-width: 92vw;
+            }
+            .sidebar-toggle {
+                top: 10px;
+                left: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .navbar {
+                padding-left: 60px;
+            }
+            .nav-badge {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- SIDEBAR TOGGLE - DI KIRI -->
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Buka menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- SIDEBAR OVERLAY -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fa-solid fa-sliders"></i> Menu</h2>
+            <button class="sidebar-close" id="sidebarClose" aria-label="Tutup menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-menu">
+            <div class="menu-label"><i class="fa-regular fa-compass"></i> Navigasi</div>
+
+            <!-- Menu: Beranda -->
+            <button class="menu-item active" data-page="home">
+                <i class="fa-solid fa-house"></i> Beranda
+            </button>
+
+            <!-- Menu: Pengaturan Generate -->
+            <button class="menu-item" data-page="settings">
+                <i class="fa-solid fa-gear"></i> Pengaturan Generate
+                <span class="menu-badge">AI</span>
+            </button>
+
+            <!-- Settings Panel -->
+            <div class="panel-content" id="settingsPanel">
+                <div class="settings-group">
+                    <label><i class="fa-solid fa-image"></i> Model AI</label>
+                    <div class="setting-description">Pilih model AI untuk menghasilkan gambar</div>
+                    <select id="aiModel">
+                        <option value="flux">Flux (Cepat & Stabil)</option>
+                        <option value="sdxl">SDXL (Kualitas Tinggi)</option>
+                        <option value="sd3">SD3 (Terbaru)</option>
+                    </select>
+                </div>
+
+                <div class="settings-group">
+                    <label><i class="fa-solid fa-expand"></i> Resolusi Gambar</label>
+                    <div class="setting-description">Semakin tinggi resolusi, semakin detail</div>
+                    <select id="imageResolution">
+                        <option value="512">512x512 (Cepat)</option>
+                        <option value="768">768x768 (Standar)</option>
+                        <option value="1024" selected>1024x1024 (HD)</option>
+                        <option value="1536">1536x1536 (Ultra HD)</option>
+                    </select>
+                </div>
+
+                <div class="settings-group">
+                    <label><i class="fa-solid fa-wand-magic-sparkles"></i> Kualitas Detail</label>
+                    <div class="setting-description">Tingkat detail dan realisme gambar</div>
+                    <select id="detailLevel">
+                        <option value="low">Rendah (Cepat)</option>
+                        <option value="medium" selected>Sedang</option>
+                        <option value="high">Tinggi (Lebih Lambat)</option>
+                    </select>
+                </div>
+
+                <div class="settings-group">
+                    <label><i class="fa-solid fa-palette"></i> Mode Warna</label>
+                    <div class="setting-description">Preferensi gaya warna gambar</div>
+                    <select id="colorMode">
+                        <option value="vibrant">Vibrant (Cerlang)</option>
+                        <option value="natural" selected>Natural (Alami)</option>
+                        <option value="muted">Muted (Lembut)</option>
+                        <option value="dramatic">Dramatic (Kontras Tinggi)</option>
+                    </select>
+                </div>
+
+                <div class="settings-group">
+                    <div class="toggle-row">
+                        <span><i class="fa-regular fa-clock"></i> Tampilkan Riwayat</span>
+                        <div class="toggle-switch active" id="historyToggle">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                    <div class="setting-description">Tampilkan riwayat gambar yang telah dibuat</div>
+                </div>
+
+                <div class="settings-group">
+                    <div class="toggle-row">
+                        <span><i class="fa-regular fa-image"></i> Auto Tampilkan Hasil</span>
+                        <div class="toggle-switch active" id="autoShowToggle">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                    <div class="setting-description">Tampilkan hasil gambar secara otomatis setelah generate</div>
+                </div>
+
+                <button class="generate-btn" id="applySettingsBtn" style="margin-top: 4px;">
+                    <i class="fa-solid fa-check"></i> Terapkan Pengaturan
+                </button>
+            </div>
+
+            <!-- Menu: Kebijakan Privasi -->
+            <button class="menu-item" data-page="privacy">
+                <i class="fa-solid fa-shield-halved"></i> Kebijakan Privasi
+            </button>
+
+            <!-- Privacy Panel -->
+            <div class="panel-content" id="privacyPanel">
+                <div class="info-panel">
+                    <h3><i class="fa-solid fa-shield-halved"></i> Kebijakan Privasi</h3>
+                    <p><strong>Geodora</strong> menghormati privasi Anda. Berikut adalah kebijakan privasi kami:</p>
+                    <ul>
+                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Tanpa Login:</strong> Anda tidak perlu membuat akun untuk menggunakan aplikasi ini.</li>
+                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Data Lokal:</strong> Semua data (riwayat gambar, pengaturan) disimpan di perangkat Anda (localStorage).</li>
+                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Tanpa Server:</strong> Kami tidak menyimpan data Anda di server manapun.</li>
+                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Gambar:</strong> Gambar yang dihasilkan hanya disimpan di perangkat Anda saat Anda mengunduhnya.</li>
+                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>API:</strong> Aplikasi ini menggunakan Pollinations.ai untuk menghasilkan gambar. Data prompt dikirim ke API mereka untuk diproses.</li>
+                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Cookie:</strong> Aplikasi ini tidak menggunakan cookie.</li>
+                    </ul>
+                    <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);">
+                        <i class="fa-regular fa-clock"></i> Terakhir diperbarui: 15 Juli 2026
+                    </p>
+                </div>
+            </div>
+
+            <!-- Menu: Bantuan -->
+            <button class="menu-item" data-page="help">
+                <i class="fa-solid fa-circle-question"></i> Bantuan
+            </button>
+
+            <!-- Help Panel -->
+            <div class="panel-content" id="helpPanel">
+                <div class="info-panel">
+                    <h3><i class="fa-solid fa-circle-question"></i> Panduan Penggunaan</h3>
+                    <p><strong>Cara menggunakan Geodora:</strong></p>
+                    <ul>
+                        <li><i class="fa-solid fa-pencil" style="color:var(--accent);"></i> <strong>1. Tulis Prompt:</strong> Masukkan deskripsi gambar yang Anda inginkan di kolom teks.</li>
+                        <li><i class="fa-solid fa-palette" style="color:var(--accent);"></i> <strong>2. Pilih Style:</strong> Pilih gaya gambar yang diinginkan (Fotorealistik, Sinematik, Anime, dll).</li>
+                        <li><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> <strong>3. Generate:</strong> Klik tombol "Generate Gambar" untuk mulai membuat gambar.</li>
+                        <li><i class="fa-solid fa-download" style="color:var(--accent);"></i> <strong>4. Unduh:</strong> Setelah gambar muncul, klik "Unduh Gambar" untuk menyimpannya.</li>
+                        <li><i class="fa-solid fa-rotate-right" style="color:var(--accent);"></i> <strong>5. Buat Ulang:</strong> Gunakan tombol "Buat Ulang" untuk membuat variasi baru dari prompt yang sama.</li>
+                        <li><i class="fa-solid fa-copy" style="color:var(--accent);"></i> <strong>6. Salin Prompt:</strong> Salin prompt ke clipboard untuk digunakan kembali.</li>
+                    </ul>
+                    <p style="margin-top:12px;">
+                        <i class="fa-solid fa-lightbulb" style="color:var(--warning);"></i> <strong>Tips:</strong> Semakin detail deskripsi Anda, semakin baik hasil gambarnya!<br>
+                        <i class="fa-solid fa-clock-rotate-left" style="color:var(--text-muted);"></i> Riwayat gambar tersimpan di perangkat Anda.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Menu: Tentang Aplikasi -->
+            <button class="menu-item" data-page="about">
+                <i class="fa-solid fa-info-circle"></i> Tentang Aplikasi
+            </button>
+
+            <!-- About Panel -->
+            <div class="panel-content" id="aboutPanel">
+                <div class="info-panel">
+                    <h3><i class="fa-solid fa-info-circle"></i> Tentang Geodora</h3>
+                    <p><strong>Geodora</strong> adalah aplikasi pembuat gambar berbasis kecerdasan buatan yang memungkinkan Anda menghasilkan gambar berkualitas tinggi hanya dengan menulis deskripsi.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-robot" style="color:var(--accent);"></i> <strong>Versi:</strong> 2.0.0</li>
+                        <li><i class="fa-solid fa-calendar" style="color:var(--accent);"></i> <strong>Rilis:</strong> Juli 2026</li>
+                        <li><i class="fa-solid fa-server" style="color:var(--accent);"></i> <strong>Teknologi:</strong> Pollinations.ai API</li>
+                        <li><i class="fa-solid fa-mobile" style="color:var(--accent);"></i> <strong>Platform:</strong> Web & Android (WebView)</li>
+                        <li><i class="fa-solid fa-gem" style="color:var(--accent);"></i> <strong>Lisensi:</strong> Freeware - Gratis untuk semua pengguna</li>
+                    </ul>
+                    <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);">
+                        <i class="fa-regular fa-heart" style="color:var(--gradient-3);"></i> Dibuat dengan cinta untuk semua pecinta seni AI.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div style="font-size:0.7rem; color:var(--text-muted); padding:8px 14px; text-align:center; border-top:1px solid var(--border); padding-top:12px;">
+                <i class="fa-regular fa-copyright"></i> Geodora v2.0
+            </div>
+        </div>
+    </aside>
+
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="navbar-brand">
-            
-            <!--
-            <div class="logo-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-            -->
-            
-            <span>Alovera Magic</span>
+            <span>Geodora</span>
         </div>
         <div class="nav-badge">
             <span class="dot"></span> AI Ready
@@ -695,7 +1200,7 @@
     </nav>
 
     <!-- MAIN CONTENT -->
-    <div class="main-container">
+    <div class="main-container" id="mainContent">
         <!-- Hero -->
         <div class="hero-section">
             <h1>Ubah Imajinasi Jadi <span class="gradient-text">Gambar Realistis</span></h1>
@@ -760,7 +1265,7 @@
         <div class="history-section" id="historySection">
             <h3><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Generasi</h3>
             <div class="history-grid" id="historyGrid">
-                <p class="history-empty">Belum ada gambar yang dibuat. Mulailah dengan menulis prompt di atas! 🎨</p>
+                <p class="history-empty">Belum ada gambar yang dibuat. Mulailah dengan menulis prompt di atas! <i class="fa-regular fa-face-smile"></i></p>
             </div>
         </div>
     </div>
@@ -798,15 +1303,63 @@
             const lightboxDownload = document.getElementById('lightboxDownload');
             const toastContainer = document.getElementById('toastContainer');
 
+            // Sidebar elements
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarClose = document.getElementById('sidebarClose');
+            const menuItems = document.querySelectorAll('.menu-item[data-page]');
+            const settingsPanel = document.getElementById('settingsPanel');
+            const privacyPanel = document.getElementById('privacyPanel');
+            const helpPanel = document.getElementById('helpPanel');
+            const aboutPanel = document.getElementById('aboutPanel');
+            const applySettingsBtn = document.getElementById('applySettingsBtn');
+
+            // Settings elements
+            const aiModel = document.getElementById('aiModel');
+            const imageResolution = document.getElementById('imageResolution');
+            const detailLevel = document.getElementById('detailLevel');
+            const colorMode = document.getElementById('colorMode');
+            const historyToggle = document.getElementById('historyToggle');
+            const autoShowToggle = document.getElementById('autoShowToggle');
+
             // === STATE ===
             let selectedStyle = 'photorealistic';
             let currentPrompt = '';
             let currentImageUrl = '';
-            let history = []; // { prompt, style, imageUrl, timestamp }
+            let history = [];
+            let settings = {
+                model: 'flux',
+                resolution: 1024,
+                detail: 'medium',
+                colorMode: 'natural',
+                showHistory: true,
+                autoShowResult: true
+            };
 
-            // Load history dari localStorage
+            // Load settings from localStorage
             try {
-                const saved = localStorage.getItem('visionforge_history');
+                const savedSettings = localStorage.getItem('geodora_settings');
+                if (savedSettings) {
+                    const parsed = JSON.parse(savedSettings);
+                    settings = { ...settings, ...parsed };
+                    aiModel.value = settings.model || 'flux';
+                    imageResolution.value = settings.resolution || '1024';
+                    detailLevel.value = settings.detail || 'medium';
+                    colorMode.value = settings.colorMode || 'natural';
+                    if (!settings.showHistory) {
+                        historyToggle.classList.remove('active');
+                        historySection.style.display = 'none';
+                    }
+                    if (!settings.autoShowResult) {
+                        autoShowToggle.classList.remove('active');
+                    }
+                }
+            } catch (e) {}
+
+            // Load history from localStorage
+            try {
+                const saved = localStorage.getItem('geodora_history');
                 if (saved) history = JSON.parse(saved);
             } catch (e) {
                 history = [];
@@ -834,12 +1387,110 @@
                 promptInput.focus();
             }
 
+            // === SIDEBAR FUNCTIONS ===
+            function openSidebar() {
+                sidebar.classList.add('open');
+                sidebarOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function toggleSidebar() {
+                if (sidebar.classList.contains('open')) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+            }
+
+            sidebarToggle.addEventListener('click', toggleSidebar);
+            sidebarClose.addEventListener('click', closeSidebar);
+            sidebarOverlay.addEventListener('click', closeSidebar);
+
+            // === MENU NAVIGATION ===
+            function showPage(page) {
+                // Update active menu
+                menuItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.dataset.page === page) {
+                        item.classList.add('active');
+                    }
+                });
+
+                // Hide all panels
+                [settingsPanel, privacyPanel, helpPanel, aboutPanel].forEach(p => {
+                    if (p) p.classList.remove('active');
+                });
+
+                switch (page) {
+                    case 'home':
+                        break;
+                    case 'settings':
+                        if (settingsPanel) settingsPanel.classList.add('active');
+                        break;
+                    case 'privacy':
+                        if (privacyPanel) privacyPanel.classList.add('active');
+                        break;
+                    case 'help':
+                        if (helpPanel) helpPanel.classList.add('active');
+                        break;
+                    case 'about':
+                        if (aboutPanel) aboutPanel.classList.add('active');
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const page = item.dataset.page;
+                    showPage(page);
+                    // Jangan tutup sidebar agar user bisa melihat konten
+                });
+            });
+
+            // === SETTINGS TOGGLES ===
+            historyToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const show = this.classList.contains('active');
+                historySection.style.display = show ? 'block' : 'none';
+                settings.showHistory = show;
+                saveSettings();
+            });
+
+            autoShowToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                settings.autoShowResult = this.classList.contains('active');
+                saveSettings();
+            });
+
+            function saveSettings() {
+                settings.model = aiModel.value;
+                settings.resolution = parseInt(imageResolution.value) || 1024;
+                settings.detail = detailLevel.value;
+                settings.colorMode = colorMode.value;
+                try {
+                    localStorage.setItem('geodora_settings', JSON.stringify(settings));
+                } catch (e) {}
+            }
+
+            // === APPLY SETTINGS ===
+            applySettingsBtn.addEventListener('click', function() {
+                saveSettings();
+                showToast('✅ Pengaturan berhasil diterapkan!', 'success');
+            });
+
             // === STYLE SELECTOR ===
             styleSelector.addEventListener('click', (e) => {
                 const chip = e.target.closest('.style-chip');
                 if (!chip) return;
-                document.querySelectorAll('.style-chip').forEach(c => c.classList.remove(
-                'active'));
+                document.querySelectorAll('.style-chip').forEach(c => c.classList.remove('active'));
                 chip.classList.add('active');
                 selectedStyle = chip.dataset.style;
             });
@@ -859,15 +1510,35 @@
                 return styleMap[selectedStyle] || '';
             }
 
+            // === GET COLOR MODE SUFFIX ===
+            function getColorModeSuffix() {
+                const colorMap = {
+                    'vibrant': ', vibrant colors, high saturation, vivid',
+                    'natural': ', natural colors, balanced tones, realistic',
+                    'muted': ', muted colors, soft tones, pastel',
+                    'dramatic': ', dramatic lighting, high contrast, cinematic'
+                };
+                return colorMap[settings.colorMode] || '';
+            }
+
             // === GENERATE IMAGE ===
             async function generateImage(prompt, style) {
-                const fullPrompt = prompt + getStyleSuffix();
-                // Gunakan seed acak untuk variasi
+                const styleSuffix = getStyleSuffix();
+                const colorSuffix = getColorModeSuffix();
+                const detailSuffix = settings.detail === 'high' ? ', masterpiece, ultra detailed, 8K' :
+                    settings.detail === 'medium' ? ', highly detailed, 4K' :
+                    ', detailed';
+
+                const fullPrompt = prompt + styleSuffix + colorSuffix + detailSuffix;
                 const seed = Math.floor(Math.random() * 999999);
+                const width = settings.resolution || 1024;
+                const height = settings.resolution || 1024;
+                const modelParam = settings.model === 'flux' ? 'flux' :
+                    settings.model === 'sdxl' ? 'sdxl' : 'sd3';
+
                 const encodedPrompt = encodeURIComponent(fullPrompt);
-                // Pollinations.ai API - gratis, tanpa API key
                 const url =
-                    `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&seed=${seed}&nologo=true&model=flux`;
+                    `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${width}&height=${height}&seed=${seed}&nologo=true&model=${modelParam}`;
                 return url;
             }
 
@@ -875,7 +1546,7 @@
             function renderHistory() {
                 if (history.length === 0) {
                     historyGrid.innerHTML =
-                        '<p class="history-empty">Belum ada gambar yang dibuat. Mulailah dengan menulis prompt di atas! 🎨</p>';
+                        '<p class="history-empty">Belum ada gambar yang dibuat. Mulailah dengan menulis prompt di atas! <i class="fa-regular fa-face-smile"></i></p>';
                 } else {
                     historyGrid.innerHTML = history.slice().reverse().map((item, index) => `
                             <div class="history-item" data-index="${history.length - 1 - index}" title="${escapeHtml(item.prompt)}">
@@ -884,14 +1555,12 @@
                             </div>
                         `).join('');
                 }
-                // Simpan ke localStorage
                 try {
-                    localStorage.setItem('visionforge_history', JSON.stringify(history));
+                    localStorage.setItem('geodora_history', JSON.stringify(history));
                 } catch (e) {
-                    // localStorage penuh, hapus item lama
                     if (history.length > 20) {
                         history = history.slice(-20);
-                        localStorage.setItem('visionforge_history', JSON.stringify(history));
+                        localStorage.setItem('geodora_history', JSON.stringify(history));
                     }
                 }
             }
@@ -910,7 +1579,6 @@
                     imageUrl,
                     timestamp: Date.now(),
                 });
-                // Batasi 50 item
                 if (history.length > 50) history = history.slice(-50);
                 renderHistory();
             }
@@ -920,14 +1588,22 @@
                 currentImageUrl = imageUrl;
                 resultImage.src = imageUrl;
                 resultArea.classList.add('visible');
-                resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (settings.autoShowResult) {
+                    setTimeout(() => {
+                        resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                }
             }
 
             // === TOAST ===
             function showToast(message, type = 'success') {
                 const toast = document.createElement('div');
                 toast.className = `toast ${type}`;
-                const icons = { success: 'fa-circle-check', error: 'fa-circle-exclamation' };
+                const icons = {
+                    success: 'fa-circle-check',
+                    error: 'fa-circle-exclamation',
+                    info: 'fa-circle-info'
+                };
                 toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.success}"></i> ${message}`;
                 toastContainer.appendChild(toast);
                 setTimeout(() => {
@@ -935,42 +1611,38 @@
                     toast.style.transform = 'translateX(40px)';
                     toast.style.transition = '0.3s ease';
                     setTimeout(() => toast.remove(), 300);
-                }, 3000);
+                }, 4000);
             }
 
             // === HANDLE GENERATE ===
             async function handleGenerate() {
                 const prompt = promptInput.value.trim();
                 if (!prompt) {
-                    showToast('Silakan tulis deskripsi gambar terlebih dahulu.', 'error');
+                    showToast('⚠️ Silakan tulis deskripsi gambar terlebih dahulu.', 'error');
                     promptInput.focus();
                     return;
                 }
                 currentPrompt = prompt;
 
-                // Disable button & show loading
                 generateBtn.classList.add('loading');
                 generateBtn.disabled = true;
 
                 try {
                     const imageUrl = await generateImage(prompt, selectedStyle);
-                    // Preload image untuk memastikan sudah tersedia
                     const img = new Image();
                     img.src = imageUrl;
                     await new Promise((resolve, reject) => {
                         img.onload = resolve;
                         img.onerror = () => reject(new Error('Gagal memuat gambar'));
-                        // Timeout 30 detik
-                        setTimeout(() => reject(new Error('Timeout - server AI sibuk')), 30000);
+                        setTimeout(() => reject(new Error('Timeout - server AI sibuk')), 45000);
                     });
 
                     showResult(imageUrl);
                     addToHistory(prompt, selectedStyle, imageUrl);
-                    showToast('🎉 Gambar berhasil dibuat!');
+                    showToast(' Gambar berhasil dibuat!', 'success');
                 } catch (error) {
                     console.error(error);
-                    showToast('⚠️ Gagal membuat gambar: ' + (error.message ||
-                        'Coba lagi nanti'), 'error');
+                    showToast('Gagal membuat gambar: ' + (error.message || 'Coba lagi nanti'), 'error');
                 } finally {
                     generateBtn.classList.remove('loading');
                     generateBtn.disabled = false;
@@ -978,24 +1650,42 @@
             }
 
             // === DOWNLOAD IMAGE ===
-            async function downloadImage(url, filename = 'visionforge-image.png') {
+            async function downloadImage(url, filename = 'geodora-image.png') {
                 try {
-                    showToast('⏳ Menyiapkan unduhan...');
+                    showToast('⏳ Menyiapkan unduhan...', 'info');
                     const response = await fetch(url);
+                    if (!response.ok) throw new Error('Gagal mengunduh gambar');
                     const blob = await response.blob();
                     const blobUrl = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = blobUrl;
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(blobUrl);
-                    showToast('✅ Gambar berhasil diunduh!');
+
+                    const isAndroid = /android/i.test(navigator.userAgent);
+                    if (isAndroid) {
+                        const a = document.createElement('a');
+                        a.href = blobUrl;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+                        showToast('✅ Gambar berhasil diunduh!', 'success');
+                    } else {
+                        const a = document.createElement('a');
+                        a.href = blobUrl;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(blobUrl);
+                        showToast('✅ Gambar berhasil diunduh!', 'success');
+                    }
                 } catch (e) {
-                    // Fallback: buka di tab baru
-                    window.open(url, '_blank');
-                    showToast('📥 Gambar dibuka di tab baru untuk diunduh.');
+                    console.error('Download error:', e);
+                    try {
+                        window.open(url, '_blank');
+                        showToast('📥 Gambar dibuka di tab baru untuk diunduh.', 'info');
+                    } catch (err) {
+                        showToast('⚠️ Gagal mengunduh gambar. Coba tekan lama pada gambar.', 'error');
+                    }
                 }
             }
 
@@ -1008,8 +1698,9 @@
 
             downloadBtn.addEventListener('click', () => {
                 if (currentImageUrl) {
-                    const filename = `visionforge-${Date.now()}.png`;
-                    downloadImage(currentImageUrl, filename);
+                    downloadImage(currentImageUrl, `geodora-${Date.now()}.png`);
+                } else {
+                    showToast('⚠️ Tidak ada gambar untuk diunduh.', 'error');
                 }
             });
 
@@ -1025,10 +1716,12 @@
             copyPromptBtn.addEventListener('click', () => {
                 if (currentPrompt) {
                     navigator.clipboard.writeText(currentPrompt).then(() => {
-                        showToast('📋 Prompt disalin ke clipboard!');
+                        showToast('📋 Prompt disalin ke clipboard!', 'success');
                     }).catch(() => {
-                        showToast('Gagal menyalin prompt.', 'error');
+                        showToast('⚠️ Gagal menyalin prompt.', 'error');
                     });
+                } else {
+                    showToast('⚠️ Tidak ada prompt untuk disalin.', 'error');
                 }
             });
 
@@ -1052,7 +1745,7 @@
             });
             lightboxDownload.addEventListener('click', () => {
                 if (currentImageUrl) {
-                    downloadImage(currentImageUrl, `visionforge-hd-${Date.now()}.png`);
+                    downloadImage(currentImageUrl, `geodora-hd-${Date.now()}.png`);
                 }
             });
             document.addEventListener('keydown', (e) => {
@@ -1073,20 +1766,38 @@
                     currentImageUrl = historyItem.imageUrl;
                     selectedStyle = historyItem.style;
                     promptInput.value = historyItem.prompt;
-                    // Update style chip
                     document.querySelectorAll('.style-chip').forEach(c => {
                         c.classList.remove('active');
                         if (c.dataset.style === historyItem.style) c.classList.add('active');
                     });
                     showResult(historyItem.imageUrl);
-                    showToast('📂 Gambar dari riwayat dimuat.');
+                    showToast('📂 Gambar dari riwayat dimuat.', 'success');
                 }
             });
+
+            // === KEYBOARD SHORTCUT ===
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                    closeSidebar();
+                }
+            });
+
+            // === SWIPE TO CLOSE SIDEBAR ===
+            let touchStartX = 0;
+            let touchEndX = 0;
+            sidebar.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            sidebar.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX - touchStartX > 80) {
+                    closeSidebar();
+                }
+            }, { passive: true });
 
             // === INIT ===
             renderHistory();
 
-            // Jika ada history terakhir, set style chip sesuai
             if (history.length > 0) {
                 const last = history[history.length - 1];
                 selectedStyle = last.style || 'photorealistic';
@@ -1096,9 +1807,10 @@
                 });
             }
 
-            console.log('🚀 VisionForge AI siap digunakan!');
-            console.log('✨ Didukung oleh Pollinations.ai (gratis, tanpa API key)');
-            console.log('📝 Tulis prompt, pilih style, lalu klik Generate!');
+            console.log(' Geodora Magic AI siap digunakan!');
+            console.log('Didukung oleh Pollinations.ai (gratis, tanpa API key)');
+            console.log(' Tulis prompt, pilih style, lalu klik Generate!');
+
         })();
     </script>
 </body>

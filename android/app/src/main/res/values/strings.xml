@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Alovera App</string>
-    <string name="title_activity_main">Alovera App</string>
-    <string name="package_name">com.alovera2.app</string>
-    <string name="custom_url_scheme">com.alovera2.app</string>
+    <string name="app_name">Geodora</string>
+    <string name="title_activity_main">Geodora</string>
+    <string name="package_name">com.geodora.app</string>
+    <string name="custom_url_scheme">com.geodora.app</string>
 </resources>
