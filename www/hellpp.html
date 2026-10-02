@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Bantuan - Alovera</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #050b15;
+            color: #c8d6e5;
+            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+            padding-bottom: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            background: rgba(5, 11, 21, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(74, 222, 128, 0.06);
+            z-index: 1000;
+        }
+
+        .header .back {
+            font-size: 18px;
+            margin-right: 16px;
+            cursor: pointer;
+            color: #6a8a9a;
+            transition: 0.3s ease;
+            width: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header .back:hover {
+            color: #4ade80;
+        }
+
+        .header .title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #c8d6e5;
+        }
+
+        .header .brand {
+            margin-left: auto;
+            font-size: 13px;
+            font-weight: 700;
+            color: #4ade80;
+        }
+
+        .header .brand span {
+            color: #6a8a9a;
+            font-weight: 300;
+        }
+
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 90px 24px 40px;
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .page-hero {
+            padding: 8px 0 20px;
+            border-bottom: 1px solid rgba(74, 222, 128, 0.06);
+            margin-bottom: 28px;
+        }
+
+        .page-hero .page-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #c8d6e5;
+            letter-spacing: -0.5px;
+        }
+
+        .page-hero .page-title i {
+            color: #4ade80;
+            margin-right: 10px;
+        }
+
+        .page-hero .page-subtitle {
+            font-size: 14px;
+            color: #6a8a9a;
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           TOC
+           ============================================================ */
+        .toc {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(74, 222, 128, 0.06);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 28px;
+        }
+
+        .toc .toc-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #4a6a7a;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+
+        .toc .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 2px 16px;
+        }
+
+        .toc .toc-grid a {
+            font-size: 13px;
+            color: #6a8a9a;
+            text-decoration: none;
+            transition: 0.3s ease;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .toc .toc-grid a:hover {
+            color: #4ade80;
+        }
+
+        .toc .toc-grid a i {
+            font-size: 9px;
+            color: #4a6a7a;
+        }
+
+        /* ============================================================
+           CATEGORY GRID
+           ============================================================ */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .category-grid .cat-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(74, 222, 128, 0.04);
+            border-radius: 10px;
+            padding: 10px 14px;
+            transition: 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .category-grid .cat-item:hover {
+            border-color: rgba(74, 222, 128, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateY(-2px);
+        }
+
+        .category-grid .cat-item i {
+            color: #4ade80;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .category-grid .cat-item span {
+            font-size: 12px;
+            color: #8aa0b0;
+            font-weight: 500;
+        }
+
+        /* ============================================================
+           FAQ SECTIONS
+           ============================================================ */
+        .faq-section {
+            margin-bottom: 24px;
+        }
+
+        .faq-section .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #c8d6e5;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(74, 222, 128, 0.06);
+        }
+
+        .faq-section .section-title i {
+            color: #4ade80;
+            margin-right: 8px;
+        }
+
+        .faq-section .section-desc {
+            font-size: 13px;
+            color: #6a8a9a;
+            margin-bottom: 10px;
+        }
+
+        /* ============================================================
+           FAQ ITEMS
+           ============================================================ */
+        .faq-item {
+            border-bottom: 1px solid rgba(74, 222, 128, 0.04);
+            padding: 12px 0;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item:hover {
+            padding-left: 6px;
+        }
+
+        .faq-item .question {
+            font-size: 14px;
+            font-weight: 500;
+            color: #c8d6e5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .faq-item .question .q-icon {
+            color: #4ade80;
+            font-size: 13px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .faq-item .question .q-text {
+            flex: 1;
+        }
+
+        .faq-item .question .q-arrow {
+            color: #4a6a7a;
+            font-size: 11px;
+            transition: 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item .question .q-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .faq-item .answer {
+            font-size: 13px;
+            color: #8aa0b0;
+            margin-top: 8px;
+            padding-left: 28px;
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-item .answer.show {
+            display: block;
+        }
+
+        .faq-item .answer .highlight {
+            color: #4ade80;
+            font-weight: 500;
+        }
+
+        .faq-item .answer .highlight-red {
+            color: #ef4444;
+            font-weight: 500;
+        }
+
+        .faq-item .answer code {
+            background: rgba(74, 222, 128, 0.06);
+            padding: 1px 8px;
+            border-radius: 4px;
+            color: #4ade80;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .faq-item .answer ul {
+            list-style: none;
+            padding: 4px 0 4px 6px;
+        }
+
+        .faq-item .answer ul li {
+            padding: 2px 0 2px 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .faq-item .answer ul li::before {
+            content: "—";
+            color: #4a6a7a;
+            position: absolute;
+            left: 0;
+        }
+
+        .faq-item .answer .divider {
+            border: none;
+            border-top: 1px solid rgba(74, 222, 128, 0.06);
+            margin: 10px 0;
+        }
+
+        .faq-item .answer .badge-new {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 1px 8px;
+            border-radius: 8px;
+            background: #4ade80;
+            color: #050b15;
+            margin-left: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .faq-item .answer ol {
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+
+        .faq-item .answer ol li {
+            padding: 1px 0;
+        }
+
+        /* ============================================================
+           USER CONTENT FAQ - BORDER HIJAU
+           ============================================================ */
+        .faq-item.user-content-faq {
+            border-left: 2px solid #4ade80;
+            padding-left: 12px;
+            background: rgba(74, 222, 128, 0.01);
+            border-radius: 4px;
+            margin-bottom: 2px;
+        }
+
+        /* ============================================================
+           SUPPORT SECTION
+           ============================================================ */
+        .support-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(74, 222, 128, 0.06);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 6px;
+        }
+
+        .support-section h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #c8d6e5;
+            margin-bottom: 2px;
+        }
+
+        .support-section p {
+            font-size: 13px;
+            color: #6a8a9a;
+            margin-bottom: 12px;
+        }
+
+        .support-section .support-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .support-section .support-buttons .btn-support {
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(74, 222, 128, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            color: #c8d6e5;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .support-section .support-buttons .btn-support:hover {
+            border-color: rgba(74, 222, 128, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+            color: #4ade80;
+        }
+
+        .support-section .support-buttons .btn-support i {
+            color: #4ade80;
+            font-size: 14px;
+        }
+
+        .support-section .support-buttons .btn-support.primary {
+            background: #4ade80;
+            border-color: #4ade80;
+            color: #050b15;
+        }
+
+        .support-section .support-buttons .btn-support.primary:hover {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: #050b15;
+        }
+
+        .support-section .support-buttons .btn-support.primary i {
+            color: #050b15;
+        }
+
+        /* ============================================================
+           BACK TO TOP
+           ============================================================ */
+        .back-top {
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .back-top a {
+            color: #4a6a7a;
+            font-size: 12px;
+            text-decoration: none;
+            border: 1px solid rgba(74, 222, 128, 0.06);
+            padding: 8px 24px;
+            border-radius: 40px;
+            transition: 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-top a:hover {
+            border-color: rgba(74, 222, 128, 0.2);
+            color: #c8d6e5;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .back-top a i {
+            color: #4ade80;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 640px) {
+            .container {
+                padding: 80px 16px 30px;
+            }
+
+            .page-hero .page-title {
+                font-size: 22px;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .category-grid .cat-item {
+                padding: 8px 10px;
+            }
+
+            .category-grid .cat-item span {
+                font-size: 11px;
+            }
+
+            .faq-item .question {
+                font-size: 13px;
+            }
+
+            .faq-item .answer {
+                padding-left: 0;
+                font-size: 12px;
+            }
+
+            .support-section {
+                padding: 16px;
+            }
+
+            .support-section .support-buttons {
+                flex-direction: column;
+            }
+
+            .support-section .support-buttons .btn-support {
+                justify-content: center;
+            }
+
+            .toc .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header .brand {
+                font-size: 11px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .faq-item .answer {
+                padding-left: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="header">
+        <div class="back" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="title">Pusat Bantuan</div>
+        <div class="brand">alovera<span>.community</span></div>
+    </header>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <div class="container">
+
+        <!-- HERO -->
+        <div class="page-hero">
+            <div class="page-title">
+                <i class="fas fa-life-ring"></i> Pusat Bantuan
+            </div>
+            <div class="page-subtitle">
+                Temukan panduan lengkap untuk semua fitur Alovera. Jika tidak menemukan jawaban,
+                hubungi tim dukungan kami.
+            </div>
+        </div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc">
+            <div class="toc-title">Daftar Isi</div>
+            <div class="toc-grid">
+                <a href="#section-umum"><i class="fas fa-chevron-right"></i> Umum</a>
+                <a href="#section-akun"><i class="fas fa-chevron-right"></i> Akun &amp; Profil</a>
+                <a href="#section-posting"><i class="fas fa-chevron-right"></i> Postingan</a>
+                <a href="#section-play"><i class="fas fa-chevron-right"></i> Play Video</a>
+                <a href="#section-stock"><i class="fas fa-chevron-right"></i> Stock &amp; Media</a>
+                <a href="#section-berita"><i class="fas fa-chevron-right"></i> Berita &amp; Finansial</a>
+                <a href="#section-books"><i class="fas fa-chevron-right"></i> Perpustakaan Buku</a>
+                <a href="#section-ai"><i class="fas fa-chevron-right"></i> AI Generator</a>
+                <a href="#section-notif"><i class="fas fa-chevron-right"></i> Notifikasi</a>
+                <a href="#section-pengaturan"><i class="fas fa-chevron-right"></i> Pengaturan</a>
+                <a href="#section-teknis"><i class="fas fa-chevron-right"></i> Teknis &amp; PWA</a>
+            </div>
+        </div>
+
+        <!-- CATEGORY GRID -->
+        <div class="category-grid">
+            <div class="cat-item" onclick="scrollToSection('section-posting')">
+                <i class="fas fa-upload"></i>
+                <span>Postingan</span>
+            </div>
+            <div class="cat-item" onclick="scrollToSection('section-akun')">
+                <i class="fas fa-user"></i>
+                <span>Akun</span>
+            </div>
+            <div class="cat-item" onclick="scrollToSection('section-play')">
+                <i class="fas fa-play-circle"></i>
+                <span>Play Video</span>
+            </div>
+            <div class="cat-item" onclick="scrollToSection('section-stock')">
+                <i class="fas fa-images"></i>
+                <span>Stock</span>
+            </div>
+            <div class="cat-item" onclick="scrollToSection('section-berita')">
+                <i class="fas fa-newspaper"></i>
+                <span>Berita</span>
+            </div>
+            <div class="cat-item" onclick="scrollToSection('section-books')">
+                <i class="fas fa-book-open"></i>
+                <span>Perpustakaan</span>
+            </div>
+            <div class="cat-item" onclick="scrollToSection('section-ai')">
+                <i class="fas fa-wand-magic-sparkles"></i>
+                <span>AI</span>
+            </div>
+            <div class="cat-item" onclick="scrollToSection('section-teknis')">
+                <i class="fas fa-bug"></i>
+                <span>Laporan Bug</span>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION: UMUM
+        ============================================================ -->
+        <div class="faq-section" id="section-umum">
+            <div class="section-title"><i class="fas fa-info-circle"></i> Umum</div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-question"></i></span>
+                    <span class="q-text">Apa itu Alovera?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Alovera adalah platform kreatif digital yang menyediakan berbagai fitur terintegrasi:
+                    <ul>
+                        <li><span class="highlight">Postingan Komunitas</span> — Bagikan foto/video karya Anda kepada komunitas.</li>
+                        <li><span class="highlight">Play Video</span> — Tonton video menarik dari berbagai topik pilihan.</li>
+                        <li><span class="highlight">AI Image Generator</span> — Buat gambar unik dengan bantuan AI dari teks prompt.</li>
+                        <li><span class="highlight">Stock Gallery</span> — Ribuan foto &amp; video berkualitas dari komunitas seluruh dunia.</li>
+                        <li><span class="highlight">Cerdas Finansial</span> — Berita &amp; tips seputar bisnis, keuangan, dan investasi.</li>
+                        <li><span class="highlight">Terus Berkembang</span> — Koleksi buku edukasi untuk pengembangan diri dan pola pikir.</li>
+                        <li><span class="highlight">Berita Terkini</span> — Informasi terbaru dari berbagai kategori.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span class="q-text">Apakah data saya aman di Alovera?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Ya, kami menggunakan enkripsi dan sistem keamanan modern untuk melindungi data Anda.
+                    Lihat <a href="privvcy.html" style="color:#4ade80;text-decoration:none;">Kebijakan Privasi</a>
+                    untuk informasi lebih lanjut.
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION: AKUN & PROFIL
+        ============================================================ -->
+        <div class="faq-section" id="section-akun">
+            <div class="section-title"><i class="fas fa-user"></i> Akun &amp; Profil</div>
+            <div class="section-desc">Kelola akun dan profil Anda dengan mudah.</div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-sign-in-alt"></i></span>
+                    <span class="q-text">Bagaimana cara membuat akun?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka halaman <span class="highlight">Profil</span>.</li>
+                        <li>Klik tombol <span class="highlight">"Login"</span> atau <span class="highlight">"Daftar"</span>.</li>
+                        <li>Masukkan email dan kata sandi.</li>
+                        <li>Klik <span class="highlight">"Daftar"</span> untuk membuat akun.</li>
+                        <li>Isi profil Anda (nama, bio) setelah login.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-camera"></i></span>
+                    <span class="q-text">Bagaimana cara mengubah foto profil?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka halaman <span class="highlight">Profil</span>.</li>
+                        <li>Ketuk/klik foto profil (avatar) Anda.</li>
+                        <li>Pilih file gambar dari galeri (maksimal 2 MB).</li>
+                        <li>Foto profil akan otomatis diperbarui.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-edit"></i></span>
+                    <span class="q-text">Bagaimana cara mengedit profil?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka halaman <span class="highlight">Profil</span>.</li>
+                        <li>Klik tombol <span class="highlight">"Edit Profil"</span>.</li>
+                        <li>Ubah nama pengguna atau bio Anda (maksimal 200 karakter).</li>
+                        <li>Klik <span class="highlight">"Simpan Perubahan"</span>.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="q-text">Apa itu grafik aktivitas di profil?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Grafik aktivitas menampilkan statistik <span class="highlight">interaksi Anda</span> dengan platform,
+                    seperti:
+                    <ul>
+                        <li>Berapa kali membuka halaman <span class="highlight">Berita</span>.</li>
+                        <li>Berapa kali menjelajahi <span class="highlight">Stock Gallery</span>.</li>
+                        <li>Berapa kali menggunakan <span class="highlight">AI Generator</span>.</li>
+                        <li>Berapa kali membuka <span class="highlight">Perpustakaan Buku</span>.</li>
+                    </ul>
+                    Data ini tersimpan <span class="highlight">hanya di perangkat Anda</span> dan tidak dibagikan ke pihak lain.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-sign-out-alt"></i></span>
+                    <span class="q-text">Bagaimana cara logout?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Buka halaman <span class="highlight">Pengaturan</span> atau <span class="highlight">Profil</span>,
+                    lalu klik tombol <span class="highlight">"Logout"</span> di bagian bawah.
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION: POSTINGAN
+        ============================================================ -->
+        <div class="faq-section" id="section-posting">
+            <div class="section-title">
+                <i class="fas fa-upload"></i> Postingan Komunitas
+                <span style="font-size:10px;background:#4ade80;color:#050b15;padding:1px 10px;border-radius:30px;font-weight:600;margin-left:6px;">Baru</span>
+            </div>
+            <div class="section-desc">Bagikan karya Anda melalui foto dan video ke komunitas Alovera.</div>
+
+            <div class="faq-item user-content-faq" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                    <span class="q-text">Bagaimana cara mengupload foto/video?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Login ke akun Alovera Anda.</li>
+                        <li>Klik tombol <span class="highlight">"+"</span> di header.</li>
+                        <li>Tulis deskripsi (maksimal 500 karakter).</li>
+                        <li>Pilih file foto (JPG, PNG) atau video (MP4) — maksimal 10 MB.</li>
+                        <li>Klik <span class="highlight">"Posting"</span>.</li>
+                    </ol>
+                    <div class="divider"></div>
+                    <p>Postingan Anda akan muncul di <span class="highlight">Play Video</span> (jika video) dan <span class="highlight">Stock Gallery</span> (Karya Komunitas).</p>
+                </div>
+            </div>
+
+            <div class="faq-item user-content-faq" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-gavel"></i></span>
+                    <span class="q-text">Konten apa yang boleh diupload?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <p><span class="highlight">Diizinkan:</span></p>
+                    <ul>
+                        <li>Karya desain, seni, fotografi, dan konten kreatif.</li>
+                        <li>Konten positif, inspiratif, dan mendidik.</li>
+                        <li>Konten bertema bisnis, keuangan, dan pengembangan diri.</li>
+                        <li>Menghormati hak cipta orang lain.</li>
+                    </ul>
+                    <div class="divider"></div>
+                    <p><span class="highlight-red">Dilarang:</span></p>
+                    <ul>
+                        <li>Pornografi &amp; konten seksual eksplisit.</li>
+                        <li>Ujaran kebencian berdasarkan SARA, gender, atau orientasi.</li>
+                        <li>Kekerasan &amp; kekejaman terhadap manusia atau hewan.</li>
+                        <li>Konten ilegal melanggar hukum Indonesia.</li>
+                        <li>Spam, penipuan, atau mengarahkan ke situs berbahaya.</li>
+                        <li>Pelecehan &amp; bullying terhadap pengguna lain.</li>
+                        <li>Pelanggaran hak cipta.</li>
+                        <li>Misinformasi &amp; hoaks.</li>
+                    </ul>
+                    <div class="divider"></div>
+                    <p>Pelanggaran akan mengakibatkan <span class="highlight-red">penghapusan konten</span>, <span class="highlight-red">peringatan</span>, atau <span class="highlight-red">penangguhan akun</span>.</p>
+                </div>
+            </div>
+
+            <div class="faq-item user-content-faq" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-eye"></i></span>
+                    <span class="q-text">Di mana postingan saya muncul?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Play Video</span> — Berbaur dengan video dari Pengguna premium (untuk video).</li>
+                        <li><span class="highlight">Karya Komunitas</span> — Di halaman Stock Gallery, berbaur dengan foto dari pengguna premium.</li>
+                        <li><span class="highlight">Profil</span> — Grid postingan Anda sendiri.</li>
+                    </ul>
+                    <p style="margin-top:6px;">Postingan Anda juga dapat <span class="highlight">dicari</span> di Stock Gallery melalui kata kunci (nama pengguna atau deskripsi).</p>
+                </div>
+            </div>
+
+            <div class="faq-item user-content-faq" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-trash"></i></span>
+                    <span class="q-text">Bagaimana cara menghapus postingan?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka halaman <span class="highlight">Profil</span>.</li>
+                        <li>Klik postingan yang ingin dihapus.</li>
+                        <li>Pada popup detail, klik tombol <span class="highlight-red">"Hapus Postingan"</span>.</li>
+                        <li>Konfirmasi penghapusan.</li>
+                    </ol>
+                    <p style="margin-top:6px;font-size:12px;color:#4a6a7a;">Anda hanya dapat menghapus postingan milik Anda sendiri.</p>
+                </div>
+            </div>
+
+            <div class="faq-item user-content-faq" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-heart"></i></span>
+                    <span class="q-text">Bagaimana cara memberi like postingan pengguna lain?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka <span class="highlight">Play Video</span> atau <span class="highlight">Stock Gallery</span>.</li>
+                        <li>Temukan postingan komunitas yang ingin di-like.</li>
+                        <li>Klik tombol <span class="highlight">❤️ Like</span> di sisi kanan / pada popup detail.</li>
+                    </ol>
+                    <p style="margin-top:6px;">Pemilik postingan akan menerima <span class="highlight">notifikasi</span> bahwa Anda menyukai postingannya.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION: PLAY VIDEO
+        ============================================================ -->
+        <div class="faq-section" id="section-play">
+            <div class="section-title"><i class="fas fa-play-circle"></i> Play Video</div>
+            <div class="section-desc">Tonton video menarik dengan tampilan seperti Reels/TikTok.</div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-play"></i></span>
+                    <span class="q-text">Apa itu Play Video?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <span class="highlight">Play Video</span> adalah fitur feed video pendek yang menampilkan
+                    video-video menarik dari berbagai topik, termasuk nature, hewan, teknologi, seni,
+                    olahraga, dan lainnya. Video berasal dari pengguna premium serta postingan komunitas Alovera.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-hand-pointer"></i></span>
+                    <span class="q-text">Bagaimana cara menggunakan Play Video?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka halaman <span class="highlight">Play</span> dari bottom navigation.</li>
+                        <li>Geser ke atas untuk melihat video berikutnya.</li>
+                        <li>Video akan otomatis diputar saat muncul di layar.</li>
+                        <li>Tap video untuk pause/play manual.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-download"></i></span>
+                    <span class="q-text">Bagaimana cara mengunduh video di Play?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka video yang ingin diunduh.</li>
+                        <li>Klik tombol <span class="highlight">⬇️ Unduh</span> di sisi kanan.</li>
+                        <li>File video akan otomatis terunduh.</li>
+                    </ol>
+                    <p style="margin-top:6px;">Video dari Premium gratis digunakan, termasuk untuk tujuan komersial.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-rotate-right"></i></span>
+                    <span class="q-text">Bagaimana cara memuat video baru?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Klik tombol <span class="highlight">🔄 Muat</span> di bawah tombol Unduh untuk memuat
+                    video dengan topik baru. Sistem akan otomatis memilih kategori yang berbeda dari
+                    sebelumnya agar konten selalu segar.
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION: STOCK & MEDIA
+        ============================================================ -->
+        <div class="faq-section" id="section-stock">
+            <div class="section-title"><i class="fas fa-images"></i> Stock &amp; Media</div>
+            <div class="section-desc">Jelajahi foto &amp; video dari Pengguna premium dan komunitas Alovera.</div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-search"></i></span>
+                    <span class="q-text">Bagaimana cara mencari foto atau video?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka halaman <span class="highlight">Stock</span>.</li>
+                        <li>Gunakan kolom pencarian di bagian atas.</li>
+                        <li>Ketik kata kunci (misal: "alam", "teknologi", "seni").</li>
+                        <li>Hasil akan menampilkan foto/video dari Pengguna premium dan postingan pengguna komunitas.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-users"></i></span>
+                    <span class="q-text">Apa itu "Pengguna Premium" di Stock dan di Play Video?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <span class="highlight">Konten Pengguna Premium</span> adalah kumpulan postingan dari pengguna
+                    layanan pihak ketiga yang ditampilkan berdampingan dengan konten pengguna komunitas Alovera. Postingan premium muncul
+                    di <span class="highlight">paling atas</span> setiap halaman Stock, sehingga pengguna
+                    premium tetap menjadi konten utama, namun karya komunitas tetap dapat ditemukan melalui
+                    pencarian.
+                </div>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-users"></i></span>
+                    <span class="q-text">Apa itu "Karya Komunitas" di Stock?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <span class="highlight">Karya Komunitas</span> adalah kumpulan postingan dari pengguna
+                    Alovera yang ditampilkan berdampingan dengan konten Premium. Postingan komunitas muncul
+                    di <span class="highlight">paling bawah</span> setiap halaman Stock, sehingga pengguna
+                    premium tetap menjadi konten utama, namun karya komunitas tetap dapat ditemukan melalui
+                    pencarian.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-download"></i></span>
+                    <span class="q-text">Bagaimana cara mengunduh foto/video dari Stock?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Klik foto/video yang ingin diunduh.</li>
+                        <li>Pada popup detail, klik tombol <span class="highlight">"Unduh"</span>.</li>
+                        <li>File akan otomatis terunduh.</li>
+                    </ol>
+                    <p style="margin-top:6px;">Foto/video gratis digunakan, termasuk untuk tujuan komersial.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-tags"></i></span>
+                    <span class="q-text">Bagaimana cara memfilter berdasarkan kategori?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Di halaman Stock, tersedia kategori seperti <span class="highlight">Estetika</span>,
+                    <span class="highlight">Orang</span>, <span class="highlight">Teknologi</span>,
+                    <span class="highlight">Hewan</span>, <span class="highlight">Makanan</span>,
+                    <span class="highlight">Travel</span>, <span class="highlight">Arsitektur</span>, dan lainnya.
+                    Klik kategori untuk menampilkan foto/video yang sesuai.
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION: BERITA & FINANSIAL
+        ============================================================ -->
+        <div class="faq-section" id="section-berita">
+            <div class="section-title">
+                <i class="fas fa-newspaper"></i> Berita &amp; Cerdas Finansial
+                <span style="font-size:10px;background:#f59e0b;color:#050b15;padding:1px 10px;border-radius:30px;font-weight:600;margin-left:6px;">Baru</span>
+            </div>
+            <div class="section-desc">Berita terkini dengan kategori pilihan, termasuk Cerdas Finansial.</div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-coins"></i></span>
+                    <span class="q-text">Apa itu Cerdas Finansial?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <span class="highlight">Cerdas Finansial</span> adalah kategori berita khusus yang
+                    menyajikan informasi seputar:
+                    <ul>
+                        <li>Bisnis &amp; wirausaha</li>
+                        <li>Keuangan pribadi</li>
+                        <li>Investasi &amp; pasar saham</li>
+                        <li>Ekonomi &amp; pajak</li>
+                        <li>Tips mengelola keuangan</li>
+                    </ul>
+                    Konten ini diambil dari sumber berita terpercaya dan diperbarui secara berkala.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-list"></i></span>
+                    <span class="q-text">Bagaimana cara melihat berita kategori lain?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka halaman <span class="highlight">Berita</span>.</li>
+                        <li>Pilih kategori di bagian atas, seperti <span class="highlight">Cerdas Finansial</span>,
+                            <span class="highlight">Teknologi</span>, <span class="highlight">Bisnis</span>,
+                            <span class="highlight">Olahraga</span>, <span class="highlight">Hiburan</span>, dan lainnya.</li>
+                        <li>Klik kategori untuk memuat berita terkait.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-external-link-alt"></i></span>
+                    <span class="q-text">Bagaimana cara membaca berita selengkapnya?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Klik tombol <span class="highlight">"Baca Selengkapnya"</span> pada kartu berita.
+                    Anda akan diarahkan ke situs sumber berita asli (tab baru).
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION: TERUS BERKEMBANG (BOOKS)
+        ============================================================ -->
+        <div class="faq-section" id="section-books">
+            <div class="section-title">
+                <i class="fas fa-book-open"></i> Terus Berkembang
+                <span style="font-size:10px;background:#7c3aed;color:#fff;padding:1px 10px;border-radius:30px;font-weight:600;margin-left:6px;">Baru</span>
+            </div>
+            <div class="section-desc">Koleksi buku untuk mengembangkan mindset, keuangan, dan bisnis Anda.</div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-book"></i></span>
+                    <span class="q-text">Apa itu Terus Berkembang?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <span class="highlight">Terus Berkembang</span> adalah koleksi buku pilihan yang berfokus pada:
+                    <ul>
+                        <li><strong>Pengembangan Diri</strong> — Mindset, kebiasaan, produktivitas.</li>
+                        <li><strong>Bisnis &amp; Marketing</strong> — Strategi bisnis, branding, leadership.</li>
+                        <li><strong>Keuangan &amp; Investasi</strong> — Manajemen keuangan, financial freedom.</li>
+                        <li><strong>Ekonomi</strong> — Wawasan ekonomi global dan mikro.</li>
+                        <li><strong>Filosofi &amp; Psikologi</strong> — Pemikiran kritis dan pengembangan pola pikir.</li>
+                    </ul>
+                    Buku-buku diambil dari Open Library dan gratis untuk dibaca/diunduh (jika tersedia).
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-search"></i></span>
+                    <span class="q-text">Bagaimana cara mencari buku?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka halaman <span class="highlight">Books</span>.</li>
+                        <li>Gunakan kolom pencarian di atas.</li>
+                        <li>Ketik judul, penulis, atau topik (misal: "business", "finance", "mindset").</li>
+                        <li>Klik buku untuk melihat detail dan opsi unduh.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-download"></i></span>
+                    <span class="q-text">Bagaimana cara mengunduh buku?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Klik buku yang ingin diunduh.</li>
+                        <li>Pada popup detail, klik <span class="highlight">"Unduh PDF"</span> (jika tersedia).</li>
+                        <li>Jika tidak tersedia, klik <span class="highlight">"Lihat di Open Library"</span> untuk membaca online.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-bookmark"></i></span>
+                    <span class="q-text">Bagaimana cara menyimpan buku favorit?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Saat ini, Anda dapat menyimpan buku dengan menandai halaman (bookmark browser) atau
+                    mengunduh PDF-nya untuk dibaca offline. Fitur koleksi buku favorit sedang dalam pengembangan.
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION: AI GENERATOR
+        ============================================================ -->
+        <div class="faq-section" id="section-ai">
+            <div class="section-title">
+                <i class="fas fa-wand-magic-sparkles"></i> AI Image Generator
+                <span style="font-size:10px;background:#a855f7;color:#fff;padding:1px 10px;border-radius:30px;font-weight:600;margin-left:6px;">Baru</span>
+            </div>
+            <div class="section-desc">Buat gambar unik dari teks prompt dengan bantuan AI.</div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-robot"></i></span>
+                    <span class="q-text">Bagaimana cara menggunakan AI Generator?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka <span class="highlight">Beranda</span>.</li>
+                        <li>Temukan panel <span class="highlight">"Buat Gambar AI Magic"</span>.</li>
+                        <li>Ketik prompt (deskripsi gambar) pada kolom input.</li>
+                        <li>Pilih <span class="highlight">style</span> yang diinginkan (Fotorealistik, Sinematik, Anime, dll).</li>
+                        <li>Klik <span class="highlight">"Generate Gambar"</span>.</li>
+                        <li>Tunggu beberapa detik hingga gambar muncul.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-shuffle"></i></span>
+                    <span class="q-text">Bingung mau bikin gambar apa?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Klik tombol <span class="highlight">🎲 (shuffle)</span> di dalam kolom prompt untuk
+                    mendapatkan contoh prompt acak yang menarik. Anda bisa mengeditnya sesuai keinginan
+                    sebelum klik Generate.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-clock-rotate-left"></i></span>
+                    <span class="q-text">Apakah gambar yang saya buat disimpan?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Ya, gambar yang Anda buat tersimpan di bagian <span class="highlight">Riwayat</span>
+                    di bawah panel AI Generator. Riwayat ini tersimpan <span class="highlight">secara lokal</span>
+                    di perangkat Anda. Anda dapat menghapusnya kapan saja dengan tombol
+                    <span class="highlight-red">"Hapus Semua"</span>.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-download"></i></span>
+                    <span class="q-text">Bagaimana cara mengunduh gambar AI?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Setelah gambar muncul, klik tombol <span class="highlight">⬇️ Unduh</span>.</li>
+                        <li>Atau klik gambar untuk membuka lightbox, lalu klik <span class="highlight">"Unduh Gambar HD"</span>.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION: NOTIFIKASI
+        ============================================================ -->
+        <div class="faq-section" id="section-notif">
+            <div class="section-title">
+                <i class="fas fa-bell"></i> Notifikasi
+                <span style="font-size:10px;background:#ec4899;color:#fff;padding:1px 10px;border-radius:30px;font-weight:600;margin-left:6px;">Baru</span>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-heart"></i></span>
+                    <span class="q-text">Notifikasi apa saja yang saya terima?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Anda akan menerima notifikasi ketika:
+                    <ul>
+                        <li><span class="highlight">Like</span> — Ada pengguna yang menyukai postingan Anda.</li>
+                        <li><span class="highlight">Komentar</span> — Ada pengguna yang mengomentari postingan Anda.</li>
+                        <li><span class="highlight">Follow</span> — Ada pengguna baru yang mengikuti Anda.</li>
+                    </ul>
+                    Notifikasi muncul secara <span class="highlight">real-time</span> dan bisa dilihat di
+                    halaman <span class="highlight">Profil</span> (tombol Notifikasi).
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-check-double"></i></span>
+                    <span class="q-text">Bagaimana cara menandai notifikasi sudah dibaca?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Notifikasi akan otomatis ditandai <span class="highlight">sudah dibaca</span>
+                    ketika Anda membuka panel Notifikasi. Dot merah di ikon akan hilang setelah semua
+                    notifikasi dibaca.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-trash"></i></span>
+                    <span class="q-text">Bagaimana cara menghapus notifikasi?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Buka panel Notifikasi, lalu klik tombol <span class="highlight-red">✕</span> di
+                    sisi kanan setiap notifikasi untuk menghapusnya.
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION: PENGATURAN
+        ============================================================ -->
+        <div class="faq-section" id="section-pengaturan">
+            <div class="section-title"><i class="fas fa-cog"></i> Pengaturan</div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-palette"></i></span>
+                    <span class="q-text">Bagaimana cara mengubah tema aplikasi?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka <span class="highlight">Pengaturan</span>.</li>
+                        <li>Pilih <span class="highlight">"Tampilan & Tema"</span>.</li>
+                        <li>Pilih tema yang diinginkan:
+                            <ul>
+                                <li>🌙 <span class="highlight">Gelap</span> (default)</li>
+                                <li>☀️ <span class="highlight">Terang</span></li>
+                                <li>🚀 <span class="highlight">Spirit</span> (merah cerah)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-globe"></i></span>
+                    <span class="q-text">Bagaimana cara mengubah bahasa?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka <span class="highlight">Pengaturan</span>.</li>
+                        <li>Pilih <span class="highlight">"Bahasa Aplikasi"</span>.</li>
+                        <li>Pilih bahasa: 🇮🇩 Indonesia atau 🇬🇧 English.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-broom"></i></span>
+                    <span class="q-text">Bagaimana cara membersihkan cache?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka <span class="highlight">Pengaturan</span>.</li>
+                        <li>Pilih <span class="highlight">"Penyimpanan &amp; Data"</span>.</li>
+                        <li>Klik <span class="highlight">"Bersihkan Cache"</span> untuk menghapus cache umum.</li>
+                        <li>Atau <span class="highlight">"Bersihkan Cache Video"</span> untuk menghapus cache Play Video saja.</li>
+                    </ol>
+                    <p style="margin-top:6px;">Data akun dan postingan Anda <span class="highlight">tidak akan terhapus</span>.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-key"></i></span>
+                    <span class="q-text">Bagaimana cara mengubah kata sandi?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Buka <span class="highlight">Pengaturan</span>.</li>
+                        <li>Pilih <span class="highlight">"Akun"</span>.</li>
+                        <li>Klik <span class="highlight">"Ubah Kata Sandi"</span>.</li>
+                        <li>Masukkan kata sandi baru (minimal 6 karakter).</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION: TEKNIS
+        ============================================================ -->
+        <div class="faq-section" id="section-teknis">
+            <div class="section-title"><i class="fas fa-mobile-alt"></i> Teknis &amp; PWA</div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-mobile-alt"></i></span>
+                    <span class="q-text">Bagaimana cara menginstal Alovera di HP?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <b>Android (Chrome)</b>
+                    <ol>
+                        <li>Buka website Alovera di Chrome.</li>
+                        <li>Jika muncul tombol <b>Install App</b>, ketuk dan pilih <b>Install</b>.</li>
+                        <li>Jika tidak, ketuk <b>⋮</b> → <b>Install App</b>.</li>
+                    </ol>
+                    <div class="divider"></div>
+                    <b>iPhone (Safari)</b>
+                    <ol>
+                        <li>Buka website dengan Safari.</li>
+                        <li>Ketuk ikon <b>Share</b> <span style="white-space:nowrap;">(⬆️)</span>.</li>
+                        <li>Pilih <b>Add to Home Screen</b> → <b>Add</b>.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-bug"></i></span>
+                    <span class="q-text">Bagaimana cara melaporkan bug?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li>Catat langkah-langkah yang menyebabkan masalah.</li>
+                        <li>Kirim laporan ke <span class="highlight">support@alovera.id</span>.</li>
+                        <li>Sertakan screenshot jika memungkinkan.</li>
+                        <li>Tim kami akan merespon dalam 1x24 jam.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="question">
+                    <span class="q-icon"><i class="fas fa-desktop"></i></span>
+                    <span class="q-text">Apakah Alovera kompatibel dengan semua perangkat?</span>
+                    <span class="q-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="answer">
+                    Ya, Alovera kompatibel dengan Android, iPhone, Tablet, dan PC dengan browser modern
+                    (Chrome, Safari, Firefox, Edge).
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SUPPORT SECTION
+        ============================================================ -->
+        <div class="support-section">
+            <h3>Butuh Bantuan Lebih Lanjut?</h3>
+            <p>Tim dukungan kami siap membantu Anda.</p>
+            
+            <div class="support-buttons">
+              <!--
+                <a href="mailto:support@alovera.id" class="btn-support">
+                    <i class="fas fa-envelope"></i> Email Dukungan
+                </a>
+                
+                <a href="https://wa.me/6281345970959" target="_blank" class="btn-support">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                -->
+                <button class="btn-support primary" onclick="window.location.href='pengembang-65hui.html'">
+                    <i class="fas fa-users"></i> Hubungi Tim Pengembang
+                </button>
+                <button class="btn-support" onclick="window.location.href='privvcy.html'">
+                    <i class="fas fa-shield-alt"></i> Kebijakan Privasi
+                </button>
+            </div>
+        </div>
+
+        <!-- BACK TO TOP -->
+        <div class="back-top">
+            <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+                <i class="fas fa-arrow-up"></i> Kembali ke Atas
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        // FAQ TOGGLE
+        // ============================================================
+        function toggleFaq(element) {
+            const answer = element.querySelector(".answer");
+            const arrow = element.querySelector(".q-arrow");
+
+            if (answer.classList.contains("show")) {
+                answer.classList.remove("show");
+                if (arrow) arrow.classList.remove("open");
+            } else {
+                answer.classList.add("show");
+                if (arrow) arrow.classList.add("open");
+            }
+        }
+
+        // ============================================================
+        // SCROLL TO SECTION
+        // ============================================================
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const headerOffset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // ============================================================
+        // BACK BUTTON FALLBACK
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const backBtn = document.querySelector('.back');
+            if (backBtn) {
+                backBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (window.history.length > 1) {
+                        history.back();
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                });
+            }
+
+            document.querySelectorAll('.toc-grid a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId) {
+                        scrollToSection(targetId.substring(1));
+                    }
+                });
+            });
+        });
+
+        // ============================================================
+        // MUSIC WINDOW
+        // ============================================================
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!window.musicWindow || window.musicWindow.closed) {
+                window.musicWindow = window.open(
+                    "music.html",
+                    "musicPlayer",
+                    "width=1,height=1,left=-1000,top=-1000"
+                );
+            }
+        });
+
+        function toggleMusic() {
+            if (window.musicWindow && !window.musicWindow.closed) {
+                window.musicWindow.toggleMusic();
+            }
+        }
+    </script>
+
+</body>
+</html>

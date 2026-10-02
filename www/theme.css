@@ -1,0 +1,519 @@
+/* ============================================================
+   WARNA TEMA - TERANG (BIRU) & HUT RI (MERAH + EMAS)
+   Override untuk semua elemen: judul, ikon, badge, tombol
+   ============================================================ */
+
+/* ============================================================
+   1. SECTION TITLE - Ikon di semua judul section
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .section-title i {
+    color: #0066cc !important;
+}
+
+[data-theme="light"] .section-title {
+    color: #0a1929 !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .section-title i {
+    color: #dc3545 !important;
+}
+
+[data-theme="hutri"] .section-title {
+    color: #1a0000 !important;
+}
+
+/* ============================================================
+   2. CERDAS FINANSIAL - Judul, ikon, badge
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .maulid-news-section .maulid-header .maulid-title .maulid-icon {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3) !important;
+}
+
+[data-theme="light"] .maulid-news-section .maulid-header .maulid-title .maulid-badge {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    color: #fff !important;
+}
+
+[data-theme="light"] .maulid-news-section .maulid-header .maulid-title {
+    color: #0a1929 !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .maulid-news-section .maulid-header .maulid-title .maulid-icon {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3) !important;
+}
+
+[data-theme="hutri"] .maulid-news-section .maulid-header .maulid-title .maulid-badge {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    color: #fff !important;
+}
+
+[data-theme="hutri"] .maulid-news-section .maulid-header .maulid-title {
+    color: #1a0000 !important;
+}
+
+/* ============================================================
+   3. SPESIAL MAULID / FIN - Judul + Icon + Badge (class fin-*)
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .maulid-news-section .maulid-icon.fin-icon {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3) !important;
+}
+
+[data-theme="light"] .maulid-news-section .maulid-badge.fin-badge {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    color: #fff !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .maulid-news-section .maulid-icon.fin-icon {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3) !important;
+}
+
+[data-theme="hutri"] .maulid-news-section .maulid-badge.fin-badge {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    color: #fff !important;
+}
+
+/* ============================================================
+   4. PUSTAKA WAWASAN (Books) - Judul, ikon, badge
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .maulid-books-section .maulid-books-icon.fin-books-icon {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3) !important;
+}
+
+[data-theme="light"] .maulid-books-section .maulid-books-badge.fin-books-badge {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    color: #fff !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .maulid-books-section .maulid-books-icon.fin-books-icon {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3) !important;
+}
+
+[data-theme="hutri"] .maulid-books-section .maulid-books-badge.fin-books-badge {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    color: #fff !important;
+}
+
+/* ============================================================
+   5. KARYA KOMUNITAS (Stock) - Judul, ikon, badge
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .maulid-stock-section .maulid-stock-icon.fin-stock-icon {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3) !important;
+}
+
+[data-theme="light"] .maulid-stock-section .maulid-stock-badge.fin-stock-badge {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    color: #fff !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .maulid-stock-section .maulid-stock-icon.fin-stock-icon {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3) !important;
+}
+
+[data-theme="hutri"] .maulid-stock-section .maulid-stock-badge.fin-stock-badge {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    color: #fff !important;
+}
+
+/* ============================================================
+   6. BADGE KATEGORI (Tips, dll)
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .maulid-slide .maulid-content .maulid-tag {
+    background: rgba(0, 102, 204, 0.12) !important;
+    color: #0066cc !important;
+}
+
+[data-theme="light"] .siaran-badge {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    color: #fff !important;
+}
+
+[data-theme="light"] .siaran-title i {
+    color: #0066cc !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .maulid-slide .maulid-content .maulid-tag {
+    background: rgba(220, 53, 69, 0.12) !important;
+    color: #dc3545 !important;
+}
+
+[data-theme="hutri"] .siaran-badge {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    color: #fff !important;
+}
+
+[data-theme="hutri"] .siaran-title i {
+    color: #dc3545 !important;
+}
+
+/* ============================================================
+   7. TOMBOL "BACA SELENGKAPNYA"
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .maulid-slide .maulid-content .maulid-read-btn,
+
+
+[data-theme="light"] .maulid-news-card .maulid-news-body .maulid-news-read {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    color: #fff !important;
+}
+
+[data-theme="light"] .maulid-slide .maulid-content .maulid-read-btn:hover,
+[data-theme="light"] .maulid-news-card .maulid-news-body .maulid-news-read:hover {
+    background: linear-gradient(135deg, #004d99, #0066cc) !important;
+    box-shadow: 0 4px 16px rgba(0, 102, 204, 0.4) !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .maulid-slide .maulid-content .maulid-read-btn,
+[data-theme="hutri"] .maulid-news-card .maulid-news-body .maulid-news-read {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    color: #fff !important;
+}
+
+[data-theme="hutri"] .maulid-slide .maulid-content .maulid-read-btn:hover,
+[data-theme="hutri"] .maulid-news-card .maulid-news-body .maulid-news-read:hover {
+    background: linear-gradient(135deg, #b02a37, #dc3545) !important;
+    box-shadow: 0 4px 16px rgba(220, 53, 69, 0.4) !important;
+}
+
+/* ============================================================
+   8. IKON KATEGORI CHIPS
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .stock-categories button:hover,
+[data-theme="light"] .news-categories button:hover,
+[data-theme="light"] .book-categories button:hover {
+    border-color: rgba(0, 102, 204, 0.3) !important;
+    color: #0066cc !important;
+}
+
+[data-theme="light"] .stock-categories .active,
+[data-theme="light"] .news-categories .active,
+[data-theme="light"] .book-categories .active,
+[data-theme="light"] .categories .active {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    border-color: #0066cc !important;
+    color: #fff !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .stock-categories button:hover,
+[data-theme="hutri"] .news-categories button:hover,
+[data-theme="hutri"] .book-categories button:hover {
+    border-color: rgba(220, 53, 69, 0.3) !important;
+    color: #dc3545 !important;
+}
+
+[data-theme="hutri"] .stock-categories .active,
+[data-theme="hutri"] .news-categories .active,
+[data-theme="hutri"] .book-categories .active,
+[data-theme="hutri"] .categories .active {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    border-color: #dc3545 !important;
+    color: #fff !important;
+}
+
+/* ============================================================
+   9. HEADER "BAWA SANTAI AJA DULU" (Play)
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .feed-header-icon {
+    color: #0066cc !important;
+}
+/*
+[data-theme="light"] .feed-header-text {
+    background: linear-gradient(
+        90deg,
+        #0066cc 0%,
+        #4d94ff 25%,
+        #0066cc 50%,
+        #4d94ff 75%,
+        #0066cc 100%
+    ) !important;
+    background-size: 300% 100% !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+}
+*/
+
+
+[data-theme="light"] .feed-header-badge {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.4) !important;
+}
+
+/* Tema HUT RI - Merah + Emas */
+[data-theme="hutri"] .feed-header-icon {
+    color: #dc3545 !important;
+}
+
+/*
+[data-theme="hutri"] .feed-header-text {
+    background: linear-gradient(
+        90deg,
+        #dc3545 0%,
+        #ffd700 25%,
+        #dc3545 50%,
+        #ffd700 75%,
+        #dc3545 100%
+    ) !important;
+    background-size: 300% 100% !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+}
+*/
+
+
+[data-theme="hutri"] .feed-header-badge {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.4) !important;
+}
+
+/* ============================================================
+   10. TOMBOL AI DI HEADER
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .ai-gradient-text {
+    background: linear-gradient(
+        90deg,
+        #0066cc 0%,
+        #4d94ff 25%,
+        #7c3aed 50%,
+        #4d94ff 75%,
+        #0066cc 100%
+    ) !important;
+    background-size: 300% 100% !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+}
+
+/* Tema HUT RI - Merah + Emas */
+[data-theme="hutri"] .ai-gradient-text {
+    background: linear-gradient(
+        90deg,
+        #dc3545 0%,
+        #ffd700 25%,
+        #ff6b6b 50%,
+        #ffd700 75%,
+        #dc3545 100%
+    ) !important;
+    background-size: 300% 100% !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+}
+
+/* ============================================================
+   11. JUDUL HALAMAN (PAGE TITLE) DI NEWS, STOCK, BOOKS
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] #newsPage .section-title i,
+[data-theme="light"] #stockPage .section-title i,
+[data-theme="light"] #booksPage .section-title i {
+    color: #0066cc !important;
+}
+
+[data-theme="light"] #newsPage .section-title,
+[data-theme="light"] #stockPage .section-title,
+[data-theme="light"] #booksPage .section-title {
+    color: #0a1929 !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] #newsPage .section-title i,
+[data-theme="hutri"] #stockPage .section-title i,
+[data-theme="hutri"] #booksPage .section-title i {
+    color: #dc3545 !important;
+}
+
+[data-theme="hutri"] #newsPage .section-title,
+[data-theme="hutri"] #stockPage .section-title,
+[data-theme="hutri"] #booksPage .section-title {
+    color: #1a0000 !important;
+}
+
+/* ============================================================
+   12. DOTS AKTIF DI SLIDER
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .maulid-slider-controls .maulid-dots .dot.active,
+[data-theme="light"] .maulid-stock-dots .dot.active,
+[data-theme="light"] .maulid-books-dots .dot.active {
+    background: #0066cc !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .maulid-slider-controls .maulid-dots .dot.active,
+[data-theme="hutri"] .maulid-stock-dots .dot.active,
+[data-theme="hutri"] .maulid-books-dots .dot.active {
+    background: #dc3545 !important;
+}
+
+/* ============================================================
+   13. TOMBOL NAVIGASI SLIDER (PREV/NEXT)
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .maulid-slider-controls .maulid-nav-btn:hover {
+    border-color: #0066cc !important;
+    color: #0066cc !important;
+    background: rgba(0, 102, 204, 0.08) !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .maulid-slider-controls .maulid-nav-btn:hover {
+    border-color: #dc3545 !important;
+    color: #dc3545 !important;
+    background: rgba(220, 53, 69, 0.08) !important;
+}
+
+/* ============================================================
+   14. "LIHAT SEMUA" LINK
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .maulid-more:hover,
+[data-theme="light"] .siaran-more:hover {
+    color: #0066cc !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .maulid-more:hover,
+[data-theme="hutri"] .siaran-more:hover {
+    color: #dc3545 !important;
+}
+
+/* ============================================================
+   15. LOADING SPINNER
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .maulid-page-loading i,
+[data-theme="light"] .maulid-stock-loading i,
+[data-theme="light"] .maulid-books-loading i,
+[data-theme="light"] .siaran-loading i {
+    color: #0066cc !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .maulid-page-loading i,
+[data-theme="hutri"] .maulid-stock-loading i,
+[data-theme="hutri"] .maulid-books-loading i,
+[data-theme="hutri"] .siaran-loading i {
+    color: #dc3545 !important;
+}
+
+/* ============================================================
+   16. BORDER HOVER KARTU
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] .maulid-news-card:hover,
+[data-theme="light"] .maulid-stock-item:hover,
+[data-theme="light"] .maulid-books-item:hover {
+    border-color: #0066cc !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] .maulid-news-card:hover,
+[data-theme="hutri"] .maulid-stock-item:hover,
+[data-theme="hutri"] .maulid-books-item:hover {
+    border-color: #dc3545 !important;
+}
+
+/* ============================================================
+   17. BOOK AUTHOR TEXT
+   ============================================================ */
+
+/* Tema Terang - Biru */
+[data-theme="light"] #booksPage .book-item .book-author {
+    color: #0066cc !important;
+}
+
+/* Tema HUT RI - Merah */
+[data-theme="hutri"] #booksPage .book-item .book-author {
+    color: #dc3545 !important;
+}
+
+/* ============================================================
+   18. LIGHT THEME - Semua tombol accent
+   ============================================================ */
+
+[data-theme="light"] .btn-edit-profile,
+[data-theme="light"] .btn-checkout,
+[data-theme="light"] .ai-send-btn,
+[data-theme="light"] .ai-generate-btn {
+    background: linear-gradient(135deg, #0066cc, #4d94ff) !important;
+}
+
+[data-theme="light"] .btn-edit-profile:hover,
+[data-theme="light"] .btn-checkout:hover,
+[data-theme="light"] .ai-send-btn:hover,
+[data-theme="light"] .ai-generate-btn:hover {
+    background: linear-gradient(135deg, #004d99, #0066cc) !important;
+    box-shadow: 0 4px 16px rgba(0, 102, 204, 0.35) !important;
+}
+
+[data-theme="hutri"] .btn-edit-profile,
+[data-theme="hutri"] .btn-checkout,
+[data-theme="hutri"] .ai-send-btn,
+[data-theme="hutri"] .ai-generate-btn {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b) !important;
+}
+
+[data-theme="hutri"] .btn-edit-profile:hover,
+[data-theme="hutri"] .btn-checkout:hover,
+[data-theme="hutri"] .ai-send-btn:hover,
+[data-theme="hutri"] .ai-generate-btn:hover {
+    background: linear-gradient(135deg, #b02a37, #dc3545) !important;
+    box-shadow: 0 4px 16px rgba(220, 53, 69, 0.35) !important;
+}

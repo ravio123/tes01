@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Alovera</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #050b15;
+            color: #c8d6e5;
+            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+            padding-bottom: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            background: rgba(5, 11, 21, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(74, 222, 128, 0.06);
+            z-index: 1000;
+        }
+
+        .header .back {
+            font-size: 18px;
+            margin-right: 16px;
+            cursor: pointer;
+            color: #6a8a9a;
+            transition: 0.3s ease;
+            width: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header .back:hover {
+            color: #4ade80;
+        }
+
+        .header .title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #c8d6e5;
+        }
+
+        .header .brand {
+            margin-left: auto;
+            font-size: 13px;
+            font-weight: 700;
+            color: #4ade80;
+        }
+
+        .header .brand span {
+            color: #6a8a9a;
+            font-weight: 300;
+        }
+
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 90px 24px 40px;
+        }
+
+        /* ============================================================
+           HERO / LOGO
+           ============================================================ */
+        .hero {
+            text-align: center;
+            padding: 10px 0 20px;
+            border-bottom: 1px solid rgba(74, 222, 128, 0.06);
+            margin-bottom: 24px;
+        }
+
+        .hero .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #0f3b1a, #1a6b3c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 800;
+            color: #4ade80;
+            margin: 0 auto 12px;
+            border: 1px solid rgba(74, 222, 128, 0.08);
+            object-fit: cover;
+        }
+
+        .hero .app-name {
+            font-size: 26px;
+            font-weight: 800;
+            color: #c8d6e5;
+            letter-spacing: -0.5px;
+        }
+
+        .hero .app-name span {
+            color: #4ade80;
+        }
+
+        .hero .version {
+            font-size: 14px;
+            color: #4a6a7a;
+            margin-top: 2px;
+        }
+
+        .hero .version .badge-new {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #050b15;
+            margin-left: 6px;
+        }
+
+        /* ============================================================
+           DESCRIPTION
+           ============================================================ */
+        .description {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(74, 222, 128, 0.06);
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin-bottom: 24px;
+            line-height: 1.7;
+            font-size: 14px;
+            color: #8aa0b0;
+        }
+
+        .description strong {
+            color: #c8d6e5;
+        }
+
+        .description .highlight {
+            color: #4ade80;
+        }
+
+        /* ============================================================
+           INFO SECTIONS
+           ============================================================ */
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+        .info-section .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #4a6a7a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-section .section-title i {
+            color: #4ade80;
+            font-size: 14px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(74, 222, 128, 0.04);
+            border-radius: 10px;
+            padding: 12px 14px;
+            transition: 0.3s ease;
+        }
+
+        .info-item:hover {
+            border-color: rgba(74, 222, 128, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .info-item .info-label {
+            font-size: 11px;
+            color: #4a6a7a;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .info-item .info-value {
+            font-size: 14px;
+            color: #c8d6e5;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .info-item .info-value i {
+            color: #4ade80;
+            margin-right: 4px;
+            font-size: 13px;
+        }
+
+        .info-item.full {
+            grid-column: 1 / -1;
+        }
+
+        /* ============================================================
+           FEATURES LIST
+           ============================================================ */
+        .features-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 16px;
+            padding: 4px 0;
+        }
+
+        .features-list .feature-item {
+            font-size: 13px;
+            color: #8aa0b0;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .features-list .feature-item i {
+            color: #4ade80;
+            font-size: 12px;
+            width: 16px;
+        }
+
+        .features-list .feature-item .new-tag {
+            font-size: 8px;
+            font-weight: 700;
+            padding: 1px 8px;
+            border-radius: 8px;
+            background: #4ade80;
+            color: #050b15;
+            text-transform: uppercase;
+            margin-left: 4px;
+        }
+
+        /* ============================================================
+           SOCIAL MEDIA
+           ============================================================ */
+        .social-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(74, 222, 128, 0.06);
+            color: #8aa0b0;
+            font-size: 13px;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .social-links a:hover {
+            border-color: rgba(74, 222, 128, 0.15);
+            color: #c8d6e5;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .social-links a i {
+            color: #4ade80;
+            font-size: 14px;
+        }
+
+        /* ============================================================
+           SUPPORT BUTTONS
+           ============================================================ */
+        .support-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .support-buttons .btn-support {
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(74, 222, 128, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            color: #c8d6e5;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .support-buttons .btn-support:hover {
+            border-color: rgba(74, 222, 128, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+            color: #4ade80;
+        }
+
+        .support-buttons .btn-support i {
+            color: #4ade80;
+            font-size: 14px;
+        }
+
+        .support-buttons .btn-support.primary {
+            background: #4ade80;
+            border-color: #4ade80;
+            color: #050b15;
+        }
+
+        .support-buttons .btn-support.primary:hover {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: #050b15;
+        }
+
+        .support-buttons .btn-support.primary i {
+            color: #050b15;
+        }
+
+        /* ============================================================
+           BACK TO TOP
+           ============================================================ */
+        .back-top {
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .back-top a {
+            color: #4a6a7a;
+            font-size: 12px;
+            text-decoration: none;
+            border: 1px solid rgba(74, 222, 128, 0.06);
+            padding: 8px 24px;
+            border-radius: 40px;
+            transition: 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-top a:hover {
+            border-color: rgba(74, 222, 128, 0.2);
+            color: #c8d6e5;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .back-top a i {
+            color: #4ade80;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 640px) {
+            .container {
+                padding: 80px 16px 30px;
+            }
+
+            .hero .app-name {
+                font-size: 22px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                flex-direction: column;
+            }
+
+            .support-buttons {
+                flex-direction: column;
+            }
+
+            .support-buttons .btn-support {
+                justify-content: center;
+            }
+
+            .header .brand {
+                font-size: 11px;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="header">
+        <div class="back" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="title">Tentang</div>
+        <div class="brand">alovera<span>.community</span></div>
+    </header>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <div class="container">
+
+        <!-- HERO -->
+        <div class="hero">
+            
+            <!-- LOGO -->
+            <img src="logo.png"
+                 alt="Logo Alovera" class="logo">
+            
+            <div class="app-name">Alovera<span>.id</span></div>
+            <div class="version">
+                Versi 5.0.0 <span class="badge-new">New Updates</span>
+            </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="description">
+            <strong>Alovera</strong> adalah platform kreatif digital yang menghadirkan solusi lengkap
+            untuk <span class="highlight">berbagi karya dan kreativitas</span>,
+            <span class="highlight">postingan komunitas</span>, <span class="highlight">Play Video</span>,
+            <span class="highlight">AI Image Generator</span>, <span class="highlight">berita terkini</span>
+            (termasuk kategori <span class="highlight">Cerdas Finansial</span>), dan
+            <span class="highlight">stock gallery</span>.
+            <br><br>
+            Dengan versi terbaru <strong>5.0.0</strong>, kami menghadirkan fitur
+            <span class="highlight">Karya Komunitas</span>,
+            <span class="highlight">Terus Berkembang</span>,
+            <span class="highlight">Notifikasi Real-time</span>, dan
+            <span class="highlight">Grafik Aktivitas</span>.
+            Semua dalam satu ekosistem modern dan terintegrasi.
+        </div>
+
+        <!-- ============================================================
+        INFORMASI
+        ============================================================ -->
+        <div class="info-section">
+            <div class="section-title"><i class="fas fa-info-circle"></i> Informasi Aplikasi</div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Nama</div>
+                    <div class="info-value">Alovera</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Versi</div>
+                    <div class="info-value">5.0.0 <span style="font-size:10px;color:#4ade80;">New</span></div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Dirilis</div>
+                    <div class="info-value">17 November 2024</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Rilis Terbaru</div>
+                    <div class="info-value">16 September 2026</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Platform</div>
+                    <div class="info-value"><i class="fas fa-globe"></i> Web + PWA</div>
+                </div>
+                <div class="info-item full">
+                    <div class="info-label">Developer</div>
+                    <div class="info-value">Alovera Team</div>
+                </div>
+                <div class="info-item full">
+                    <div class="info-label">Website</div>
+                    <div class="info-value"><i class="fas fa-link"></i> www.alovera.id</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        FITUR UNGGULAN
+        ============================================================ -->
+        <div class="info-section">
+            <div class="section-title"><i class="fas fa-star"></i> Fitur Unggulan</div>
+            <div class="features-list">
+                <div class="feature-item"><i class="fas fa-robot"></i> AI Image Generator</div>
+                <div class="feature-item"><i class="fas fa-upload"></i> Postingan Komunitas <span class="new-tag">Baru</span></div>
+                <div class="feature-item"><i class="fas fa-play-circle"></i> Play Video <span class="new-tag">Baru</span></div>
+                <div class="feature-item"><i class="fas fa-images"></i> Karya Komunitas</div>
+                <div class="feature-item"><i class="fas fa-coins"></i> Cerdas Finansial <span class="new-tag">Baru</span></div>
+                <div class="feature-item"><i class="fas fa-book-open"></i> Terus Berkembang <span class="new-tag">Baru</span></div>
+                <div class="feature-item"><i class="fas fa-newspaper"></i> Berita Terkini</div>
+                <div class="feature-item"><i class="fas fa-bell"></i> Notifikasi Real-time</div>
+                <div class="feature-item"><i class="fas fa-chart-line"></i> Grafik Aktivitas</div>
+                <div class="feature-item"><i class="fas fa-palette"></i> Multi Tema</div>
+                <div class="feature-item"><i class="fas fa-shield-alt"></i> Keamanan Data</div>
+                <div class="feature-item"><i class="fas fa-mobile-alt"></i> PWA</div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SOSIAL MEDIA
+        ============================================================ -->
+        <div class="info-section">
+            <div class="section-title"><i class="fas fa-share-alt"></i> Media Sosial</div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i> Alovera ID</a>
+                <a href="#"><i class="fab fa-instagram"></i> alovera.official</a>
+                <a href="#"><i class="fab fa-tiktok"></i> alovera.id</a>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        KONTAK DUKUNGAN
+        ============================================================ -->
+        <div class="info-section">
+            <div class="section-title"><i class="fas fa-headset"></i> Kontak Dukungan</div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Email</div>
+                    <div class="info-value"><i class="fas fa-envelope"></i> support@alovera.id</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">WhatsApp</div>
+                    <div class="info-value"><i class="fab fa-whatsapp"></i> +62 813-4597-0959</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SERTIFIKASI & LEGAL
+        ============================================================ -->
+        <div class="info-section">
+            <div class="section-title"><i class="fas fa-certificate"></i> Sertifikasi &amp; Legal</div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Status</div>
+                    <div class="info-value"><i class="fas fa-check-circle" style="color:#4ade80;"></i> Berizin Resmi &amp; dilindungi undang-undang</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Di bawah naungan</div>
+                    <div class="info-value">PT Alovera Group Indosantara</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Tahun Berdiri</div>
+                    <div class="info-value">Banjarmasin 2026</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        TOMBOL AKSI
+        ============================================================ -->
+        <div class="info-section">
+            <div class="section-title"><i class="fas fa-hands-helping"></i> Dukung Kami</div>
+            <div class="support-buttons">
+                <button class="btn-support primary" onclick="window.location.href='pengembang-65hui.html'">
+                    <i class="fas fa-users"></i> Tim Pengembang
+                </button>
+                <button class="btn-support" onclick="window.location.href='privvcy.html'">
+                    <i class="fas fa-shield-alt"></i> Kebijakan Privasi
+                </button>
+                <button class="btn-support" onclick="window.location.href='hellpp.html'">
+                    <i class="fas fa-question-circle"></i> Pusat Bantuan
+                </button>
+            </div>
+        </div>
+
+        <!-- BACK TO TOP -->
+        <div class="back-top">
+            <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+                <i class="fas fa-arrow-up"></i> Kembali ke Atas
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        // BACK BUTTON FALLBACK
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const backBtn = document.querySelector('.back');
+            if (backBtn) {
+                backBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (window.history.length > 1) {
+                        history.back();
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                });
+            }
+        });
+
+        // ============================================================
+        // MUSIC WINDOW
+        // ============================================================
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!window.musicWindow || window.musicWindow.closed) {
+                window.musicWindow = window.open(
+                    "music.html",
+                    "musicPlayer",
+                    "width=1,height=1,left=-1000,top=-1000"
+                );
+            }
+        });
+
+        function toggleMusic() {
+            if (window.musicWindow && !window.musicWindow.closed) {
+                window.musicWindow.toggleMusic();
+            }
+        }
+    </script>
+
+</body>
+</html>

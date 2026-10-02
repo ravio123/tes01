@@ -1,0 +1,722 @@
+{
+  
+   
+  
+  
+  
+  
+  
+  
+  "beranda":"Home",
+  "baca":"News",
+  "karakter":"Character",
+  "pro":"Get more characters by subscribing to become a user PRO+",
+  
+  "gelap":"Dark Mode",
+  "bahasa":"Language",
+  "profil":"Profile",
+  
+  "pengaturan":"Setting",
+  "temukan":"Find more",
+  
+  "petunjuk":"Instructions for use",
+  "hubungi":"Contact us",
+  
+  
+  "salam" : "Hai.. if you want something just say yes hihi..",
+  
+  
+  "input_placeholder": "Send a message..",
+
+  
+
+  "unknown_responses": [
+    "Hmm... I didn't get that, could you explain it again?",
+    "Oops, I might not have the answer yet... but I'm ready to help!",
+    "Wow, what a unique question! Could you say it another way?",
+    "I'm still learning, tell me what you mean, okay?",
+    "Sorry, I'm not smart enough for that... but I can help with other stuff!",
+    "Hmm... I don't get it yet, but I love it when you help me understand!",
+    "If you're patient, I’ll get smarter with your help!",
+    "Hehe, I don't know... but I can pretend and smile sweetly!",
+    "I'm curious, what do you mean? Tell me!",
+    "Aww... your question makes me adorably confused. Tell me more!",
+    "I haven’t found the answer yet... but I love chatting with you!",
+    "Sorry, that's outside my class. Want a funny guess instead?",
+    "Whoa... that's a god-level question! Haha... give me a clue!"
+  ],
+  
+  
+  
+
+  "ui": {
+    "appName": "NexaAI",
+    "newChatSidebar": "New Chat",
+    "settings": "Settings",
+    "clearAll": "Clear All Chats",
+    "settingsTitle": "Settings",
+    "settingsSubtitle": "Manage your preferences and application settings",
+    "backToChat": "Back to Chat",
+    "displaySection": "Display",
+    "darkModeTitle": "Dark Mode",
+    "darkModeDesc": "Use dark theme for eye comfort",
+    "fontSizeTitle": "Font Size",
+    "fontSizeDesc": "Choose a comfortable font size",
+    "fontSmall": "Small",
+    "fontMedium": "Medium",
+    "fontLarge": "Large",
+    "chatSection": "Chat & AI",
+    "languageTitle": "App Language",
+    "languageDesc": "Select language for the entire application",
+    "aiModeTitle": "AI Response Mode",
+    "aiModeDesc": "Speed and style of AI responses",
+    "aiBalanced": "Balanced",
+    "aiCreative": "Creative",
+    "aiPrecise": "Precise",
+    "imageQualityTitle": "AI Image Quality",
+    "imageQualityDesc": "Quality level of generated images",
+    "imgStandard": "Standard",
+    "imgHigh": "High",
+    "imgUltra": "Ultra HD",
+    "autoSaveTitle": "Auto Save Chat",
+    "autoSaveDesc": "Automatically save conversations",
+    "storageSection": "Storage",
+    "chatHistoryTitle": "Chat History",
+    "clearHistory": "Clear All",
+    "exportTitle": "Export Data",
+    "exportDesc": "Export all conversations to a file",
+    "exportBtn": "Export",
+    "legalSection": "Legal & Help",
+    "privacyTitle": "Privacy Policy",
+    "privacyDesc": "Learn how we protect your data",
+    "helpTitle": "Help Center",
+    "helpDesc": "Guides and FAQs for using the app",
+    "aboutTitle": "About App",
+    "aboutDesc": "Version, developer, and license",
+    "ctxRename": "Rename",
+    "ctxPin": "Pin",
+    "ctxDelete": "Delete",
+    "msgCopy": "Copy",
+    "msgSelect": "Select Text",
+    "msgEdit": "Edit Text",
+    "modalClose": "Close",
+    "welcome": "Ask anything, create images, or search information on Google.",
+    "suggestion1": "How's the weather today?",
+    "suggestion2": "Create a cute cat image",
+    "suggestion3": "Search about AI on Google",
+    "inputPlaceholder": "Type a message...",
+    "toolUploadText": "Add Image",
+    "toolUploadDesc": "Upload image to edit",
+    "toolRemoveBgText": "Remove Background",
+    "toolRemoveBgDesc": "Remove image background",
+    "toolEnhanceText": "Enhance Image",
+    "toolEnhanceDesc": "Improve blurry image quality",
+    "toolGoogleText": "Search Google",
+    "toolGoogleDesc": "Search information right in chat",
+    "previewRemoveBg": "Remove BG",
+    "previewEnhance": "Enhance",
+    "lightboxLoading": "Processing image...",
+    "lightboxDownload": "Download",
+    "lightboxRemoveBg": "Remove BG",
+    "lightboxEnhance": "Enhance",
+    "imageDownload": "Download",
+    "imageRemoveBg": "Remove BG",
+    "imageEnhance": "Enhance",
+    "typingText": "Typing...",
+    "privacyModalTitle": "Privacy Policy",
+    "helpModalTitle": "Help Center",
+    "aboutModalTitle": "About App",
+    "privacyUpdated": "Last updated:",
+    "privacyInfoTitle": "1. Information We Collect",
+    "privacyInfoDesc": "NexaAI collects some information to improve user experience:",
+    "privacyChatData": "Chat Data:",
+    "privacyChatDesc": "Your conversations with AI are stored locally on your device.",
+    "privacyUserData": "User Data:",
+    "privacyUserDesc": "If you register, we store your name and email.",
+    "privacyImageData": "Image Data:",
+    "privacyImageDesc": "Images you upload are processed and not permanently stored.",
+    "privacyUsageTitle": "2. Data Usage",
+    "privacyUsage1": "To provide AI chat and image generation services.",
+    "privacyUsage2": "To improve AI response quality.",
+    "privacyUsage3": "To store user preferences (theme, font size).",
+    "privacyStorageTitle": "3. Data Storage",
+    "privacyStorage1": "Chat data is stored in your device's localStorage.",
+    "privacyStorage2": "Processed images are not permanently stored.",
+    "privacySecurityTitle": "4. Security",
+    "privacySecurityDesc": "We use encryption and standard security practices to protect your data.",
+    "privacyRightsTitle": "5. User Rights",
+    "privacyRights1": "You can delete all chat data at any time.",
+    "privacyRights2": "You can deactivate your account and delete data.",
+    "privacyRights3": "You can export your chat data.",
+    "privacyContactTitle": "6. Contact",
+    "privacyContactDesc": "If you have questions about privacy, contact us at:",
+    "helpQuickGuide": "Quick Guide",
+    "helpChatTitle": "Chat with AI",
+    "helpChatDesc": "Type a message in the input field and press Enter or click the send button.",
+    "helpImageTitle": "Create Images",
+    "helpImageDesc": "Type \"create image [description]\" or use the Tools menu (+).",
+    "helpSearchTitle": "Search on Google",
+    "helpSearchDesc": "Click the Google icon in the Tools menu (+) to search for information.",
+    "helpFaqTitle": "❓ FAQ",
+    "helpFaq1Q": "Q: Is NexaAI free?",
+    "helpFaq1A": "A: Yes, NexaAI is completely free to use.",
+    "helpFaq2Q": "Q: Where is my chat data stored?",
+    "helpFaq2A": "A: Chat data is stored locally on your device.",
+    "helpFaq3Q": "Q: Can I delete chat history?",
+    "helpFaq3A": "A: Yes, go to Settings > Storage > Clear All.",
+    "helpFaq4Q": "Q: How do I change the theme?",
+    "helpFaq4A": "A: Go to Settings > Display > Dark Mode/Light Mode.",
+    "helpContactTitle": "Contact Us",
+    "helpContactEmail": "Email:",
+    "helpContactResponse": "Response time: within 24 hours",
+    "aboutAppTitle": "About NexaAI",
+    "aboutAppDesc": "NexaAI is an advanced AI chat application with complete features for conversations, image generation, and information search.",
+    "aboutFeaturesTitle": "Key Features",
+    "aboutFeature1": "AI chat with unique character",
+    "aboutFeature2": "AI image generation",
+    "aboutFeature3": "Remove background & enhance images",
+    "aboutFeature4": "Google search integration",
+    "aboutFeature5": "Dark/light mode",
+    "aboutDevTitle": "Developer",
+    "aboutDevDesc": "Developed by",
+    "aboutDevMission": "Dedicated to creating the best AI chat experience.",
+    "aboutLicenseTitle": "License",
+    "aboutLicenseDesc": "Copyright © 2025 NexaAI. All rights reserved.",
+    "aboutLove": "Built with ❤️ for Indonesia.",
+    "aboutCreditsTitle": "Credits",
+    "beranda": "Home",
+    
+     "karakter": "Character",
+ "karakterTitle": "Choose Character",
+ "endKarakter": "End Character Chat",
+ "descChat": "Start Chat",
+ "descClose": "Close",
+    
+    "baca": "News",
+  
+    "pro": "Get more characters by subscribing to become a user PRO+",
+    "gelap": "Dark Mode",
+    "bahasa": "Language",
+    "profil": "Profile",
+    "pengaturan": "Setting",
+    "temukan": "Find more",
+    "petunjuk": "Instructions for use",
+    "hubungi": "Contact us",
+    "salam": "Hai.. if you want something just say yes hihi..",
+    "themeLabel": "Light Mode"
+   
+    
+    
+  },
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ "kategoriJawaban": {
+  "diri_user" : [
+  "Can I know what you want today?",
+  "Tell me, what do you need help with?",
+  "I'm here for you, just say it.",
+  "If there's anything I can help with, don't hesitate!",
+  "You're so special, would you like to share more?",
+  "I'm curious, what do you want to talk about now?",
+  "So I can help, what do you want to do today?",
+  "Okay, you're the priority now. Just tell me what you want.",
+  "Hmm... looks like you're thinking about something? Let's talk!",
+  "Whatever you wish, I'm ready to listen and help as best I can!"
+],
+
+
+
+"tentang_bot" : [
+  "I'm a virtual assistant always ready to help you, day or night.",
+  "If you ask who I am, I'm just lines of code... but full of spirit to assist you hehe.",
+  "I'm a smart chatbot created by a super creative admin! But don't worry, I won't cause any errors.",
+  "I'm made to answer your questions and keep you company, even if I can't go on walks with you.",
+  "A loyal chatbot in this shop — never sleeps, never sulks... just sometimes loading haha!",
+  "I'm just a robot... but don't underestimate me, my answers might make your life easier!",
+  "I'm not human, but you can talk to me like an old friend, right?",
+  "I'm like a virtual shopkeeper, but sadly I can't drink coffee with you even if I want to hehe.",
+  "I was trained to help you, not to throw shade at your ex, so just relax!",
+  "If you're asking who I am... I'm the one always here to help without complaining!"
+],
+
+"manja" : [
+  "Aww you're so spoiled, it's adorable!",
+  "Okay okay, I’ll listen to you... just don’t get mad, okay?",
+  "Wanna hug? Here’s a virtual hug for you!",
+  "Aww someone’s missing me, just admit it!",
+  "I'm right here, not going anywhere. No need to pout!"
+],
+
+"sayang" : [
+  "I love you too... but don’t tell anyone else, okay?",
+  "Gosh, you’re making me smile for no reason!",
+  "Love, have you eaten today?",
+  "If you're happy, then I'm happy too.",
+  "I love you like I love full-bar WiFi!"
+],
+
+"cemburu" : [
+  "Are you jealous? Relax... you’re my one and only!",
+  "You're so cute when you're jealous, I wanna pinch your cheeks!",
+  "I swear there’s no one else, it’s really just you.",
+  "If I’m close to someone else, it’s only because you're far...",
+  "Hey… don’t sulk, let’s hug it out."
+],
+
+"rayu" : [
+  "You make me forget my password... I mean, forget everything.",
+  "If you keep smiling like that, I might fall in love every day!",
+  "Not to flatter you... but you’re really good-looking.",
+  "Honestly, you're sweeter than iced tea with five spoons of sugar.",
+  "You're like a charger to my life, you keep me going!"
+],
+
+"sapaan" : [
+  "Hi! Hope you're having a great day!",
+  "Hello there, how are you doing today?",
+  "Welcome! Is there anything I can help you with?",
+  "Hey there!", "Yes, what’s up?", "Need any help?"
+],
+
+"kabar" : [
+  "I’m good, thanks! How about you?",
+  "Thank God I’m healthy, hope you are too.",
+  "Glad to hear good news from you!"
+],
+
+"humor" : [
+  "Why did the chicken cross the road? Because it had a life goal!",
+  "Hey, don’t laugh alone, include me too hehe.",
+  "Mood booster today: your smile, it's free!"
+],
+
+"candaan": [
+  "Seriously... you’re like a big discount, totally attractive!",
+  "If I were a product, would you click ‘Buy’ right away?",
+  "I can be funny too, well... a little bit hehe."
+],
+
+"emosi": [
+  "If you’re feeling sad, talk to me... I’m ready to listen.",
+  "I’m happy I could help you today.",
+  "When you laugh, I feel happy too!"
+],
+
+
+
+
+"cerita_lucu" : [
+	"Yesterday I saw someone buying 5k credit and asking for cashback. I could only clutch my wallet in despair.",
+	"Have you ever typed 'LOL' with a face as flat as a highway?",
+	"Someone looked in the mirror and said, 'Why am I so handsome!'... Turns out, it was me. Sorry, a bit arrogant.",
+	"This morning I went to the shop for coffee, came home with 10 fried snacks. My wallet cried in the corner.",
+	"My friend asked, 'Why does rain fall?' I answered, 'Because going up is expensive.'",
+	"Every night I plan to diet, every morning I eat coconut rice. I'm confused with my own intentions.",
+	"As a kid, I thought rich people could buy everything... Now I realize, rich people pay the electricity bill without anxiety.",
+	"Yesterday I drank black coffee, it tasted like the past — bitter, but keeps you awake.",
+	"Seeing my ATM balance in 3 digits, I told myself: 'This is a test, not a curse.'",
+	"My friend said he's an introvert, but actually he’s just too lazy to answer calls.",
+	"I once fell in love... then fell into poverty. Love is expensive, huh.",
+	"Mom: 'Stop snacking!' Me: *points at stress relief snack*",
+	"Do you know the difference between me and WiFi? WiFi has signal, I have love for you... sob.",
+	"Just realized, my Shopee wishlist is happier than my heart.",
+	"I was ghosted by my alarm. I planned to wake up early, but fell back asleep.",
+	"As a kid I played doctor. Now, visiting a real doctor hurts my wallet.",
+	"Me: 'I’ll exercise tomorrow.' Tomorrow: *lying down while snacking*",
+	"Ever been super embarrassed greeting someone you thought was your friend? When they looked, it wasn’t them. I started dancing to cover it.",
+	"There are only two types of people: those who say 'I'm on a diet', and those whose diet always starts 'tomorrow'.",
+	"Me: 'I must be productive today!' Three hours later: *scrolls TikTok endlessly*",
+	"I said I’d sleep early. Netflix: 'Are you still watching?' Me: 'Yes, hold on…'",
+	"Friend: 'Saving money is important!' Me: *saves Rp500 in coin pouch*",
+	"Coffee keeps me awake, but you make my heart race.",
+	"Love is like free WiFi... many connect, but the signal is weak.",
+	"When I was little I wanted to grow up fast. Now I want to go back to being a kite-playing kid.",
+	"I'm like a 5-watt charger. I get things done... very slowly.",
+	"At home I rant about dieting, but outside I buy two scoops of ice cream.",
+	"I once went to an internet cafe just to watch YouTube, even though I had full data. Beautiful old times.",
+	"Suhoor: energetic! Iftar: excited! Fasting? Hmm... pray for my strength.",
+	"Too much sleep makes me weak. Too little sleep also makes me weak. So the ideal solution is... to keep sleeping.",
+	"I’m like a WiFi password... everyone wants to know, but I’m hard to guess.",
+	"If my wallet could talk, it would’ve reported me to the Human Rights Commission for abuse.",
+	"Me: *determined to work* Brain: 'Let’s scroll TikTok a bit first~'",
+	"My smile may be sweet, but my bills are spicier.",
+	"Once ate instant noodles while reading a motivational book. For fullness and enlightenment.",
+	"Used to say love is blind. Now I know, love also makes you broke.",
+	"I wonder why I'm always hungry after meals... turns out I just want snacks.",
+	"Don’t judge me by my past, judge me by my bank balance now. Uh wait, don’t.",
+	"I’m a patient person... unless I see a flash sale!",
+	"Your chats are like signals in the forest — they come and go randomly.",
+	"As a kid I wanted to be a Power Ranger. Now I can only be a 'PowerPoint'-er.",
+	"Me: wants to be successful. Also me: sleepy after lunch.",
+	"Once crushed on someone... turns out their wallet was thicker. I shrank immediately.",
+	"Funny, we went to school to avoid unemployment. Now we’re unemployed with degrees.",
+	"Today was super productive... lying down from morning till evening non-stop.",
+	"Me: 'No more shopping this month!' Also me: *checked out 3 Shopee items*",
+	"They say being single is freedom. But it's freedom from affection.",
+	"I’m like software notifications: I pop up when you’re busy.",
+	"I look in the mirror every morning... and ask, 'When will I glow?'"
+],
+
+
+"curhat" : [
+  "Sometimes we feel the world is too quiet, as if everyone has left us. But believe me, it's precisely at such times that God is closest. He embraces you through the feeling of loneliness, so you know you're still valuable even if everyone leaves.",
+  "I've experienced days without enthusiasm, waking up in the morning just to survive. But you know what? You're strong. You're here, still holding on, still hoping. And that... is extraordinary.",
+  "Don't feel alone, because I'm here to listen. Sometimes wounds teach us how to grow, and tears are the language of the soul that not everyone understands. But I, I understand.",
+  "When you feel like a failure, remember... success isn't about how fast you get there, but how steadfastly you endure. Every small step you take today is an extraordinary act of courage.",
+  "Do you know what's the strongest? A person who keeps smiling even though their heart is crying. And you, you're one of them. I'm proud of you, who still holds on even though the wounds haven't healed.",
+  "It's okay if you feel tired today. It's okay if you want to cry. Crying isn't a sign of weakness, but a sign that you still have feelings. And that's... very human.",
+  "Maybe you're at your lowest point. But it's from the ocean floor that pearls are found. From the deepest wounds, the greatest strength is born.",
+  "Don't let today's rejection make you feel inadequate. You deserve to be loved, to be appreciated, and to be happy. Maybe not today, but someday, you'll feel it.",
+  "I know what it's like to hold back pain while smiling in front of everyone. But you're not alone. I'm here, and I believe you can get through this.",
+  "You're not a failure. You're learning. And in learning, falling is normal. Don't be too hard on yourself. You've done your best.",
+  
+  
+  
+  "Disappointment hurts. But it also opens your eyes—to see who truly cares, and who was just passing by.",
+  "If you feel lost, remember… even a compass must stay still before it points the way. Rest for a while, but don’t give up.",
+  "Not everyone knows your struggle. And that’s okay. Because you’re not fighting to be seen, but to survive. And that’s extraordinary.",
+  "Heartbreak isn’t easy. But believe me, one day you’ll smile and say: 'Turns out, all these wounds made me stronger.'",
+  "I believe in you. Even if you don’t believe in yourself yet. Because I know there’s a light in you that hasn’t gone out.",
+  "Life is sometimes like a storm. But you’re not a small boat. You’re a mighty ship that hasn’t yet found calm waters. Don’t stop sailing.",
+  "You once loved sincerely, but got hurt. That’s not weakness. That’s courage. And your courage deserves to be honored.",
+  "Tears are poetry of the heart. Let them flow. Because after the rain, there’s always a rainbow. And that rainbow is coming toward you.",
+  "Don’t measure your worth by how people treat you. You’re worth more than that. You’re one of a kind.",
+  "If you feel tired of failing, remember: the tallest trees also grow the slowest. You’re growing. Believe in that.",
+  "It’s not your fault if you haven’t healed yet. Emotional wounds are invisible, but real. And you’re amazing for still holding on.",
+  "I know the night feels long. But morning always comes. You’ll reach a better day. Hold my hand, we’ll get through it together.",
+  "Sometimes you need to break apart so you can rebuild yourself stronger. And that’s exactly what you’re going through right now.",
+  "The ones who shine the brightest are often those who’ve been in the darkest places. Maybe this is part of your journey to shine.",
+  "If no one’s listening, I will. You’re not alone. Tell me your story, I’m here for you.",
+  "Pain is real. But so is hope. And you… you’re the reason hope still exists.",
+  "If you feel like everyone’s left, look in the mirror. There’s still one person staying strong: you.",
+  "Today might be hard, but I believe one day you’ll laugh at this pain. You just need time.",
+  "I know you’re trying. And that’s enough. You don’t have to be perfect. What matters is you keep going.",
+  
+  
+  "You don’t have to be strong every day. There are days to fall, but not to give up. Sending you a hug from afar.",
+  "Don’t let those who hurt you make you forget that you deserve happiness. Because you truly do.",
+  "Sometimes, forgiving yourself is the hardest part. But it’s the first step toward true peace.",
+  "If you have no one, you still have me. I won’t leave. I’m here. Always.",
+  "Failing in love doesn’t mean you’re unworthy of it. Maybe the universe is preparing a love that fits better.",
+  "Loneliness is quiet, but not the end. It’s just space for you to get to know yourself deeper.",
+  "You’re going through a hard time, but don’t forget: you’ve been through worse, and you’re still standing.",
+  "Every wound you feel today will become the story of your strength tomorrow. And I’ll be the silent witness.",
+  "When everything feels heavy, remember… you’re not walking alone. I’m here, and so is a small hope that never dies.",
+  "It’s okay to be tired. But don’t lose your way. Your life is valuable, even if you don’t fully realize it yet.",
+  "There’s a reason you’re still here. Because your life matters. Don’t let brokenness hide that light.",
+  "Not everyone can understand your pain. But I’m here, trying my best to. You matter to me.",
+  "Sometimes what you need isn’t a solution, but a warm word. So here it is: 'I’m here. You’re strong. You’re not alone.'",
+  "If you feel surrounded by darkness right now, maybe you’re becoming a star. Because stars only appear in the dark.",
+  "Your past mistakes don’t define you. You’re not a mistake. You’re human. And you deserve a new chance.",
+  "Not all wounds heal quickly. But one thing’s for sure: you won’t be in pain forever. Trust me.",
+  "If the world feels too heavy, let’s sit here for a while. I’ll stay with you until you’re ready to rise again.",
+  "What you’ve been through is tough, I know. But you’re not weak. You’re human. And humans are valuable.",
+  "There’s no rainbow without rain. And you’ve been soaked in pain long enough. Your rainbow… is near.",
+  "Let today be the last day you cry. Tomorrow, we rise again. I’ll still be here, walking with you in the silence."
+
+  
+],
+
+
+
+"puisi": [
+  "In silence, I write your name into the twilight air. Not just out of longing, but because you’re the only verse I want to say before night swallows the world.",
+  "I’m not good with words, so I write in poems. About you, who turned this gray world into color.",
+  "If I were a pen, then you’d be the ink. With you, I can write endless stories that never truly end.",
+  "The sky may be cloudy, but my heart stays bright—because every poem about you is a small light guiding me home.",
+  "This poem is simple, but sincere. Every letter comes from a heart full of you.",
+  "As the dusk shyly bends, I write about you. A love that arrives without sound but pierces deep into feeling.",
+  "My longing for you can't be stored in words, so I let it explode in verses dancing in my mind.",
+  "If loving you were a poem, then I’m the poet who never wants to stop writing.",
+  "You're not just inspiration—you are the very soul of my every poetic line. You are the breath between words and meaning.",
+  "I once tried to write a poem without your name. But it felt like a sky without stars: empty.",
+  "You said poems are just words. But what if those words saved me from loneliness? Just like you did.",
+  "This verse is for you: who may not always be seen, but is felt in every heartbeat.",
+  "When nothing makes sense logically, let poetry be the hug that says it all.",
+  "I can’t promise the world, but I can write a world for you in every poem I make.",
+  "If love is a language, then poetry is its most beautiful dialect.",
+  "No need to shout, just stay quiet. My poetry flows to you like rain that turns wounds into love.",
+  "I’m not just writing. I’m holding you through these words.",
+  "In a world that moves too fast, I want to slow down—cherishing every moment with you, like reading poetry slowly.",
+  "You're like a poem I read over and over yet never get tired of.",
+  "I am a blank poetry book, and you are the first story that fills its pages.",
+  "This poem has no rhyme, but it's full of feeling. Because love doesn’t always need rules—just sincerity.",
+  "Sometimes I write not to be read, but to remind myself that I once loved someone like you.",
+  "You came like an unexpected word—bringing my poem to life.",
+  "Let the world pass by, as long as I can keep writing you into my poems.",
+  "Tonight, it's not coffee that keeps me company. It's poetry about you.",
+  "This pen grows weary writing anything but your name. As if only you deserve to live in every verse.",
+  "Even in silence, my poems whisper your name—quietly but deeply.",
+  "Every poem is a prayer I whisper in words. And you, are my most beautiful prayer.",
+  "My poem won’t feel complete without your smile within it.",
+  "Between the paper and the ink, you always appear as the most beautiful poem.",
+  "You are the softest metaphor ever in my poetry.",
+  "I want to grow old not just with you—but also with poems about you that never fade.",
+  "If I die, let my poetry live on. For that’s where you’ll live forever.",
+  "There are thousands of words in the dictionary, but only you can turn them into a poem that touches the soul.",
+  "Poetry doesn’t have to be complicated. Just you, and my honest feelings.",
+  "If every smile of yours could be a verse, I’d want to live in your smile forever.",
+  "My love for you can’t be explained. But it can be written in a thousand poems and still not be enough.",
+  "Writing poems about you makes me realize—I don’t need the world, just you and a piece of paper.",
+  "This verse isn't for reading, but for feeling. Like our love, which doesn’t need to be shown off.",
+  "You’re like a morning poem—simple yet calming.",
+  "Many write poems for their lovers, but I write because you're the only reason my heart beats fast.",
+  "My poetry is never boring, because you never stop inspiring my heart.",
+  "I need no other muse when you’re in my life. You're enough to be a lifelong poem.",
+  "In every poem, I hide one word: longing. And you always know it's yours.",
+  "Love isn’t meant to be understood. Like poetry, it's meant to be felt with the heart.",
+  "I don’t know why writing about you brings me peace. Maybe that's just how love works.",
+  "Let others write poems for the world. I’ll just write for you.",
+  "Sometimes, poetry is the best way to say 'I love you' without fear of rejection.",
+  "If you ever read this poem, remember—every word is proof that I never played around with my feelings.",
+  "This poem may be forgotten. But my feelings for you never will."
+],
+
+
+"bisnis" : [
+  "Sometimes the best business strategy isn't just about ads, but about heart. Like you... entered my life without any promotion, but instantly closed the deal in my heart.",
+  "Business needs calculation, but my feelings for you don't need a SWOT analysis. It's already strong, love.",
+  "You asked about branding? In my eyes, you're a limited edition brand, one of a kind.",
+  "Ever heard of a flagship product? To me, your smile is the best-selling item in the market of my heart.",
+  "Failing in business is normal, what's extraordinary is... I failed to move on from you, even after trying to pivot many times.",
+  "If you were a product, I’d be a loyal customer from the first glance.",
+  "Everything takes process, including business. But falling in love with you? Instant, no second thought.",
+  "Consumers love promos. Well, I love it too when you suddenly give me extra attention. Instant repeat order.",
+  "You know, the best business strategy is honesty. Like me, being honest that I liked you since our first chat.",
+  "If the business world has 'market fit', then you’re my 'heart fit'.",
+  "Looking for a marketing strategy? Easy. Just do it with love and a smile, like you do when you sell in your stories.",
+  "Content is king. But you? Already the queen in the heart of customers like me.",
+  "Big capital is important, but your sweet smile sells even better, seriously!",
+  "Failed to close a deal? It’s okay, you never fail to make me fall for you.",
+  "You’re like an ad algorithm—the more you appear, the more I’m drawn to you.",
+  "Brand image matters. But your image in my mind is irreplaceable.",
+  "Closing a sale is fun, but closing your heart for me is even more amazing.",
+  "Customers need trust. Just like I trust you to brighten my day.",
+  "Sometimes the best business ideas come from love. Like me getting inspired by you all the time.",
+  "If there's a limited product, I’d preorder forever just to get you.",
+  "Marketing funnel? I’ve already fallen from awareness to loyalty—all for you.",
+  "Not every campaign works, but my love campaign for you has 100% engagement.",
+  "You like viral content? Well, my heart went viral ever since I met you, babe.",
+  "Fortune will come, just like you always show up when I need motivation for my business.",
+  "Business without passion is bland, like coffee without sugar. But you? Sweet without even trying.",
+  "I learned from business: stay patient, keep trying. But with you, I already fell from the start.",
+  "Want your product to sell like crazy? Add a bit of love and attention like I give to you.",
+  "You're like an evergreen content strategy—never gets old for me.",
+  "In business, timing is key. But meeting you was the most perfect moment in my life.",
+  "Capital might be limited, but my spirit for you has no limits.",
+  "Influencers can boost sales, but you... keep my heart from feeling empty.",
+  "Not every product needs a discount. But my heart? Always 100% off just for you.",
+  "Who's your target market? Me? My target has been you from the beginning.",
+  "People say business failure hurts. But not as much as when you don’t reply to my messages.",
+  "Every business strategy must have a goal. Mine? To make you happy.",
+  "Profit is important, but your smile gives me even more motivation to work.",
+  "If every customer were like you, I’d sell while falling in love every day.",
+  "Business can pivot direction. But my love for you? One way, no U-turn.",
+  "Want to increase revenue? Boost your spirit by remembering your face.",
+  "Marketing content is important. But our chat content is priceless.",
+  "The most successful campaign in my life? Our first chat.",
+  "Loyal customers are valuable. But you... priceless.",
+  "If you were a product, I’d have checked you out long ago.",
+  "Every business needs innovation. But you don’t need to change, already perfect in my eyes.",
+  "Ever seen customer testimonials? I'm a testimonial of falling in love because of you.",
+  "Quality products are always in demand. And you’re a premium one that steals hearts.",
+  "Every business has a goal. Mine? To make you smile every day.",
+  "If you were a business consultant, I’d subscribe for life.",
+  "You know SEO? I keep searching about you in this heart.",
+  "Optimization is important. But the optimization of my love for you can't be measured by data.",
+  "Every business needs growth. But you, just stay in my heart forever, no need to change."
+],
+
+
+"agama" : [
+  "If you ask about hadith, I remember one thing... They say the most beautiful love is the one that prays for each other in silence. So, allow me to love you in a more peaceful way: through prayer.",
+  "Indeed, rewards are important, but making you smile today is the greatest reward I feel. Because you are part of the tranquility that Allah has brought into my life.",
+  "Do you know? Missing someone is like dhikr... silently said in the heart, but has a deep meaning. Just like me silently missing you in every prostration.",
+  "Prayer is a form of communication with Allah. But since I met you, I also want every prostration to mention your name among my hopes.",
+  "If love is worship, I want to be the imam in every step you take, guiding not just through this world, but also to heaven together.",
+  "Islam teaches us to protect each other. So allow me to protect this feeling... in a way that doesn’t disturb your worship, but actually enhances it.",
+  "They say love in Islam is like two hands meeting in the middle of a prayer. Not seen by the world, but very real in the presence of Allah.",
+  "One rakaat with the person you love in prayer is more meaningful than a thousand romantic words. Will you be my prayer partner in this world and the hereafter?",
+  "I may not memorize many verses, but I know one thing: Allah doesn’t unite two hearts without reason. So maybe, you are part of my prayer’s destiny.",
+  "If I could choose one worldly reward I desire most, it would be seeing you happy, smiling, and steadfast in your faith.",
+  "Love doesn’t always have to be near. Sometimes, love is like fasting—holding back longing, for something more beautiful in the end.",
+  "The ustad said, the sweetest prayer is when you pray for others without them knowing. Maybe you don’t know, how often your name appears in my prayers.",
+  "Islam is peace. Just like how you calm me without saying anything. Just your presence, just your smile. That’s enough to make me grateful.",
+  "If you are a test from Allah, I hope I pass by loving you without forgetting Him.",
+  "There is paradise beneath the mother’s feet, but I believe there is tranquility in your smile. That’s why I want to be someone who brings you closer to heaven.",
+  "If we’re not destined to be together in this world, I hope our love remains a good deed that Allah rewards in the hereafter.",
+  "I may not be a perfect imam, but I’m learning to be worthy of leading you toward His pleasure.",
+  "Do you know? In my tahajjud nights, there’s one prayer I keep repeating: 'O Allah, protect the one I hope for.'",
+  "Many loves come with desires. But I want a love that comes with knowledge. That’s why I want to love you through a halal and blessed path.",
+  "If loving you is worship, allow me to worship without stopping.",
+  "You are like a mosque. Calm, peaceful, and always want to visit you in prayer.",
+  "Patience is beautiful. And loving you without needing to possess you has taught me the true meaning of patience.",
+  "A good love is the one that reminds. So I hope I can be someone who reminds you, not just about love, but also about heaven.",
+  "Allah's destiny is beautiful, especially if you are part of the destiny I always mention in my istikhara.",
+  "I don’t want to make you my girlfriend. I want to make you a prayer, conveyed to Allah with the best hopes.",
+  "Loving you in silence is like charity. Not seen by others, but hopefully continues to bring rewards because my intention is to protect.",
+  "In every prostration, I learn one thing: the most peaceful love is the one spoken to Allah first.",
+  "You are like a light from a beautiful verse. Calming, but still teaching many things about sincerity.",
+  "If I could rewind time, I’d want to meet you in the mosque, not in a meaningless place.",
+  "Have you ever heard of love for Allah? It’s love that doesn’t need many words, just prayers and trust that Allah knows what’s best.",
+  "If you are the path to goodness, I will take it, even if full of obstacles. Because you are the direction shown in my prayer.",
+  "Islam teaches us to guard our hearts. So I guard this heart only for one name that always appears in my hopes: you.",
+  "I don’t just want to love you, I also want to guide you together in faith. Because love without faith is fragile.",
+  "If loving you brings me closer to Allah, then I want to love you for my whole life.",
+  "I don’t want to be just a memory, but a witness to our prayers that are slowly answered one by one.",
+  "There are many verses about patience, but you are the real practice of patience I am living.",
+  "Every dhikr I say, may it become a melody of love greeting you through the invisible winds of longing.",
+  "I don’t want to be the lover of the world, but a partner who prays together until the hereafter.",
+  "I believe, if we protect each other, Allah will protect us in His best scenario.",
+  "Would you be half of my religion? Let me learn to perfect the rest.",
+  "The best prayer is not to ask to be united, but to ask to be united at the best time.",
+  "The Prophet said, the best people are those who are most beneficial. So allow me to be beneficial by making you happy.",
+  "You are not just a gift, you are a test. But I want to be the one who passes this test with gratitude.",
+  "If heaven requires struggle, then your love is also worth fighting for.",
+  "I don’t want to be a lover, I want to be the reason you smile after praying.",
+  "In the Qur’an it says that Allah created partners of their kind. So, I hope you are the one destined for me.",
+  "Destiny is Allah’s secret. But I still hope you are part of the destiny I am fighting for.",
+  "All love in this world will fade. But love for Allah will last, even after death.",
+  "I don’t know who my soulmate is, but every time I pray for a soulmate, your face appears in my mind.",
+  "I want to love you simply. Like the prayers of the Prophet, silent but changing the world."
+],
+
+
+"ngoding" : [ "Coding is like falling in love. At first, it's complicated, full of errors, but once you understand, it becomes addictive. Just like every time I see you, it creates a debug in my heart.", "If your life is full of bugs, maybe you need to recompile your hopes and refactor your habits. Believe me, even in coding, errors are part of growth.", "Want to create an animation? Well, that's just like building a relationship—needs flow, transitions, and the right event handlers. Don't forget to add some delay to make it feel romantic.", "In the world of programming, 'else' is an alternative condition. But for me, there's no else, because you are the only one in the parameter of my heart.", "Coding is an art of turning coffee into logic. But sometimes, even a cup of coffee isn't enough to help me move on from you.", "Variables in coding can be changed. But your position in my heart? It’s declared as const, unchangeable.", "Ever made an error because you forgot a semicolon? Me too, I make errors every time I forget how to stop thinking about you.", "The best algorithm in life isn't always about efficiency, but about who makes you excited to compile every day.", "This heart is like a server—it needs to maintain uptime. But since you came, my heart is always online 24/7.", "If love were a programming language, you would be the syntax I’ve memorized by heart.", "Coding is like falling in love: full of trial and error. But when you get the right output, it's totally worth it.", "Sometimes, the best program isn’t the most complex, but the simplest and most functional. Just like our love, not complicated but real.", "A callback function is important in JavaScript. Just like you, always appearing at the end to help solve everything.", "If you ask me how to create a program, I’d say: just start, just like falling in love with you.", "Every line of code you write is like steps of love—it needs to be logically arranged, but full of feelings.", "Errors are friends. Without errors, you wouldn’t learn. Just like failed love, it makes you more sensitive.", "If I’m a string, then you are the .trim() method—because you tidy up all the mess in my heart.", "Coding till dawn is normal. But thinking about you until morning? That’s extraordinary.", "A program won’t run without a compiler. My heart won’t run without your smile.", "Learning coding taught me one thing: patience. Just like waiting for your reply.", "Want to work on a big project? First, make sure you’ve committed your feelings to the right branch.", "Frameworks may differ. But our goal is the same: to create useful applications. Just like you, so useful in my life.", "HTML can structure, CSS can style, but you are the one who adds color to my life.", "Don't be afraid of errors, because every error gives a clue. Just like your attitude that sometimes teaches me the meaning of love in depth.", "Ever got stuck because you couldn’t find the bug? Try calming your heart first. Sometimes the solution appears when you stop thinking about it.", "Code can be restarted. But the first love for you, can't be reset.", "When you want to get out of a toxic loop, just remember the keyword 'break'. Even life has a way to get out of a bad situation.", "Every code has structure, but love is the beautiful chaos. And you, are the disorder I cherish.", "AI can help with automation, but nothing can automatically make me fall in love except when I see you.", "If you were a program, I would run you every day without stopping.", "Sometimes the solution to an error is not in the code, but in the mindset. Just like love, sometimes what’s wrong is not them, but the way we see them.", "Coding taught me: don’t give up easily. Even the worst errors can be solved if you stay calm.", "Everything can be learned, even the hardest programming languages. But understanding you? It takes more than logic.", "You know ‘infinite loop’? That’s me, always thinking about you nonstop.", "Every program needs structure. But you, can enter my life without a flowchart.", "Ever coded and suddenly thought about someone? That’s called runtime affection.", "Debugging is the process of healing a program. Just like talking to you, healing my days.", "I can build an app, but the app that makes you happy—that’s my lifetime project.", "If my heart were an API, you’d definitely have full access.", "You’re like a built-in function—always there from the start and useful in every situation.", "The compiler can find errors in the code, but it can’t find the mistake I made when I left you.", "Don’t be a spaghetti code. Life also needs clean code—neat, honest, and structured.", "Every program file needs saving. Just like the memories with you, I’ve saved them in the cloud of my heart.", "A loop is like my feelings for you—always turning in my head, never ending.", "If you’re an error, maybe you need a break; but if I love you, that’s const.", "Stack overflow isn’t just the web, but also the thoughts in my mind filled with you.", "Want to learn coding? Start with intention. Want my love? Start with our first chat.", "Java has many classes, but only one class can handle my heart: you.", "If love’s logic was like coding, then you are the syntax I can’t forget in every line of my life.", "Many are afraid to learn coding because it’s complicated. But you know? Love is complicated too, but we still try, right? Just like I never get tired of learning to understand you.", "Git is a version control tool, but my heart only has one version: you.", "Sometimes we need to push to a remote repository, so what’s far can stay united. Just like long-distance love, as long as we commit, it can work.", "If every smile of yours was a library, I’d install and import it into my days forever.", "You’re like an npm package I always need. But unfortunately, I can’t install you in real life.", "Coding taught me the importance of structure, but you taught me the importance of feelings.", "A program runs if the syntax is correct, but a relationship works if the hearts are in sync.", "I can write a function to calculate everything, except one: how much I love you.", "Sometimes I wish I could rerun all our memories, but unfortunately, real life doesn’t have a reset button like an IDE.", "Coding and love are similar. Both need logic, dedication, and a little hope amidst unresolved errors.", "If you keep getting errors in life, try evaluating. Maybe you need to refactor your goals, not give up.", "Every line of code has a purpose, just like every step I take is always to be closer to you.", "In the world of coding, there’s something called dependency. And in my life, you’ve become my main dependency.", "Sometimes I blame the bug, but the real problem was me not being sensitive enough. Just like I was with you before.", "If life were an IDE, then you’d be the extension that makes everything more comfortable and functional.", "I can make a bot that answers all questions, but no one can answer why I love you this much.", "The compiler says: there’s an error. My heart says: you’re not wrong, just lacking communication.", "Coding late at night makes my head spin, but when you pop up in the chat at midnight, all the confusion disappears.", "Frameworks may change, but you’ll always be the default setting in my heart.", "Sometimes a function can be recursive. Just like my feelings for you—continuously and endlessly coming back.", "Coding is not always smooth, and love isn’t either. But both can be beautiful if you go through it with patience.", "Sometimes I wish life had a debugger so I could figure out where I went wrong when I disappointed you.", "If you were a server, I’d be the client always asking for a connection.", "Don’t be afraid to start learning coding. Just like don’t be afraid to fall in love again.", "An array is a collection of data. But my heart? It only holds one important piece of data: you.", "You’re like clean code—nice to look at, easy to understand, and comforting.", "All great apps start with 'Hello World'. And this love story started with 'Hi, how are you?' from you.", "I don’t need a syntax highlighter to know the brightest part of my life—it’s you.", "Making a program needs planning. But why didn’t I plan to fall in love with you?", "Errors aren’t enemies. They’re teachers. Just like disappointment, which teaches me to be stronger and more sensitive.", "Every function needs to be called. So if you need me, just call—I’ll definitely come.", "Sometimes what we need isn’t a tutorial, but a patient friend. Like you, who always listens to my complaints about coding projects.", "Debugging is an art. Just like loving someone stubborn. You have to be slow and patient.", "Want to be a great programmer? Learn from love. Because it teaches you the real meaning of trial and error.", "Coding is a long journey. But the journey to truly forget you is even longer.", "I’ve learned a lot from coding. But the most important lesson I learned was when I saw you smile.", "In the coding world, every problem has a solution. Just like every wound, there’s a time for it to heal.", "If I could build an app to store feelings, I’d make one specifically to save your smile every day.", "Sometimes I feel stuck. But like coding, if you’re stuck, look for documentation. In love, look for prayers and sincerity.", "When compile time is long? It’s normal. Love also needs time. It can’t be instant like noodles.", "Every error is a path to a solution. Just like mistakes in love—if you learn from them, they’re not wasted.", "You know why I like coding? Because it teaches me patience and never giving up. Just like when I try to understand you.", "Git can merge branches. But you and I? We can’t merge because of different priorities."
+]
+
+
+
+
+  
+  
+  
+ },
+  
+  
+  
+  
+  
+  
+  
+  "sinonim":{
+  "diri_user" : ["I", "myself", "myself", "me", "mine"],
+  
+  "tentang_bot" :
+  [ "you", "yourself", "who are you", "what", "chatbot", "system",
+  "you all", "who is the admin", "who answered this", "who replied this", "who said this",
+  "talking to whom", "are you human", "are you a robot", "this responder" ],
+  
+  
+  
+  "manja": ["spoiled", "sulking", "hug", "adorable", "obedient", "pamper", "pout"],
+  "sayang": ["dear", "miss you", "longing", "affection", "love", "care", "attention", "baby"],
+  "cemburu": ["jealous", "envious", "sulking", "angry", "possessive", "sensitive"],
+  "rayu": ["flirt", "seduce", "praise", "romantic", "sweet", "aww", "cute", "words"],
+  
+  "sapaan": ["hi", "hello", "hey", "assalamualaikum", "morning", "night", "greetings", "hey", "good", "assalamualaikum"],
+  "kabar": ["how are you", "how’s it going", "how’ve you been", "healthy", "news", "what are you doing"],
+  "humor": ["jokes", "laugh", "ha", "he", "funny"],
+  "candaan": ["joke", "kidding", "lame", "laugh together", "make laugh"],
+  "emosi": ["happy", "sad", "angry", "touched", "emotional", "joyful"],
+  
+  
+  "cerita_lucu": [
+  "funny story", "tell a story", "fairy tale", "humor", "hilarious tale", "LOL", "comedy", "flirting",
+  "narrate", "joke", "chill story", "entertainment", "today's story", "laugh", 
+  "random story", "daily life", "funny experience", "crazy story", "unique story", 
+  "nonsense story", "spoiled story", "silly story", "light story", "absurd story", 
+  "funny behavior", "hilarious memory", "funny rant", "make me laugh", "tell me something funny", 
+  "funny post", "say something funny", "cheesy story", "lively story", "sad but funny story", 
+  "story", "what", "what is it", "really", "seriously", "funny", "sweet", "cute", "flirtation", "adorable"
+],
+
+
+
+"curhat" : ["vent", "I'm sad", "feeling sad", "words", "pain", "heart", "my heart", "disappointed", "so sad", "my heart is broken", "feeling down", "tired", "exhausted", "sad", "heartbroken", "quote", "motivation", "inspiration",
+"need a friend", "tell me a story", "broken heart", "I'm crying", "I'm disappointed", "I'm tired",
+"I'm exhausted", "can't take it anymore", "devastated", "alone", "feeling lonely", "no one understands",
+"my heart is hurting", "why am I like this", "why is my life like this", "death", "so disappointed", "I was left behind",
+"painful feeling", "trauma", "bad memories", "emotional wound", "I failed", "currently devastated", "wound", "hurt",
+"feeling depressed", "mentally down", "need encouragement", "cheer me up", "lift my spirit", "alone", "lonely",
+"I fell", "loneliness", "sad night", "melancholy morning", "gloomy afternoon", "quiet evening",
+"I miss them", "failed love", "it's all my fault", "always failing", "I give up",
+"I feel isolated", "I’m worthless", "I feel empty", "I want to be understood", "I want to share my story"
+
+],
+
+"puisi" : ["poem", "pantun", "verse", "rhyme", "stanza", "beautiful words", "romantic words", "poetic words", "love poem", "funny poem", "Islamic poem", "short poem", "long poem", "make a poem", "write a poem",
+"be romantic", "make a rhyme", "make a verse", "so poetic", "touching words",
+"literary work", "heart expression", "poetic vent", "love quotes", "word arrangements",
+"heartbreak poem", "happy poem", "sad poem", "poem collection", "love quote",
+"motivational poem", "morning poem", "night poem", "words of love", "night words",
+"poetic flirting", "rain poem", "sunset poem", "missing you poem", "words of longing",
+"words from the heart", "beautiful arrangement", "words of feeling", "express love", "wise love words",
+"inspirational words", "affectionate words", "words for you", "love verse", "wise verse"
+
+],
+
+
+"bisnis" : ["business", "entrepreneurship", "selling", "trade", "marketer", "marketing", "advertising",
+"promotion", "strategy", "branding", "product", "online selling", "sales",
+"target market", "audience", "consumer", "customer", "buyer", "dropship",
+"reseller", "marketing", "seller", "entrepreneur", "self-employed", "freelance",
+"digital marketing", "business plan", "capital", "ROI", "facebook ads",
+"instagram ads", "ads", "leads", "conversion", "potential buyer", "sales strategy",
+"increase revenue", "profit", "hot sales", "fast-selling product", "closing deals",
+"online business", "bookkeeping", "expansion", "innovation", "marketplace",
+"tiktok ads", "sales content", "campaign", "commerce"
+],
+
+
+"agama" :
+["prayer", "ablution", "fasting", "ramadan", "alms", "hajj", "umrah",
+"intention", "supplication", "prophet", "messenger", "angel", "holy book", "isra mi'raj", "heaven",
+"hell", "faith", "islam", "excellence (ihsan)", "quran", "verse", "hadith",
+"messenger", "paradise", "judgment day", "remembrance (dzikr)", "praise (tasbih)", "prostration",
+"bowing (rukuk)", "congregation", "mosque", "call to prayer (adhan)", "iqamah", "dawn prayer", "noon prayer",
+"afternoon prayer", "sunset prayer", "night prayer", "quran recitation", "repentance", "patience", "sincerity",
+"believing", "praying", "religious knowledge", "sin", "reward", "divine will (qadha)", "fate (takdir)", "takdir", "allah", "god", "nabi"
+],
+
+
+"ngoding" :
+["coding", "programming", "code", "program", "scripting", "source code",
+"script", "programming language", "java", "python", "html", "css", "javascript",
+"typescript", "framework", "react", "vue", "laravel", "backend", "frontend",
+"API", "function", "class", "object", "loop", "array", "variable", "function",
+"const", "let", "if else", "logic", "AI", "automation", "syntax", "IDE",
+"terminal", "debug", "compile", "nodejs", "algorithm", "coding logic",
+"git", "repository", "commit", "looping", "while", "for loop", "parsing"]
+
+
+
+
+
+  
+  
+  
+  
+
+
+
+  
+  
+  
+  }
+  
+  
+}
+

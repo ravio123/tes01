@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebijakan Privasi - Alovera</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #050b15;
+            color: #c8d6e5;
+            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+            padding-bottom: 50px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            background: rgba(5, 11, 21, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(74, 222, 128, 0.06);
+            z-index: 1000;
+        }
+
+        .header .back {
+            font-size: 20px;
+            margin-right: 16px;
+            cursor: pointer;
+            color: #6a8a9a;
+            transition: 0.3s ease;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header .back:hover {
+            color: #4ade80;
+            transform: translateX(-2px);
+        }
+
+        .header .title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #c8d6e5;
+            letter-spacing: 0.2px;
+        }
+
+        .header .brand {
+            margin-left: auto;
+            font-size: 14px;
+            font-weight: 700;
+            color: #4ade80;
+            letter-spacing: -0.3px;
+        }
+
+        .header .brand span {
+            color: #6a8a9a;
+            font-weight: 300;
+        }
+
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 90px 24px 60px;
+        }
+
+        /* ============================================================
+           HERO / PAGE TITLE
+           ============================================================ */
+        .page-hero {
+            padding: 10px 0 16px;
+            border-bottom: 1px solid rgba(74, 222, 128, 0.06);
+            margin-bottom: 28px;
+        }
+
+        .page-hero .page-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #c8d6e5;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-hero .page-title i {
+            color: #4ade80;
+            font-size: 30px;
+        }
+
+        .page-hero .page-subtitle {
+            font-size: 15px;
+            color: #6a8a9a;
+            margin-top: 4px;
+            padding-left: 44px;
+            line-height: 1.5;
+        }
+
+        .page-hero .last-update {
+            font-size: 13px;
+            color: #4a6a7a;
+            margin-top: 8px;
+            padding-left: 44px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .page-hero .last-update i {
+            font-size: 12px;
+        }
+
+        /* ============================================================
+           TABLE OF CONTENTS
+           ============================================================ */
+        .toc {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(74, 222, 128, 0.06);
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin-bottom: 28px;
+        }
+
+        .toc .toc-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #4a6a7a;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .toc .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 4px 12px;
+        }
+
+        .toc .toc-grid a {
+            font-size: 13px;
+            color: #6a8a9a;
+            text-decoration: none;
+            transition: 0.3s ease;
+            padding: 3px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .toc .toc-grid a:hover {
+            color: #4ade80;
+        }
+
+        .toc .toc-grid a i {
+            font-size: 10px;
+            color: #4a6a7a;
+        }
+
+        /* ============================================================
+           POLICY BLOCKS
+           ============================================================ */
+        .policy-block {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            padding: 22px 24px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(74, 222, 128, 0.04);
+            transition: 0.3s ease;
+        }
+
+        .policy-block:hover {
+            border-color: rgba(74, 222, 128, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .policy-block .block-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+
+        .policy-block .block-header .block-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border-radius: 10px;
+            background: rgba(74, 222, 128, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #4ade80;
+        }
+
+        .policy-block .block-header .block-number {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4a6a7a;
+            letter-spacing: 0.5px;
+        }
+
+        .policy-block .block-header h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #c8d6e5;
+            line-height: 1.3;
+        }
+
+        .policy-block .block-body {
+            padding-left: 50px;
+        }
+
+        .policy-block .block-body p {
+            font-size: 14.5px;
+            line-height: 1.8;
+            color: #8aa0b0;
+            margin-bottom: 8px;
+        }
+
+        .policy-block .block-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 4px 0 8px;
+        }
+
+        .policy-block .block-body ul li {
+            font-size: 14px;
+            color: #8aa0b0;
+            line-height: 1.7;
+            padding: 3px 0 3px 24px;
+            position: relative;
+        }
+
+        .policy-block .block-body ul li::before {
+            content: "▸";
+            color: #4ade80;
+            position: absolute;
+            left: 0;
+            font-size: 14px;
+        }
+
+        .policy-block .block-body ul li ul {
+            margin: 4px 0 4px 0;
+            padding-left: 0;
+        }
+
+        .policy-block .block-body ul li ul li {
+            font-size: 13.5px;
+            padding-left: 20px;
+        }
+
+        .policy-block .block-body ul li ul li::before {
+            content: "•";
+            color: #6a8a9a;
+        }
+
+        .policy-block .block-body .highlight {
+            color: #4ade80;
+            font-weight: 500;
+        }
+
+        .policy-block .block-body .highlight-red {
+            color: #ef4444;
+            font-weight: 500;
+        }
+
+        .policy-block .block-body .badge-new {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #050b15;
+            margin-left: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .policy-block .block-body .divider {
+            border: none;
+            border-top: 1px solid rgba(74, 222, 128, 0.06);
+            margin: 14px 0;
+        }
+
+        /* ============================================================
+           SPECIAL - USER CONTENT POLICY (HIGHLIGHTED)
+           ============================================================ */
+        .policy-block.user-content-policy {
+            border-left: 3px solid #4ade80;
+            background: rgba(74, 222, 128, 0.03);
+        }
+
+        .policy-block.user-content-policy .block-icon {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+        }
+
+        /* ============================================================
+           CONTACT / FOOTER
+           ============================================================ */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(74, 222, 128, 0.06);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #c8d6e5;
+            margin-bottom: 4px;
+        }
+
+        .contact-section p {
+            font-size: 14px;
+            color: #6a8a9a;
+            margin-bottom: 12px;
+        }
+
+        .contact-section .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-section .contact-links a {
+            font-size: 14px;
+            color: #6a8a9a;
+            text-decoration: none;
+            transition: 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .contact-section .contact-links a:hover {
+            color: #4ade80;
+        }
+
+        .contact-section .contact-links a i {
+            font-size: 14px;
+        }
+
+        .back-top {
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .back-top a {
+            color: #4a6a7a;
+            font-size: 13px;
+            text-decoration: none;
+            border: 1px solid rgba(74, 222, 128, 0.06);
+            padding: 10px 28px;
+            border-radius: 40px;
+            transition: 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-top a:hover {
+            border-color: rgba(74, 222, 128, 0.2);
+            color: #c8d6e5;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .back-top a i {
+            color: #4ade80;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 640px) {
+            .container {
+                padding: 80px 16px 40px;
+            }
+
+            .page-hero .page-title {
+                font-size: 24px;
+            }
+
+            .page-hero .page-subtitle,
+            .page-hero .last-update {
+                padding-left: 0;
+            }
+
+            .policy-block {
+                padding: 16px 16px;
+            }
+
+            .policy-block .block-body {
+                padding-left: 0;
+            }
+
+            .policy-block .block-header {
+                gap: 10px;
+            }
+
+            .policy-block .block-header .block-icon {
+                width: 30px;
+                height: 30px;
+                min-width: 30px;
+                font-size: 13px;
+            }
+
+            .policy-block .block-header h3 {
+                font-size: 15px;
+            }
+
+            .toc .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section .contact-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .header .brand {
+                font-size: 12px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .policy-block .block-body {
+                padding-left: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="header">
+        <div class="back" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="title">Kebijakan Privasi</div>
+        <div class="brand">alovera<span>.community</span></div>
+    </header>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <div class="container">
+
+        <!-- HERO -->
+        <div class="page-hero">
+            <div class="page-title">
+                <i class="fas fa-shield-alt"></i>
+                Kebijakan Privasi
+            </div>
+            <div class="page-subtitle">
+                Transparansi adalah komitmen kami. Pelajari bagaimana Alovera mengelola, melindungi, dan
+                menghormati data pribadi Anda.
+            </div>
+            <div class="last-update">
+                <i class="fas fa-calendar-alt"></i>
+                Terakhir diperbarui: 15 September 2026
+                <span style="color:#4a6a7a;margin-left:8px;">•</span>
+                <span style="color:#4a6a7a;">Versi 5.0.0</span>
+            </div>
+        </div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc">
+            <div class="toc-title"><i class="fas fa-list-ul" style="margin-right:6px;"></i> Daftar Isi</div>
+            <div class="toc-grid">
+                <a href="#section-1"><i class="fas fa-chevron-right"></i> Pendahuluan</a>
+                <a href="#section-2"><i class="fas fa-chevron-right"></i> Informasi yang Dikumpulkan</a>
+                <a href="#section-3"><i class="fas fa-chevron-right"></i> Penggunaan Data</a>
+                <a href="#section-4"><i class="fas fa-chevron-right"></i> Berbagi Data</a>
+                <a href="#section-5"><i class="fas fa-chevron-right"></i> Konten &amp; Komunitas Pengguna</a>
+                <a href="#section-6"><i class="fas fa-chevron-right"></i> Keamanan Data</a>
+                <a href="#section-7"><i class="fas fa-chevron-right"></i> Hak Pengguna</a>
+                <a href="#section-8"><i class="fas fa-chevron-right"></i> Cookies &amp; Penyimpanan Lokal</a>
+                <a href="#section-9"><i class="fas fa-chevron-right"></i> Privasi Anak</a>
+                <a href="#section-10"><i class="fas fa-chevron-right"></i> Perubahan Kebijakan</a>
+                <a href="#section-11"><i class="fas fa-chevron-right"></i> Hubungi Kami</a>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION 1 - PENDAHULUAN
+        ============================================================ -->
+        <div class="policy-block" id="section-1">
+            <div class="block-header">
+                <div class="block-icon"><i class="fas fa-info-circle"></i></div>
+                <div>
+                    <div class="block-number">01</div>
+                    <h3>Pendahuluan</h3>
+                </div>
+            </div>
+            <div class="block-body">
+                <p>
+                    Selamat datang di <span class="highlight">Alovera</span> ("kami", "kita", "milik kami"). Kami
+                    adalah platform kreatif digital yang menyediakan berbagai layanan terintegrasi, termasuk
+                    <span class="highlight">postingan komunitas</span>, <span class="highlight">play video</span>,
+                    <span class="highlight">editor desain</span>, <!--
+                    <span class="highlight">generate gambar AI</span>,
+                    -->
+                    <span class="highlight">AI Image Generator</span>, <span class="highlight">galeri stock</span>,
+                    <span class="highlight">perpustakaan buku</span>, <span class="highlight">berita terkini</span>
+                    (termasuk kategori <span class="highlight">Cerdas Finansial</span> dan
+                    <span class="highlight">Terus Berkembang</span>), serta <span class="highlight">berbagai fitur pendukung lainnya</span>.
+                </p>
+                <p>
+                    Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, menyimpan,
+                    dan melindungi informasi pribadi Anda saat menggunakan platform Alovera. Dengan menggunakan
+                    layanan kami, Anda menyetujui praktik yang dijelaskan dalam kebijakan ini.
+                </p>
+                <p>
+                    Kebijakan ini mencakup <span class="highlight">semua fitur</span> Alovera, termasuk fitur
+                    interaksi sosial seperti <span class="highlight">like</span>, <span class="highlight">unduh</span>,
+                    <span class="highlight">notifikasi real-time</span>, unggah konten, serta penggunaan
+                    <span class="highlight">AI</span> untuk pembuatan gambar.
+                </p>
+                <p>
+                    Kami berkomitmen untuk menjaga privasi Anda dan memastikan data Anda aman. Jika Anda
+                    memiliki pertanyaan, jangan ragu untuk menghubungi kami.
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION 2 - INFORMASI YANG DIKUMPULKAN
+        ============================================================ -->
+        <div class="policy-block" id="section-2">
+            <div class="block-header">
+                <div class="block-icon"><i class="fas fa-database"></i></div>
+                <div>
+                    <div class="block-number">02</div>
+                    <h3>Informasi yang Dikumpulkan</h3>
+                </div>
+            </div>
+            <div class="block-body">
+                <p>Kami mengumpulkan informasi berikut untuk menyediakan dan meningkatkan layanan kami:</p>
+                <ul>
+                    <li><strong>Informasi Akun:</strong> Nama pengguna, alamat email, bio, foto profil (avatar), dan informasi profil lainnya yang Anda berikan saat mendaftar.</li>
+                    <li><strong>Konten Pengguna:</strong> Foto, video, deskripsi, komentar, dan materi lain yang Anda unggah ke platform, termasuk yang ditampilkan di halaman <span class="highlight">Karya Komunitas</span>, <span class="highlight">Play Video</span>, dan profil Anda.</li>
+                    <li><strong>Data Interaksi Sosial:</strong> Informasi tentang <span class="highlight">like</span>, <span class="highlight">unduhan</span>, postingan yang disimpan, serta interaksi Anda dengan konten pengguna lain.</li>
+                    <li><strong>Data Aktivitas:</strong> Riwayat aktivitas Anda di platform, seperti halaman yang dikunjungi, kategori yang dijelajahi (Berita, Cerdas Finansial, terus berkembang, Stock, AI, dan lainnya), serta durasi sesi. Data ini digunakan untuk menampilkan <span class="highlight">grafik aktivitas</span> pribadi Anda.</li>
+                    <li><strong>Data Perangkat:</strong> Alamat IP, jenis perangkat, sistem operasi, browser, dan pengenal perangkat yang Anda gunakan.</li>
+                    <li><strong>Data Kamera &amp; Galeri:</strong> Akses ke kamera atau galeri foto <span class="highlight">hanya ketika Anda secara sadar mengunggah</span> foto/video. Kami tidak mengakses kamera atau galeri Anda secara otomatis.</li>
+                    <li><strong>Preferensi:</strong> Pengaturan tema (Gelap, Terang, Spirit), bahasa, notifikasi, dan preferensi lain yang Anda pilih.</li>
+                    <li><strong>Data AI Generator:</strong> Prompt yang Anda masukkan ke fitur <span class="highlight">AI Image Generator</span> beserta hasil gambar yang di-generate, untuk keperluan riwayat pribadi Anda.</li>
+                </ul>
+                <p style="margin-top:6px;font-size:13px;color:#4a6a7a;">
+                    <i class="fas fa-info-circle"></i> Kami tidak mengumpulkan data sensitif seperti informasi keuangan atau data kesehatan.
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION 3 - PENGGUNAAN DATA
+        ============================================================ -->
+        <div class="policy-block" id="section-3">
+            <div class="block-header">
+                <div class="block-icon"><i class="fas fa-cogs"></i></div>
+                <div>
+                    <div class="block-number">03</div>
+                    <h3>Penggunaan Data</h3>
+                </div>
+            </div>
+            <div class="block-body">
+                <p>Informasi yang kami kumpulkan digunakan untuk berbagai tujuan, termasuk:</p>
+                <ul>
+                    <li><strong>Menyediakan Layanan:</strong> Mengelola akun, memproses undangan, menyimpan karya desain, dan menampilkan konten Anda di fitur komunitas.</li>
+                    <li><strong>Personalisasi:</strong> Menyesuaikan konten, rekomendasi berita, dan tampilan video play berdasarkan preferensi serta aktivitas Anda.</li>
+                    <li><strong>Interaksi Sosial:</strong> Menampilkan jumlah like, daftar komentar, dan aktivitas komunitas lainnya di postingan Anda dan pengguna lain.</li>
+                    <li><strong>Notifikasi:</strong> Mengirim pemberitahuan real-time kepada Anda ketika ada pengguna lain yang menyukai, mengomentari, atau berinteraksi dengan konten Anda.</li>
+                    <li><strong>Komunikasi:</strong> Mengirim pembaruan, informasi terkait akun, dan pemberitahuan penting lainnya.</li>
+                    <li><strong>Analisis &amp; Statistik:</strong> Menampilkan <span class="highlight">grafik aktivitas pribadi</span> Anda, serta menganalisis tren penggunaan secara agregat untuk meningkatkan layanan.</li>
+                    <li><strong>AI Generator:</strong> Memproses prompt Anda untuk menghasilkan gambar, serta menyimpan riwayat gambar yang Anda buat agar dapat diakses kembali.</li>
+                    <li><strong>Keamanan:</strong> Melindungi platform dari aktivitas mencurigakan, spam, dan penyalahgunaan fitur komunitas.</li>
+                    <li><strong>Pengembangan:</strong> Mengembangkan fitur baru dan meningkatkan layanan yang sudah ada.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION 4 - BERBAGI DATA DENGAN PIHAK KETIGA
+        ============================================================ -->
+        <div class="policy-block" id="section-4">
+            <div class="block-header">
+                <div class="block-icon"><i class="fas fa-handshake"></i></div>
+                <div>
+                    <div class="block-number">04</div>
+                    <h3>Berbagi Data dengan Pihak Ketiga</h3>
+                </div>
+            </div>
+            <div class="block-body">
+                <p>
+                    Kami tidak menjual data pribadi Anda kepada pihak ketiga. Namun, kami dapat membagikan
+                    informasi dengan:
+                </p>
+                <ul>
+                    <li><strong>Penyedia Layanan:</strong> Pihak ketiga yang membantu kami menyediakan layanan, seperti <span class="highlight">Google</span> (autentikasi, database, dan penyimpanan file), hosting, dan analitik.</li>
+                    <li><strong>API Eksternal:</strong> Untuk fitur tertentu, data dapat diproses oleh penyedia layanan terkait, termasuk:
+                        <ul>
+                            <li><strong>Postingan:</strong> Untuk menampilkan foto dan video di halaman <span class="highlight">Stock Gallery</span> dan <span class="highlight">Play Video</span>.</li>
+                            <li><strong>Berita:</strong> Untuk menampilkan berita terkini di halaman <span class="highlight">Berita</span>, <span class="highlight">Cerdas Finansial</span>, dan <span class="highlight">Terus Berkembang</span>.</li>
+                            <li><strong>Open Library:</strong> Untuk menampilkan koleksi buku di halaman <span class="highlight">Terus Berkembang</span>.</li>
+                            <li><strong>AI Image Provider:</strong> Untuk memproses prompt dan menghasilkan gambar pada fitur <span class="highlight">AI Image Generator</span>.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Kepatuhan Hukum:</strong> Jika diwajibkan oleh hukum atau untuk melindungi hak, keselamatan, atau properti kami.</li>
+                </ul>
+                <p style="margin-top:6px;font-size:13px;color:#4a6a7a;">
+                    <i class="fas fa-shield-alt"></i> Semua pihak ketiga wajib menjaga kerahasiaan data sesuai dengan standar keamanan yang berlaku.
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION 5 - KONTEN & KOMUNITAS PENGGUNA - HIGHLIGHTED
+        ============================================================ -->
+        <div class="policy-block user-content-policy" id="section-5">
+            <div class="block-header">
+                <div class="block-icon"><i class="fas fa-upload"></i></div>
+                <div>
+                    <div class="block-number">05</div>
+                    <h3>Kebijakan Konten &amp; Komunitas <span class="badge-new">Penting</span></h3>
+                </div>
+            </div>
+            <div class="block-body">
+                <p>
+                    Alovera menyediakan fitur bagi pengguna untuk mengunggah foto, video, dan konten lainnya
+                    (disebut "<span class="highlight">Konten Pengguna</span>") ke platform. Konten ini dapat
+                    ditampilkan di halaman <span class="highlight">Karya Komunitas</span>,
+                    <span class="highlight">Play Video</span>, <span class="highlight">Profil</span> Anda,
+                    serta dapat dilihat dan diinteraksi oleh pengguna lain melalui fitur
+                    <span class="highlight">like</span> dan <span class="highlight">komentar</span>.
+                    Kami berkomitmen untuk menjaga lingkungan yang aman, positif, dan menghormati semua pengguna.
+                </p>
+
+                <hr class="divider">
+
+                <h4 style="font-size:15px;font-weight:600;color:#c8d6e5;margin-bottom:6px;">
+                    <i class="fas fa-check-circle" style="color:#4ade80;"></i> Konten yang Diizinkan
+                </h4>
+                <p>Anda dapat mengunggah konten yang:</p>
+                <ul>
+                    <li>Berkaitan dengan desain, kreativitas, seni, fotografi, dan inspirasi.</li>
+                    <li>Bersifat positif, informatif, edukatif, dan membangun komunitas.</li>
+                    <li>Mendukung tema <span class="highlight">Cerdas Finansial</span>,
+                        <span class="highlight">Pustaka Wawasan</span>, dan
+                        <span class="highlight">Grow Mindset</span>.</li>
+                    <li>Menghormati hak cipta dan kekayaan intelektual orang lain.</li>
+                    <li>Tidak mengandung data pribadi orang lain tanpa izin.</li>
+                </ul>
+
+                <hr class="divider">
+
+                <h4 style="font-size:15px;font-weight:600;color:#ef4444;margin-bottom:6px;">
+                    <i class="fas fa-times-circle" style="color:#ef4444;"></i> Konten yang DILARANG
+                </h4>
+                <p style="color:#ef4444;font-weight:500;">
+                    Konten berikut dilarang keras dan akan dihapus tanpa pemberitahuan:
+                </p>
+                <ul>
+                    <li><span class="highlight-red">Konten Pornografi &amp; Seksual:</span> Foto/video yang mengandung unsur pornografi, eksplisit, atau kekerasan seksual.</li>
+                    <li><span class="highlight-red">Ujaran Kebencian:</span> Konten yang menghasut kebencian, diskriminasi, atau kekerasan berdasarkan suku, agama, ras, gender, atau orientasi seksual.</li>
+                    <li><span class="highlight-red">Kekerasan &amp; Kekejaman:</span> Konten yang menampilkan kekerasan, penyiksaan, atau perlakuan tidak manusiawi terhadap manusia atau hewan.</li>
+                    <li><span class="highlight-red">Konten Ilegal:</span> Konten yang melanggar hukum Indonesia atau internasional.</li>
+                    <li><span class="highlight-red">Spam &amp; Penipuan:</span> Konten yang bersifat promosi berlebihan, penipuan, phishing, atau mengarahkan ke situs berbahaya.</li>
+                    <li><span class="highlight-red">Pelecehan &amp; Bullying:</span> Konten yang bertujuan untuk melecehkan, mengintimidasi, atau merendahkan orang lain.</li>
+                    <li><span class="highlight-red">Pelanggaran Hak Cipta:</span> Konten yang melanggar hak cipta atau kekayaan intelektual pihak lain.</li>
+                    <li><span class="highlight-red">Misinformasi &amp; Hoaks:</span> Konten yang menyebarkan informasi palsu atau menyesatkan.</li>
+                </ul>
+
+                <hr class="divider">
+
+                <h4 style="font-size:15px;font-weight:600;color:#c8d6e5;margin-bottom:6px;">
+                    <i class="fas fa-gavel" style="color:#4ade80;"></i> Sanksi Pelanggaran
+                </h4>
+                <p>
+                    Pelanggaran terhadap kebijakan konten ini dapat mengakibatkan:
+                </p>
+                <ul>
+                    <li><strong>Penghapusan Konten:</strong> Konten yang melanggar akan dihapus dari platform.</li>
+                    <li><strong>Peringatan:</strong> Pengguna akan menerima peringatan resmi.</li>
+                    <li><strong>Penangguhan Akun:</strong> Akun dapat ditangguhkan sementara atau permanen.</li>
+                    <li><strong>Pelaporan Hukum:</strong> Konten ilegal akan dilaporkan kepada pihak berwenang.</li>
+                </ul>
+
+                <hr class="divider">
+
+                <h4 style="font-size:15px;font-weight:600;color:#c8d6e5;margin-bottom:6px;">
+                    <i class="fas fa-flag" style="color:#4ade80;"></i> Pelaporan Konten
+                </h4>
+                <p>
+                    Jika Anda menemukan konten yang melanggar kebijakan ini, silakan laporkan melalui:
+                </p>
+                <ul>
+                    <li><strong>Email:</strong> <span class="highlight">support@alovera.id</span></li>
+                    <li><strong>Fitur Laporkan:</strong> Klik menu bantuan dan hubungi tim pengembang kami untuk melaporkan konten yang melanggar pada setiap postingan.</li>
+                </ul>
+                <p style="margin-top:6px;font-size:13px;color:#4a6a7a;">
+                    <i class="fas fa-clock"></i> Tim kami akan meninjau laporan dalam waktu 24 jam.
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION 6 - KEAMANAN DATA
+        ============================================================ -->
+        <div class="policy-block" id="section-6">
+            <div class="block-header">
+                <div class="block-icon"><i class="fas fa-lock"></i></div>
+                <div>
+                    <div class="block-number">06</div>
+                    <h3>Keamanan Data</h3>
+                </div>
+            </div>
+            <div class="block-body">
+                <p>
+                    Keamanan data Anda adalah prioritas kami. Kami menerapkan berbagai langkah keamanan,
+                    termasuk:
+                </p>
+                <ul>
+                    <li><strong>Enkripsi:</strong> Data ditransfer melalui koneksi aman (HTTPS/SSL).</li>
+                    <li><strong>Firewall:</strong> Perlindungan terhadap akses tidak sah.</li>
+                    <li><strong>Akses Terbatas:</strong> Hanya personel yang membutuhkan yang memiliki akses ke data.</li>
+                    <li><strong>Audit Berkala:</strong> Kami secara rutin meninjau dan memperbarui prosedur keamanan kami.</li>
+                </ul>
+                <p style="margin-top:6px;font-size:13px;color:#4a6a7a;">
+                    <i class="fas fa-exclamation-triangle"></i> Meskipun kami berupaya maksimal, tidak ada sistem yang 100% aman. Kami akan berupaya untuk terus mengupdate keamanan.
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION 7 - HAK PENGGUNA
+        ============================================================ -->
+        <div class="policy-block" id="section-7">
+            <div class="block-header">
+                <div class="block-icon"><i class="fas fa-user-check"></i></div>
+                <div>
+                    <div class="block-number">07</div>
+                    <h3>Hak Pengguna</h3>
+                </div>
+            </div>
+            <div class="block-body">
+                <p>Anda memiliki hak atas data pribadi Anda, termasuk:</p>
+                <ul>
+                    <li><strong>Hak Akses:</strong> Meminta salinan data pribadi yang kami simpan.</li>
+                    <li><strong>Hak Perbaikan:</strong> Meminta perbaikan data yang tidak akurat.</li>
+                    <li><strong>Hak Penghapusan:</strong> Meminta penghapusan data pribadi Anda.</li>
+                    <li><strong>Hak Pembatasan:</strong> Meminta pembatasan pemrosesan data.</li>
+                    <li><strong>Hak Pindah Data:</strong> Meminta data dalam format yang dapat dipindahkan.</li>
+                    <li><strong>Hak Menarik Persetujuan:</strong> Menarik persetujuan kapan saja.</li>
+                </ul>
+                <p style="margin-top:6px;">
+                    Untuk menggunakan hak-hak ini, hubungi kami di <span class="highlight">support@alovera.id</span>.
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION 8 - COOKIES & PENYIMPANAN LOKAL
+        ============================================================ -->
+        <div class="policy-block" id="section-8">
+            <div class="block-header">
+                <div class="block-icon"><i class="fas fa-cookie-bite"></i></div>
+                <div>
+                    <div class="block-number">08</div>
+                    <h3>Cookies &amp; Penyimpanan Lokal</h3>
+                </div>
+            </div>
+            <div class="block-body">
+                <p>
+                    Kami menggunakan cookies dan teknologi serupa (termasuk
+                    <span class="highlight">localStorage</span>) untuk meningkatkan pengalaman Anda,
+                    seperti:
+                </p>
+                <ul>
+                    <li>Mengingat preferensi Anda, termasuk <span class="highlight">tema</span> (Gelap/Terang/Spirit) dan <span class="highlight">bahasa</span>.</li>
+                    <li>Menjaga sesi login Anda tetap aktif.</li>
+                    <li>Menyimpan <span class="highlight">riwayat aktivitas</span> Anda secara lokal di perangkat untuk menampilkan grafik statistik pribadi.</li>
+                    <li>Menyimpan <span class="highlight">riwayat gambar AI</span> yang Anda buat agar dapat diakses kembali.</li>
+                    <li>Menyimpan <span class="highlight">cache video</span> sementara untuk mempercepat loading.</li>
+                    <li>Menganalisis penggunaan platform secara agregat untuk perbaikan layanan.</li>
+                </ul>
+                <p>
+                    Anda dapat menghapus data ini kapan saja melalui menu
+                    <span class="highlight">Pengaturan &rarr; Penyimpanan &amp; Data</span> di aplikasi, atau melalui
+                    pengaturan browser Anda. Menghapus data lokal tidak akan menghapus akun Anda, namun beberapa
+                    preferensi dan riwayat mungkin akan hilang.
+                </p>
+                <p>
+                    Kami <span class="highlight">tidak menggunakan cookies</span> untuk melacak aktivitas Anda di luar platform.
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION 9 - PRIVASI ANAK
+        ============================================================ -->
+        <div class="policy-block" id="section-9">
+            <div class="block-header">
+                <div class="block-icon"><i class="fas fa-child"></i></div>
+                <div>
+                    <div class="block-number">09</div>
+                    <h3>Privasi Anak-anak</h3>
+                </div>
+            </div>
+            <div class="block-body">
+                <p>
+                    Layanan Alovera, termasuk fitur komunitas, unggah konten, interaksi sosial, dan
+                    AI Generator, tidak ditujukan untuk anak-anak di bawah usia
+                    <span class="highlight">13 tahun</span>. Kami tidak dengan sengaja mengumpulkan data
+                    pribadi dari anak-anak. Jika Anda yakin kami memiliki data anak tanpa persetujuan orang
+                    tua atau wali, hubungi kami segera di <span class="highlight">support@alovera.id</span>
+                    untuk menghapusnya.
+                </p>
+                <p style="margin-top:6px;">
+                    Untuk pengguna berusia di bawah <span class="highlight">17 tahun</span>, kami menyarankan
+                    agar menggunakan platform dengan pengawasan orang tua atau wali, terutama saat
+                    mengunggah konten ke fitur komunitas.
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION 10 - PERUBAHAN KEBIJAKAN
+        ============================================================ -->
+        <div class="policy-block" id="section-10">
+            <div class="block-header">
+                <div class="block-icon"><i class="fas fa-edit"></i></div>
+                <div>
+                    <div class="block-number">10</div>
+                    <h3>Perubahan Kebijakan</h3>
+                </div>
+            </div>
+            <div class="block-body">
+                <p>
+                    Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu. Perubahan akan
+                    diumumkan melalui platform atau email. Versi terbaru akan selalu tersedia di halaman ini.
+                    Dengan terus menggunakan layanan, Anda menyetujui perubahan yang berlaku.
+                </p>
+                <p style="font-size:13px;color:#4a6a7a;margin-top:6px;">
+                    <i class="fas fa-clock"></i> Perubahan terakhir: 15 September 2026 — Penambahan cakupan fitur
+                    <span class="highlight">Postingan Komunitas</span>, <span class="highlight">Play Video</span>,
+                    <span class="highlight">Notifikasi Real-time</span>, <span class="highlight">AI Image Generator</span>,
+                    dan <span class="highlight">Grafik Aktivitas</span>.
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        SECTION 11 - KONTAK
+        ============================================================ -->
+        <div class="contact-section" id="section-11">
+            <h3><i class="fas fa-envelope" style="color:#4ade80;"></i> Hubungi Kami</h3>
+            <p>Jika Anda memiliki pertanyaan, saran, atau keluhan tentang privasi, silakan hubungi kami:</p>
+            <div class="contact-links">
+                <a href="mailto:support@alovera.id"><i class="fas fa-envelope"></i> support@alovera.id</a>
+                <a href="#"><i class="fas fa-globe"></i> www.alovera.id</a>
+                <a href="#"><i class="fas fa-map-pin"></i> Banjarmasin, Indonesia</a>
+            </div>
+        </div>
+
+        <!-- BACK TO TOP -->
+        <div class="back-top">
+            <a href="#" onclick="history.back(); return false;">
+                <i class="fas fa-arrow-left"></i> Kembali ke Sebelumnya
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        // Fallback untuk tombol back jika history tidak ada
+        document.addEventListener('DOMContentLoaded', function() {
+            const backBtn = document.querySelector('.back');
+            if (backBtn) {
+                backBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (window.history.length > 1) {
+                        history.back();
+                    } else {
+                        window.location.href = 'design.html';
+                    }
+                });
+            }
+
+            // Smooth scroll untuk TOC links
+            document.querySelectorAll('.toc-grid a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        const headerOffset = 80;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

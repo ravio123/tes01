@@ -1,1931 +1,2414 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Geodora AI — Pembuat Gambar AI Realistis</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alovera</title>
+  
+<script async src="https://cse.google.com/cse.js?cx=b5e95dd2e19e945a9">
+</script>
 
-    <!-- Font Awesome 6 untuk ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #111118;
-            --bg-card: #16161f;
-            --bg-card-hover: #1c1c28;
-            --bg-input: #1a1a26;
-            --border: #252535;
-            --border-focus: #5b5bff;
-            --text-primary: #e8e8f0;
-            --text-secondary: #a0a0b8;
-            --text-muted: #6b6b80;
-            --accent: #6366f1;
-            --accent-light: #818cf8;
-            --accent-glow: rgba(99, 102, 241, 0.35);
-            --gradient-1: #6366f1;
-            --gradient-2: #a855f7;
-            --gradient-3: #ec4899;
-            --success: #22c55e;
-            --warning: #f59e0b;
-            --error: #ef4444;
-            --radius-sm: 10px;
-            --radius: 14px;
-            --radius-lg: 20px;
-            --radius-xl: 24px;
-            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
-            --shadow-glow: 0 0 40px var(--accent-glow);
-            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            --sidebar-width: 340px;
-        }
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="logo-180.png">
+  <meta name="theme-color" content="#2d9cdb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Alovera">
+  
+  
+  
+<!-- Open Graph untuk Facebook, WhatsApp, LinkedIn, dll -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Platform Kreativitas & Produktivitas ">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+<meta property="og:description" content="Kunjungi sekarang dan temukan keajaiban bersama kami">
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            padding-bottom: env(safe-area-inset-bottom);
-        }
+<meta property="og:url" content="https://www.alovera.id">
 
-        /* Animasi background bergerak */
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background:
-                radial-gradient(ellipse at 25% 25%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 75% 60%, rgba(168, 85, 247, 0.05) 0%, transparent 60%),
-                radial-gradient(ellipse at 40% 80%, rgba(236, 72, 153, 0.04) 0%, transparent 55%);
-            z-index: 0;
-            pointer-events: none;
-            animation: bgDrift 20s ease-in-out infinite;
-        }
-        @keyframes bgDrift {
-            0%, 100% { transform: translate(0, 0); }
-            33% { transform: translate(1%, -1%); }
-            66% { transform: translate(-1%, 1%); }
-        }
+<meta property="og:image" content="https://alovera.id/hut811/300.png">
+  
+  
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6546396960605792" crossorigin="anonymous"></script>
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  
+  
 
-        /* === SIDEBAR TOGGLE BUTTON - DI KIRI === */
-        .sidebar-toggle {
-            position: fixed;
-            top: 12px;
-            left: 12px;
-            z-index: 200;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1.5px solid var(--border);
-            color: var(--text-primary);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .sidebar-toggle:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--accent);
-            transform: scale(1.05);
-        }
+  
+  
+  <link rel="stylesheet" href="theme.css">
+  
+  <!--
+  <link rel="stylesheet" href="theme.css">
+  -->
+  
+  
+  <link rel="stylesheet" href="styx240726.css">
+  
+  
+ 
 
-        /* === SIDEBAR OVERLAY === */
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 150;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-        .sidebar-overlay.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+ 
+  <link rel="stylesheet" href="ai.css">
 
-        /* === SIDEBAR - DARI KIRI === */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: var(--sidebar-width);
-            max-width: 92vw;
-            height: 100vh;
-            z-index: 200;
-            background: var(--bg-secondary);
-            border-right: 1px solid var(--border);
-            transform: translateX(-100%);
-            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            padding: 20px 18px 30px;
-            box-shadow: 8px 0 40px rgba(0, 0, 0, 0.6);
-        }
-        .sidebar.open {
-            transform: translateX(0);
-        }
 
-        .sidebar-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 20px;
-        }
-        .sidebar-header h2 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-primary);
-        }
-        .sidebar-header h2 i {
-            color: var(--accent);
-        }
-        .sidebar-close {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.4rem;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-        .sidebar-close:hover {
-            color: var(--text-primary);
-            background: var(--bg-card);
-        }
+  <link rel="stylesheet" href="chat.css">
 
-        /* Menu Items */
-        .sidebar-menu {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .sidebar-menu .menu-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: var(--text-muted);
-            padding: 12px 10px 6px;
-            font-weight: 600;
-        }
-        .menu-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 12px 14px;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--text-secondary);
-            text-decoration: none;
-            border: none;
-            background: none;
-            width: 100%;
-            font-family: inherit;
-            font-size: 0.92rem;
-            font-weight: 500;
-            text-align: left;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .menu-item:hover {
-            background: var(--bg-card);
-            color: var(--text-primary);
-        }
-        .menu-item.active {
-            background: var(--bg-card);
-            color: var(--accent-light);
-            border-left: 3px solid var(--accent);
-        }
-        .menu-item i {
-            width: 22px;
-            font-size: 1.1rem;
-            text-align: center;
-            flex-shrink: 0;
-        }
-        .menu-item .menu-badge {
-            margin-left: auto;
-            background: var(--accent);
-            color: #fff;
-            padding: 2px 10px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
+  <link rel="stylesheet" href="videav.css">
 
-        .sidebar-footer {
-            border-top: 1px solid var(--border);
-            padding-top: 16px;
-            margin-top: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .sidebar-footer .menu-item {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        .sidebar-footer .menu-item:hover {
-            color: var(--text-secondary);
-        }
+  <link rel="stylesheet" href="post.css">
 
-        /* === PANELS (di dalam sidebar) === */
-        .panel-content {
-            display: none;
-            padding: 8px 0 16px;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .panel-content.active {
-            display: flex;
-        }
 
-        /* Settings Panel */
-        .settings-group {
-            background: var(--bg-card);
-            border-radius: var(--radius-sm);
-            padding: 14px 16px;
-            border: 1px solid var(--border);
-        }
-        .settings-group label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .settings-group .setting-description {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-        .settings-group select,
-        .settings-group input[type="number"],
-        .settings-group input[type="text"] {
-            width: 100%;
-            padding: 10px 14px;
-            background: var(--bg-input);
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius-sm);
-            color: var(--text-primary);
-            font-family: inherit;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            outline: none;
-            -webkit-appearance: none;
-            appearance: none;
-        }
-        .settings-group select:focus,
-        .settings-group input:focus {
-            border-color: var(--border-focus);
-        }
-        .settings-group select option {
-            background: var(--bg-primary);
-        }
+  <link rel="stylesheet" href="notif.css">
 
-        /* Toggle switch */
-        .toggle-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-        .toggle-row span {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        .toggle-switch {
-            width: 44px;
-            height: 24px;
-            background: var(--bg-input);
-            border-radius: 50px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid var(--border);
-            position: relative;
-            flex-shrink: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .toggle-switch.active {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-        .toggle-switch .toggle-knob {
-            width: 16px;
-            height: 16px;
-            background: #fff;
-            border-radius: 50%;
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            transition: var(--transition);
-        }
-        .toggle-switch.active .toggle-knob {
-            left: 22px;
-        }
+  <!-- Chart.js untuk grafik -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        /* Privacy, Help, About Panel */
-        .info-panel {
-            background: var(--bg-card);
-            border-radius: var(--radius-sm);
-            padding: 18px 20px;
-            border: 1px solid var(--border);
-        }
-        .info-panel h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-primary);
-        }
-        .info-panel h3 i {
-            color: var(--accent);
-        }
-        .info-panel p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.7;
-            margin-bottom: 10px;
-        }
-        .info-panel ul {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.8;
-            padding-left: 20px;
-        }
-        .info-panel ul li {
-            margin-bottom: 4px;
-        }
-        .info-panel ul li i {
-            margin-right: 8px;
-        }
 
-        /* === NAVBAR === */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(10, 10, 15, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            padding: 0 24px;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            padding-left: 68px;
-        }
-        .navbar-brand {
-            display: flex;
-            margin-right: 187px;
-            align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.3px;
-            cursor: default;
-        }
-        .navbar-brand span {
-            background: linear-gradient(135deg, #e8e8f0 0%, #c4c4d8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .nav-badge {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            letter-spacing: -0.2px;
-            position: absolute;
-            right: 24px;
-        }
-        .nav-badge .dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--success);
-            animation: pulse-dot 2s infinite;
-        }
-        @keyframes pulse-dot {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
-            50% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-        }
 
-        /* === MAIN CONTAINER === */
-        .main-container {
-            position: relative;
-            z-index: 1;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 28px 24px 40px;
-            gap: 28px;
-        }
-
-        /* === HERO / HEADLINE === */
-        .hero-section {
-            text-align: center;
-            padding: 10px 0 0;
-        }
-        .hero-section h1 {
-            font-size: 2.6rem;
-            font-weight: 800;
-            letter-spacing: -0.8px;
-            line-height: 1.15;
-            margin-bottom: 8px;
-        }
-        .hero-section h1 .gradient-text {
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 8s ease infinite;
-            background-size: 200% 200%;
-        }
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        .hero-section p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            font-weight: 400;
-            letter-spacing: -0.2px;
-        }
-
-        /* === GENERATOR CARD === */
-        .generator-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 28px 30px;
-            box-shadow: var(--shadow-card);
-            transition: var(--transition);
-        }
-        .generator-card:hover {
-            border-color: #2e2e45;
-            box-shadow: var(--shadow-card), 0 0 60px rgba(99, 102, 241, 0.06);
-        }
-        .input-group {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-        .prompt-input-wrapper {
-            flex: 1;
-            min-width: 260px;
-            position: relative;
-        }
-        .prompt-input-wrapper input {
-            width: 100%;
-            padding: 14px 18px;
-            padding-right: 50px;
-            background: var(--bg-input);
-            border: 2px solid var(--border);
-            border-radius: var(--radius);
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            font-family: inherit;
-            letter-spacing: -0.2px;
-            transition: var(--transition);
-            outline: none;
-            -webkit-appearance: none;
-            appearance: none;
-        }
-        .prompt-input-wrapper input::placeholder {
-            color: var(--text-muted);
-        }
-        .prompt-input-wrapper input:focus {
-            border-color: var(--border-focus);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
-        }
-        .prompt-input-wrapper .sparkle-btn {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 8px;
-            border-radius: 50%;
-            transition: var(--transition);
-            -webkit-tap-highlight-color: transparent;
-        }
-        .prompt-input-wrapper .sparkle-btn:hover {
-            color: var(--accent-light);
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        /* Style selector */
-        .style-selector {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
-        }
-        .style-chip {
-            padding: 8px 16px;
-            border-radius: 50px;
-            border: 1.5px solid var(--border);
-            background: var(--bg-input);
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 0.82rem;
-            font-weight: 500;
-            font-family: inherit;
-            letter-spacing: -0.2px;
-            transition: var(--transition);
-            white-space: nowrap;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .style-chip:hover {
-            border-color: #3e3e5a;
-            color: var(--text-primary);
-            background: var(--bg-card-hover);
-        }
-        .style-chip.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #fff;
-            box-shadow: 0 4px 16px var(--accent-glow);
-        }
-
-        /* Generate button */
-        .generate-btn {
-            width: 100%;
-            padding: 15px 24px;
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-            border: none;
-            border-radius: var(--radius);
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 600;
-            font-family: inherit;
-            cursor: pointer;
-            letter-spacing: -0.2px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 8px 30px var(--accent-glow);
-            position: relative;
-            overflow: hidden;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .generate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.45);
-        }
-        .generate-btn:active {
-            transform: scale(0.98);
-        }
-        .generate-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-            filter: grayscale(30%);
-        }
-        .generate-btn .spinner {
-            display: none;
-            width: 20px;
-            height: 20px;
-            border: 2.5px solid rgba(255, 255, 255, 0.3);
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-        }
-        .generate-btn.loading .spinner {
-            display: block;
-        }
-        .generate-btn.loading .btn-text {
-            display: none;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* === RESULT AREA === */
-        .result-area {
-            display: none;
-            animation: fadeInUp 0.4s ease;
-        }
-        .result-area.visible {
-            display: block;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .result-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-card);
-        }
-        .result-image-container {
-            position: relative;
-            width: 100%;
-            background: #0d0d16;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 300px;
-            cursor: pointer;
-            overflow: hidden;
-        }
-        .result-image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-        .result-image-container:hover img {
-            transform: scale(1.03);
-        }
-        .result-image-container .image-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-        }
-        .result-image-container:hover .image-overlay {
-            background: rgba(0, 0, 0, 0.3);
-        }
-        .result-image-container .overlay-icon {
-            opacity: 0;
-            font-size: 2.5rem;
-            color: #fff;
-            transition: var(--transition);
-        }
-        .result-image-container:hover .overlay-icon {
-            opacity: 1;
-        }
-        .result-actions {
-            display: flex;
-            gap: 10px;
-            padding: 16px 20px;
-            flex-wrap: wrap;
-        }
-        .action-btn {
-            padding: 10px 18px;
-            border-radius: 50px;
-            border: 1.5px solid var(--border);
-            background: var(--bg-input);
-            color: var(--text-primary);
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            font-family: inherit;
-            letter-spacing: -0.2px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .action-btn:hover {
-            border-color: #4a4a68;
-            background: var(--bg-card-hover);
-        }
-        .action-btn.primary-action {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #fff;
-            font-weight: 600;
-        }
-        .action-btn.primary-action:hover {
-            background: #5558e0;
-            box-shadow: 0 4px 18px var(--accent-glow);
-        }
-
-        /* === HISTORY GALLERY === */
-        .history-section {
-            margin-top: 8px;
-        }
-        .history-section h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .history-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 14px;
-        }
-        .history-item {
-            aspect-ratio: 1 / 1;
-            border-radius: var(--radius);
-            overflow: hidden;
-            cursor: pointer;
-            position: relative;
-            background: var(--bg-card);
-            border: 2px solid transparent;
-            transition: var(--transition);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            -webkit-tap-highlight-color: transparent;
-        }
-        .history-item:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(99, 102, 241, 0.25);
-        }
-        .history-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .history-item .history-prompt {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
-            color: #fff;
-            font-size: 0.7rem;
-            padding: 20px 10px 8px;
-            opacity: 0;
-            transition: var(--transition);
-            line-height: 1.3;
-            pointer-events: none;
-        }
-        .history-item:hover .history-prompt {
-            opacity: 1;
-        }
-        .history-empty {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 40px;
-        }
-
-        /* === LIGHTBOX === */
-        .lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 999;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 20px;
-            padding: 40px;
-        }
-        .lightbox.active {
-            display: flex;
-        }
-        .lightbox img {
-            max-width: 90vw;
-            max-height: 75vh;
-            border-radius: var(--radius-lg);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
-            object-fit: contain;
-        }
-        .lightbox-close {
-            position: absolute;
-            top: 24px;
-            right: 32px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            font-size: 1.4rem;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .lightbox-close:hover {
-            background: rgba(255, 255, 255, 0.18);
-            transform: scale(1.05);
-        }
-        .lightbox-download {
-            padding: 12px 24px;
-            border-radius: 50px;
-            border: none;
-            background: var(--accent);
-            color: #fff;
-            font-weight: 600;
-            font-family: inherit;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-            letter-spacing: -0.2px;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .lightbox-download:hover {
-            background: #5558e0;
-            box-shadow: 0 8px 28px var(--accent-glow);
-        }
-
-        /* === TOAST === */
-        .toast-container {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .toast {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 14px 20px;
-            border-radius: var(--radius);
-            color: var(--text-primary);
-            font-size: 0.88rem;
-            font-weight: 500;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-            animation: slideIn 0.35s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            max-width: 380px;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(40px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        .toast.success {
-            border-left: 3px solid var(--success);
-        }
-        .toast.error {
-            border-left: 3px solid var(--error);
-        }
-        .toast.info {
-            border-left: 3px solid var(--accent);
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 1.8rem;
-            }
-            .hero-section p {
-                font-size: 0.9rem;
-            }
-            .generator-card {
-                padding: 20px 16px;
-            }
-            .input-group {
-                flex-direction: column;
-            }
-            .style-selector {
-                gap: 6px;
-            }
-            .style-chip {
-                padding: 7px 12px;
-                font-size: 0.75rem;
-            }
-            .history-grid {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-                gap: 10px;
-            }
-            .result-actions {
-                flex-direction: column;
-            }
-            .action-btn {
-                justify-content: center;
-            }
-            .sidebar {
-                width: 100%;
-                max-width: 92vw;
-            }
-            .sidebar-toggle {
-                top: 10px;
-                left: 10px;
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            .navbar {
-                padding-left: 60px;
-            }
-            .nav-badge {
-                display: none;
-            }
-            .toast-container {
-                bottom: 16px;
-                right: 16px;
-                left: 16px;
-            }
-            .toast {
-                max-width: 100%;
-                font-size: 0.82rem;
-                padding: 12px 16px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .hero-section h1 {
-                font-size: 1.5rem;
-            }
-            .generator-card {
-                padding: 16px 12px;
-            }
-            .prompt-input-wrapper input {
-                font-size: 0.85rem;
-                padding: 12px 14px;
-                padding-right: 44px;
-            }
-            .style-chip {
-                font-size: 0.7rem;
-                padding: 5px 10px;
-            }
-            .generate-btn {
-                font-size: 0.9rem;
-                padding: 13px 20px;
-            }
-        }
-
-        /* === ANDROID WEBVIEW SPECIFIC === */
-        @media (max-width: 480px) and (orientation: portrait) {
-            .result-image-container {
-                min-height: 200px;
-            }
-        }
-
-        /* Safe area for notch phones */
-        @supports (padding: max(0px)) {
-            .main-container {
-                padding-left: max(24px, env(safe-area-inset-left));
-                padding-right: max(24px, env(safe-area-inset-right));
-                padding-bottom: max(40px, env(safe-area-inset-bottom));
-            }
-            .sidebar {
-                padding-top: max(20px, env(safe-area-inset-top));
-                padding-bottom: max(30px, env(safe-area-inset-bottom));
-            }
-        }
-    </style>
 </head>
 <body>
 
-    <!-- SIDEBAR TOGGLE - DI KIRI -->
-    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Buka menu">
-        <i class="fa-solid fa-bars"></i>
+  <!-- OVERLAY -->
+  <div id="menuOverlay" onclick="closeMenu()"></div>
+
+  <!-- SIDE MENU -->
+  <div id="sideMenu">
+    <div class="menu-header">
+      <div class="logo-menu">
+        <img src="logog.png" alt="Logo" width="40" height="40" onerror="this.src='https://via.placeholder.com/40x40/1a6b3c/fff?text=A'" />
+        <h3>alovera</h3>
+        
+             <span class="brand-domain">Community</span>
+             
+             
+     
+     
+      </div>
+      <button class="close-btn" onclick="closeMenu()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="menu-item" onclick="navigateTo('home')"><i class="fas fa-home"></i><span>Beranda</span></div>
+
+<div class="menu-item" onclick="navigateTo('profile')"><i class="fas fa-user"></i><span>Profil</span></div>
+
+<div class="menu-item" onclick="navigateTo('feed')"><i class="fas fa-play-circle"></i><span>Play Video</span></div>
+    
+    
+    
+    
+    
+    <div class="menu-item" onclick="navigateTo('news')"><i class="fas fa-newspaper"></i><span>Berita</span></div>
+    <div class="menu-item" onclick="navigateTo('stock')"><i class="fas fa-search"></i><span>Stock</span></div>
+    <div class="menu-item" onclick="navigateTo('books')"><i class="fas fa-book"></i><span>Perpustakaan</span></div>
+    
+    <!--
+    <div class="menu-item" onclick="navigateTo('cart')"><i class="fas fa-shopping-cart"></i><span>Keranjang</span></div>
+    
+<div class="menu-item" onclick="navigateTo('shop')"><i class="fas fa-store"></i><span>Store</span></div>
+    
+    
+    
+    
+    <div class="menu-item" onclick="window.location.href='event/index.html'"><i class="fas fa-box"></i><span>Event Spesial</span></div>
+    -->
+    
+    
+    <div class="menu-item" onclick="window.location.href='privvcy.html'"><i class="fas fa-shield"></i><span>Kebijakan Privasi</span></div>
+    <div class="menu-item" onclick="window.location.href='hellpp.html'"><i class="fas fa-question-circle"></i><span>Bantuan</span></div>
+    
+   
+    <div class="menu-item" onclick="window.location.href='tentngu67.html'"><i class="fas fa-info-circle"></i><span>Tentang</span></div>
+    
+    
+    <!-- Theme Toggle -->
+<div class="theme-toggle-wrapper">
+    <div class="theme-toggle-label">
+        <i class="fas fa-palette"></i> Tema
+    </div>
+    <div class="theme-toggle-group">
+        <button class="theme-toggle-btn" data-theme="dark" onclick="setTheme('dark')">
+            <span class="theme-icon"></span>
+            <span>Gelap</span>
+        </button>
+        <button class="theme-toggle-btn" data-theme="light" onclick="setTheme('light')">
+            <span class="theme-icon"></span>
+            <span>Terang</span>
+        </button>
+        <button class="theme-toggle-btn" data-theme="hutri" onclick="setTheme('hutri')">
+            <span class="theme-icon"></span>
+            <span>Spirit</span>
+        </button>
+    </div>
+</div>
+
+
+
+    
+    
+    
+    
+    
+  </div>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-wrapper">
+        <span class="brand-name">alovera</span>
+        <!--
+        <span class="brand-domain">Design</span>
+        -->
+        
+      </div>
+      
+      <!--
+      <div class="header-actions">
+        <button class="btn-editor" onclick="window.location.href='editor/index.html'"><i class="fas fa-pen-fancy"></i> Editor</button>
+        <button onclick="navigateTo('cart')" aria-label="Keranjang">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge-header" id="headerCartBadge" style="display:none;">0</span>
+        </button>
+        <button onclick="toggleMenu()" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+      -->
+      
+      <div class="header-actions">
+          <!--
+    <button class="btn-premium-plus" onclick="openPremiumModal()" aria-label="Tambah Premium" style="background:none;border:none;color:#6a8a9a;font-size:24px;cursor:pointer;padding:4px 8px;border-radius:50%;transition:all 0.3s ease;display:flex;align-items:center;justify-content:center;width:36px;height:36px;">
+        <i class="fas fa-plus" style="font-size:22px;"></i>
     </button>
+    
+    -->
+    
+    
+    
+    <!-- TOMBOL AI BARU - dengan animasi gradient text 
+    <button class="btn-ai-chat" id="btnAiChat" onclick="startNewAiChat()" aria-label="Chat AI">
+        <span class="ai-gradient-text">AI</span>
+    </button>
+    -->
 
-    <!-- SIDEBAR OVERLAY -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h2><i class="fa-solid fa-sliders"></i> Menu</h2>
-            <button class="sidebar-close" id="sidebarClose" aria-label="Tutup menu">
-                <i class="fa-solid fa-xmark"></i>
+<!--
+    <button class="btn-ai-chat" id="btnAiChat" onclick="startNewAiChat()" aria-label="Chat AI">
+    <span class="ai-gradient-text">AI</span>
+</button>
+-->
+
+
+    
+    <button class="btn-upload" onclick="openUploadModal()" aria-label="Upload Postingan">
+        <i class="fas fa-plus"></i>
+    </button>
+    
+    
+    
+    
+    
+    <button class="btn-editor" onclick="window.location.href='editor/index.html'"><i class="fas fa-pen-fancy"></i> Editor</button>
+    
+    <br>
+<!--
+    <button class="btn-notification" onclick="openNotificationModal()" aria-label="Notifikasi" id="notifBtn">
+        <i class="fas fa-heart"></i>
+        <span class="notif-dot" id="notifDot"></span>
+    </button>
+-->
+    
+    
+    
+    
+            <!-- TOMBOL SHOP BARU
+            <button onclick="navigateTo('shop')" aria-label="Toko" style="background:none;border:none;color:#6a8a9a;font-size:18px;cursor:pointer;padding:6px 10px;border-radius:10px;transition:all 0.3s ease;display:flex;align-items:center;gap:6px;">
+                <i class="fas fa-store"></i>
+               
             </button>
+    -->
+
+            <!-- TOMBOL SHOP BARU DENGAN CLASS UNTUK TEMA 
+            <button class="btn-shop-header" onclick="navigateTo('shop')" aria-label="Toko" id="btnShopHeader">
+                <i class="fas fa-store shop-icon"></i>
+                <span class="shop-label">Store</span>
+            </button>
+            
+            
+        
+    
+    <button onclick="navigateTo('cart')" aria-label="Keranjang">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge-header" id="headerCartBadge" style="display:none;">0</span>
+    </button>
+    -->
+    
+    
+    
+            <!-- TOMBOL SHOP BARU DENGAN CLASS UNTUK TEMA -->
+            <button class="btn-shop-header" onclick="navigateTo('profile')" aria-label="Toko" id="btnShopHeader">
+                <i class="fas fa-circle-user" style="font-size: 22px;"></i>
+                <span class="shop-label">Profile</span>
+            </button>
+    
+    
+    
+    
+    
+    
+    
+    <button onclick="toggleMenu()" aria-label="Menu"><i class="fas fa-bars"></i></button>
+</div>
+      
+      
+      
+    </div>
+  </header>
+
+  <!-- ============================================================
+  PAGE: HOME (Dengan Produk + Undangan)
+  ============================================================ -->
+
+<!-- ============================================================
+  PAGE: HOME - AI CHAT HUB
+  ============================================================ -->
+<div id="homePage" class="page active">
+    <div class="page-wrapper home-ai-wrapper" id="homeAiWrapper">
+        
+        <br>
+        
+        
+        <!-- ============================================================
+        BERITA SIARAN TERKINI - Di bawah chat
+        ============================================================ -->
+        <div class="siaran-terkini-section" id="siaranSection">
+            <div class="siaran-header">
+                <div class="siaran-title">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Siaran Terkini</span>
+                    <span class="siaran-badge">LIVE</span>
+                </div>
+                <a href="#" onclick="navigateTo('news'); return false;" class="siaran-more">
+                    Lihat Semua <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+                </a>
+            </div>
+            <div class="siaran-slider-wrapper">
+                <div class="siaran-track" id="siaranTrack">
+                    <div class="siaran-loading">
+                        <i class="fas fa-spinner fa-spin"></i> Memuat berita...
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="sidebar-menu">
-            <div class="menu-label"><i class="fa-regular fa-compass"></i> Navigasi</div>
-
-            <!-- Menu: Beranda -->
-            <button class="menu-item active" data-page="home">
-                <i class="fa-solid fa-house"></i> Beranda
-            </button>
-
-            <!-- Menu: Pengaturan Generate -->
-            <button class="menu-item" data-page="settings">
-                <i class="fa-solid fa-gear"></i> Pengaturan Generate
-                <span class="menu-badge">AI</span>
-            </button>
-
-            <!-- Settings Panel -->
-            <div class="panel-content" id="settingsPanel">
-                <div class="settings-group">
-                    <label><i class="fa-solid fa-image"></i> Model AI</label>
-                    <div class="setting-description">Pilih model AI untuk menghasilkan gambar</div>
-                    <select id="aiModel">
-                        <option value="flux">Flux (Cepat & Stabil)</option>
-                        <option value="sdxl">SDXL (Kualitas Tinggi)</option>
-                        <option value="sd3">SD3 (Terbaru)</option>
-                    </select>
+        
+        
+        
+        
+        <!-- ============================================================
+        CHAT CONTAINER - Kolom utama
+        ============================================================ -->
+        <div class="chat-hub-container" id="chatHubContainer">
+            
+            <!-- Welcome Screen -->
+            <div class="chat-welcome-screen" id="aiWelcomeScreen">
+                <!-- Logo Alovera polos (tanpa border/background) -->
+                <div class="ai-logo-pulse">
+                    <img src="logog.png" alt="Alovera" class="ai-logo-img" onerror="this.style.display='none'">
                 </div>
-
-                <div class="settings-group">
-                    <label><i class="fa-solid fa-expand"></i> Resolusi Gambar</label>
-                    <div class="setting-description">Semakin tinggi resolusi, semakin detail</div>
-                    <select id="imageResolution">
-                        <option value="512">512x512 (Cepat)</option>
-                        <option value="768">768x768 (Standar)</option>
-                        <option value="1024" selected>1024x1024 (HD)</option>
-                        <option value="1536">1536x1536 (Ultra HD)</option>
-                    </select>
+                
+                <h2 class="ai-welcome-title" data-i18n="welcomeTitle">Halo, saya Alovera AI</h2>
+                <p class="ai-welcome-subtitle" data-i18n="welcome">Tanya apa saja, minta buatkan gambar, atau cari informasi di Google.</p>
+                
+                
+                
+                
+                <!-- Suggestion chips 
+                <div class="ai-suggestions" id="aiSuggestions">
+                    <button class="ai-suggestion-chip" onclick="useAiSuggestion('Bagaimana cuaca hari ini?')">
+                        <i class="fas fa-cloud-sun"></i> <span data-i18n="suggestion1">Bagaimana cuaca hari ini?</span>
+                    </button>
+                    <button class="ai-suggestion-chip" onclick="useAiSuggestion('Buatkan gambar kucing lucu')">
+                        <i class="fas fa-image"></i> <span data-i18n="suggestion2">Buatkan gambar kucing lucu</span>
+                    </button>
+                    <button class="ai-suggestion-chip" onclick="useAiSuggestion('Cari tentang AI di Google')">
+                        <i class="fab fa-google"></i> <span data-i18n="suggestion3">Cari tentang AI di Google</span>
+                    </button>
                 </div>
+                -->
+<div class="ai-suggestions" id="aiSuggestions">
+    <button class="ai-suggestion-chip" onclick="useAiSuggestion('Mau nanya,')">
+        <i class="fas fa-comment"></i> <span data-i18n="suggestion1">Tanya random</span>
+    </button>
+    <button class="ai-suggestion-chip" onclick="useAiSuggestion('Buatkan gambar kucing lucu')">
+        <i class="fas fa-image"></i> <span data-i18n="suggestion2">Buatkan gambar kucing lucu</span>
+    </button>
+    
 
-                <div class="settings-group">
-                    <label><i class="fa-solid fa-wand-magic-sparkles"></i> Kualitas Detail</label>
-                    <div class="setting-description">Tingkat detail dan realisme gambar</div>
-                    <select id="detailLevel">
-                        <option value="low">Rendah (Cepat)</option>
-                        <option value="medium" selected>Sedang</option>
-                        <option value="high">Tinggi (Lebih Lambat)</option>
-                    </select>
-                </div>
-
-                <div class="settings-group">
-                    <label><i class="fa-solid fa-palette"></i> Mode Warna</label>
-                    <div class="setting-description">Preferensi gaya warna gambar</div>
-                    <select id="colorMode">
-                        <option value="vibrant">Vibrant (Cerlang)</option>
-                        <option value="natural" selected>Natural (Alami)</option>
-                        <option value="muted">Muted (Lembut)</option>
-                        <option value="dramatic">Dramatic (Kontras Tinggi)</option>
-                    </select>
-                </div>
-
-                <div class="settings-group">
-                    <div class="toggle-row">
-                        <span><i class="fa-regular fa-clock"></i> Tampilkan Riwayat</span>
-                        <div class="toggle-switch active" id="historyToggle">
-                            <div class="toggle-knob"></div>
-                        </div>
+    <button class="ai-suggestion-chip" onclick="startRemoveBgFlow()">
+        <i class="fas fa-magic"></i> <span data-i18n="suggestion3">Hapus Background</span>
+    </button>
+    
+</div>
+                
+            </div>
+            
+            <!-- Chat Messages Area -->
+            <div class="chat-messages-area" id="aiChatMessages" style="display:none;">
+                <!-- Pesan akan di-render oleh JS -->
+            </div>
+            
+            <!-- Upload Preview -->
+            <div class="ai-upload-preview" id="aiUploadPreview" style="display:none;">
+                <div class="ai-preview-thumb">
+                    <img id="aiPreviewImage" src="" alt="Preview">
+                    <div class="ai-preview-loading" id="aiPreviewLoading" style="display:none;">
+                        <i class="fas fa-spinner fa-spin"></i>
                     </div>
-                    <div class="setting-description">Tampilkan riwayat gambar yang telah dibuat</div>
                 </div>
-
-                <div class="settings-group">
-                    <div class="toggle-row">
-                        <span><i class="fa-regular fa-image"></i> Auto Tampilkan Hasil</span>
-                        <div class="toggle-switch active" id="autoShowToggle">
-                            <div class="toggle-knob"></div>
-                        </div>
-                    </div>
-                    <div class="setting-description">Tampilkan hasil gambar secara otomatis setelah generate</div>
+                <div class="ai-preview-info">
+                    <div class="ai-preview-name" id="aiPreviewName">gambar.jpg</div>
+                    <div class="ai-preview-size" id="aiPreviewSize">0 KB</div>
                 </div>
-
-                <button class="generate-btn" id="applySettingsBtn" style="margin-top: 4px;">
-                    <i class="fa-solid fa-check"></i> Terapkan Pengaturan
+                <button class="ai-preview-remove" onclick="clearAiUpload()">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
-
-            <!-- Menu: Kebijakan Privasi -->
-            <button class="menu-item" data-page="privacy">
-                <i class="fa-solid fa-shield-halved"></i> Kebijakan Privasi
-            </button>
-
-            <!-- Privacy Panel -->
-            <div class="panel-content" id="privacyPanel">
-                <div class="info-panel">
-                    <h3><i class="fa-solid fa-shield-halved"></i> Kebijakan Privasi</h3>
-                    <p><strong>Geodora</strong> menghormati privasi Anda. Berikut adalah kebijakan privasi kami:</p>
-                    <ul>
-                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Tanpa Login:</strong> Anda tidak perlu membuat akun untuk menggunakan aplikasi ini.</li>
-                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Data Lokal:</strong> Semua data (riwayat gambar, pengaturan) disimpan di perangkat Anda (localStorage).</li>
-                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Tanpa Server:</strong> Kami tidak menyimpan data Anda di server manapun.</li>
-                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Gambar:</strong> Gambar yang dihasilkan hanya disimpan di perangkat Anda saat Anda mengunduhnya.</li>
-                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>API:</strong> Aplikasi ini menggunakan Pollinations.ai untuk menghasilkan gambar. Data prompt dikirim ke API mereka untuk diproses.</li>
-                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Cookie:</strong> Aplikasi ini tidak menggunakan cookie.</li>
-                        <li><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> <strong>Izin:</strong> Aplikasi hanya memerlukan izin penyimpanan untuk menyimpan gambar yang diunduh.</li>
-                    </ul>
-                    <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);">
-                        <i class="fa-regular fa-clock"></i> Terakhir diperbarui: 15 Januari 2025
-                    </p>
-                </div>
-            </div>
-
-            <!-- Menu: Bantuan -->
-            <button class="menu-item" data-page="help">
-                <i class="fa-solid fa-circle-question"></i> Bantuan
-            </button>
-
-            <!-- Help Panel -->
-            <div class="panel-content" id="helpPanel">
-                <div class="info-panel">
-                    <h3><i class="fa-solid fa-circle-question"></i> Panduan Penggunaan</h3>
-                    <p><strong>Cara menggunakan Geodora:</strong></p>
-                    <ul>
-                        <li><i class="fa-solid fa-pencil" style="color:var(--accent);"></i> <strong>1. Tulis Prompt:</strong> Masukkan deskripsi gambar yang Anda inginkan di kolom teks.</li>
-                        <li><i class="fa-solid fa-palette" style="color:var(--accent);"></i> <strong>2. Pilih Style:</strong> Pilih gaya gambar yang diinginkan (Fotorealistik, Sinematik, Anime, dll).</li>
-                        <li><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> <strong>3. Generate:</strong> Klik tombol "Generate Gambar" untuk mulai membuat gambar.</li>
-                        <li><i class="fa-solid fa-download" style="color:var(--accent);"></i> <strong>4. Unduh:</strong> Setelah gambar muncul, klik "Unduh Gambar" untuk menyimpannya.</li>
-                        <li><i class="fa-solid fa-rotate-right" style="color:var(--accent);"></i> <strong>5. Buat Ulang:</strong> Gunakan tombol "Buat Ulang" untuk membuat variasi baru dari prompt yang sama.</li>
-                        <li><i class="fa-solid fa-copy" style="color:var(--accent);"></i> <strong>6. Salin Prompt:</strong> Salin prompt ke clipboard untuk digunakan kembali.</li>
-                    </ul>
-                    <p style="margin-top:12px;">
-                        <i class="fa-solid fa-lightbulb" style="color:var(--warning);"></i> <strong>Tips:</strong> Semakin detail deskripsi Anda, semakin baik hasil gambarnya!<br>
-                        <i class="fa-solid fa-clock-rotate-left" style="color:var(--text-muted);"></i> Riwayat gambar tersimpan di perangkat Anda.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Menu: Tentang Aplikasi -->
-            <button class="menu-item" data-page="about">
-                <i class="fa-solid fa-info-circle"></i> Tentang Aplikasi
-            </button>
-
-            <!-- About Panel -->
-            <div class="panel-content" id="aboutPanel">
-                <div class="info-panel">
-                    <h3><i class="fa-solid fa-info-circle"></i> Tentang Geodora</h3>
-                    <p><strong>Geodora</strong> adalah aplikasi pembuat gambar berbasis kecerdasan buatan yang memungkinkan Anda menghasilkan gambar berkualitas tinggi hanya dengan menulis deskripsi.</p>
-                    <ul>
-                        <li><i class="fa-solid fa-robot" style="color:var(--accent);"></i> <strong>Versi:</strong> 2.0.1</li>
-                        <li><i class="fa-solid fa-calendar" style="color:var(--accent);"></i> <strong>Rilis:</strong> Januari 2025</li>
-                        <li><i class="fa-solid fa-server" style="color:var(--accent);"></i> <strong>Teknologi:</strong> Pollinations.ai API</li>
-                        <li><i class="fa-solid fa-mobile" style="color:var(--accent);"></i> <strong>Platform:</strong> Web & Android (WebView)</li>
-                        <li><i class="fa-solid fa-gem" style="color:var(--accent);"></i> <strong>Lisensi:</strong> Freeware - Gratis untuk semua pengguna</li>
-                        <li><i class="fa-solid fa-shield" style="color:var(--accent);"></i> <strong>Kebijakan Privasi:</strong> Tersedia di menu</li>
-                    </ul>
-                    <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);">
-                        <i class="fa-regular fa-heart" style="color:var(--gradient-3);"></i> Dibuat dengan cinta untuk semua pecinta seni AI.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="sidebar-footer">
-            <div style="font-size:0.7rem; color:var(--text-muted); padding:8px 14px; text-align:center; border-top:1px solid var(--border); padding-top:12px;">
-                <i class="fa-regular fa-copyright"></i> Geodora v2.0.1
-            </div>
-        </div>
-    </aside>
-
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="navbar-brand">
-            <span>Geodora</span>
-        </div>
-        <div class="nav-badge">
-            <span class="dot"></span> AI Ready
-        </div>
-    </nav>
-
-    <!-- MAIN CONTENT -->
-    <div class="main-container" id="mainContent">
-        <!-- Hero -->
-        <div class="hero-section">
-            <h1>Ubah Imajinasi Jadi <span class="gradient-text">Gambar Realistis</span></h1>
-            <p>Deskripsikan gambar yang Anda inginkan, dan AI akan mewujudkannya dalam hitungan detik.</p>
-        </div>
-
-        <!-- Generator Card -->
-        <div class="generator-card">
-            <div class="input-group">
-                <div class="prompt-input-wrapper">
-                    <input
-                    type="text"
-                    id="promptInput"
-                    placeholder="Contoh: A majestic dragon perched on a neon-lit skyscraper at night, photorealistic, 8K..."
-                    autocomplete="off"
-                    >
-                    <button class="sparkle-btn" id="randomPromptBtn" title="Prompt acak">
-                        <i class="fa-solid fa-shuffle"></i>
+            
+            <!-- Input Area -->
+            <div class="chat-input-area">
+                <div class="chat-input-wrapper">
+                    <button class="ai-tools-btn" id="aiToolsBtn" onclick="toggleAiTools(event)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    
+                    <!-- Tools Dropdown -->
+                    <div class="ai-tools-dropdown" id="aiToolsDropdown">
+                        <button class="ai-tool-item" onclick="triggerAiUpload()">
+                            <i class="fas fa-image"></i>
+                            <div>
+                                <div data-i18n="toolUploadText">Tambahkan Gambar</div>
+                                <small data-i18n="toolUploadDesc">Upload gambar untuk diedit</small>
+                            </div>
+                        </button>
+                        <button class="ai-tool-item" onclick="triggerAiRemoveBg()">
+                            <i class="fas fa-magic"></i>
+                            <div>
+                                <div data-i18n="toolRemoveBgText">Hapus Background</div>
+                                <small data-i18n="toolRemoveBgDesc">Hilangkan latar belakang</small>
+                            </div>
+                        </button>
+                        <button class="ai-tool-item" onclick="triggerAiEnhance()">
+                            <i class="fas fa-wand-magic-sparkles"></i>
+                            <div>
+                                <div data-i18n="toolEnhanceText">Perjelas Gambar</div>
+                                <small data-i18n="toolEnhanceDesc">Tingkatkan kualitas gambar</small>
+                            </div>
+                        </button>
+                        <button class="ai-tool-item" onclick="triggerAiGoogleSearch()">
+                            <i class="fab fa-google" style="color:#ea4335;"></i>
+                            <div>
+                                <div data-i18n="toolGoogleText">Cari di Google</div>
+                                <small data-i18n="toolGoogleDesc">Cari informasi tetap di chat</small>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <textarea 
+                        id="aiChatInput" 
+                        class="ai-chat-input" 
+                        rows="1"
+                        placeholder="Tanyakan sesuatu.."
+                        data-i18n-placeholder="input_placeholder"
+                    ></textarea>
+                    
+                    <button class="ai-send-btn" id="aiSendBtn" onclick="handleAiSend()">
+                        <i class="fas fa-arrow-up"></i>
                     </button>
                 </div>
             </div>
-            <div class="style-selector" id="styleSelector">
-                <button class="style-chip active" data-style="photorealistic">Fotorealistik</button>
-                <button class="style-chip" data-style="cinematic">Sinematik</button>
-                <button class="style-chip" data-style="anime"> Anime</button>
-                <button class="style-chip" data-style="digital-art">Digital Art</button>
-                <button class="style-chip" data-style="oil-painting">Lukisan</button>
-                <button class="style-chip" data-style="3d-render"> 3D Render</button>
-                <button class="style-chip" data-style="fantasy">Fantasi</button>
-                <button class="style-chip" data-style="cyberpunk">Cyberpunk</button>
-            </div>
-            <button class="generate-btn" id="generateBtn">
-                <span class="btn-text"><i class="fa-solid fa-bolt"></i> Generate Gambar</span>
-                <span class="spinner"></span>
-            </button>
         </div>
-
-        <!-- Result Area -->
-        <div class="result-area" id="resultArea">
-            <div class="result-card">
-                <div class="result-image-container" id="resultImageContainer">
-                    <img id="resultImage" src="" alt="Generated AI Image">
-                    <div class="image-overlay">
-                        <span class="overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+        
+        
+        
+        <!-- ============================================================
+        BERITA SIARAN TERKINI - Di bawah chat
+        ============================================================ 
+        <div class="siaran-terkini-section" id="siaranSection">
+            <div class="siaran-header">
+                <div class="siaran-title">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Siaran Terkini</span>
+                    <span class="siaran-badge">LIVE</span>
+                </div>
+                <a href="#" onclick="navigateTo('news'); return false;" class="siaran-more">
+                    Lihat Semua <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+                </a>
+            </div>
+            <div class="siaran-slider-wrapper">
+                <div class="siaran-track" id="siaranTrack">
+                    <div class="siaran-loading">
+                        <i class="fas fa-spinner fa-spin"></i> Memuat berita...
                     </div>
                 </div>
-                <div class="result-actions">
-                    <button class="action-btn primary-action" id="downloadBtn">
-                        <i class="fa-solid fa-download"></i> Unduh Gambar
-                    </button>
-                    <button class="action-btn" id="regenerateBtn">
-                        <i class="fa-solid fa-rotate-right"></i> Buat Ulang
-                    </button>
-                    <button class="action-btn" id="copyPromptBtn">
-                        <i class="fa-solid fa-copy"></i> Salin Prompt
-                    </button>
-                </div>
             </div>
         </div>
+        -->
+        
+        
+    </div>
+</div>
 
-        <!-- History Gallery -->
-        <div class="history-section" id="historySection">
-            <h3><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Generasi</h3>
-            <div class="history-grid" id="historyGrid">
-                <p class="history-empty">Belum ada gambar yang dibuat. Mulailah dengan menulis prompt di atas! <i class="fa-regular fa-face-smile"></i></p>
-            </div>
+  
+  <!-- ============================================================
+PAGE: SHOP / PRODUK (BARU)
+============================================================ -->
+<div id="shopPage" class="page">
+  <div class="page-wrapper">
+      <br>
+      
+      <!-- Header -->
+      <div class="shop-header">
+          <div class="shop-title">
+              <i class="fas fa-store"></i> 
+              <span>Alovera Store</span>
+          </div>
+          <!--
+          <div class="shop-subtitle">Temukan layanan desain premium dan undangan digital terbaik</div>
+          
+         
+          -->
+          
+
+        
+        
+      </div>
+
+      <!-- Search & Categories -->
+      <div class="shop-sticky-search">
+          <div class="shop-search-box">
+              <i class="fas fa-search shop-search-icon"></i>
+              <input type="text" id="shopSearchInput" placeholder="Cari produk desain..." oninput="searchShopProduct(this.value)">
+          </div>
+          <div class="shop-categories">
+              <button class="active" onclick="filterShopCategory('all', this)">Semua</button>
+              <button onclick="filterShopCategory('desain', this)">Desain</button>
+              <button onclick="filterShopCategory('kemasan', this)">Kemasan</button>
+              <button onclick="filterShopCategory('poster', this)">Poster</button>
+          </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="shop-products" id="shopProductList"></div>
+
+      <!-- Invitation Section -->
+      <div style="padding-top:16px;">
+          <div class="shop-invitation-banner">
+              <h2> Undangan Digital Website</h2>
+              <p>Desain undangan website modern dengan tema elegan dan mewah. Tersedia berbagai pilihan tema untuk acara spesial Anda.</p>
+              <a href="und26.html" class="btn-order-shop"><i class="fas fa-calendar-plus"></i> Lihat Promo Spesial</a>
+          </div>
+          <div class="shop-invitation-grid" id="shopInvitationGrid">
+              <div class="shop-invitation-card">
+                  <img src="imagges/goldn.png" alt="Gold" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Gold'">
+                  <div class="content">
+                      <h3>GOLD</h3>
+                      <p>Tema Kelas Atas • Mewah</p>
+                      <span class="price-tag-shop">Rp 210.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('GOLD')">Pilih Paket</button>
+                  </div>
+              </div>
+              <div class="shop-invitation-card">
+                  <img src="imagges/grren.png" alt="Green" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Green'">
+                  <div class="content">
+                      <h3>GREEN</h3>
+                      <p>Tema Keindahan Estetika</p>
+                      <span class="price-tag-shop">Rp 186.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('GREEN')">Pilih Paket</button>
+                  </div>
+              </div>
+              <div class="shop-invitation-card">
+                  <img src="imagges/skkura.png" alt="Sakura" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Sakura'">
+                  <div class="content">
+                      <h3>SAKURA</h3>
+                      <p>Tema Hujan Sakura</p>
+                      <span class="price-tag-shop">Rp 198.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('SAKURA')">Pilih Paket</button>
+                  </div>
+              </div>
+              <div class="shop-invitation-card">
+                  <img src="imagges/pllati.png" alt="Platinum" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Platinum'">
+                  <div class="content">
+                      <h3>PLATINUM</h3>
+                      <p>Modern • Simple</p>
+                      <span class="price-tag-shop">Rp 167.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('PLATINUM')">Pilih Paket</button>
+                  </div>
+              </div>
+              <div class="shop-invitation-card">
+                  <img src="imagges/luuxur.png" alt="Luxury" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Luxury'">
+                  <div class="content">
+                      <h3>LUXURY</h3>
+                      <p>Mewah • Elegan</p>
+                      <span class="price-tag-shop">Rp 320.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('LUXURY')">Pilih Paket</button>
+                  </div>
+              </div>
+              <div class="shop-invitation-card">
+                  <img src="imagges/wllker.png" alt="Walker" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Walker'">
+                  <div class="content">
+                      <h3>WALKER</h3>
+                      <p>Petualangan • Unik</p>
+                      <span class="price-tag-shop">Rp 195.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('WALKER')">Pilih Paket</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <br><br><br>
+  </div>
+</div>
+  
+  
+  
+  
+
+  <!-- ============================================================
+  PAGE: NEWS
+  ============================================================ -->
+  <div id="newsPage" class="page">
+      
+      
+      
+
+          <!-- ============================================================
+  GOOGLE SEARCH BAR - Di Halaman News (seperti Google News)
+  ============================================================ -->
+<div class="news-google-search-wrapper" id="newsGoogleSearchWrapper">
+    <div class="news-google-search-input-wrap">
+        <!-- Logo G Google -->
+        <svg class="news-google-g-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        
+        <!-- Input Search -->
+        <input 
+            type="text" 
+            id="newsGoogleSearchInput" 
+            class="news-google-search-input"
+            placeholder="Pencarian Google"
+            autocomplete="off"
+        >
+        
+        <!-- Icon kamera & mic (dekoratif) -->
+        <button class="news-google-icon-btn" title="Pencarian gambar" onclick="showNotification('Fitur segera hadir', 'info')">
+            <i class="fas fa-camera"></i>
+        </button>
+        <button class="news-google-icon-btn" title="Pencarian suara" onclick="showNotification('Fitur segera hadir', 'info')">
+            <i class="fas fa-microphone"></i>
+        </button>
+        
+        <!-- Tombol Clear (muncul saat ada teks) -->
+        <button class="news-google-search-clear" id="newsGoogleSearchClear" onclick="clearNewsGoogleSearch()" style="display:none;">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+      
+      
+
+      
+      
+      
+      
+      
+    <div class="page-wrapper">
+      
+
+<!-- ============================================================
+  NEWS GOOGLE SEARCH MODAL - Popup hasil pencarian
+  ============================================================ -->
+<div class="news-cse-modal" id="newsCseModal" onclick="closeNewsCseOutside(event)">
+    <div class="news-cse-modal-content">
+        <!-- Header Modal -->
+        <div class="news-cse-modal-header">
+            <button class="news-cse-modal-back" onclick="closeNewsCseModal()" aria-label="Tutup">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="news-cse-modal-query" id="newsCseQuery">Hasil pencarian</div>
+            <button class="news-cse-modal-close" onclick="closeNewsCseModal()" aria-label="Tutup">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <!-- Body CSE -->
+        <div class="news-cse-modal-body" id="newsCseModalBody">
+            <div class="gcse-search" data-queryParameterName="q"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ============================================================
+  BERITA SPESIAL MAULID NABI
+  ============================================================
+<div class="maulid-news-section">
+    <div class="maulid-header">
+        <div class="maulid-title">
+            
+            <!--
+            <span class="maulid-icon"><i class="fas fa-star-and-crescent"></i></span>
+            
+            
+            <i class="fas fa-bank"></i>
+            <h5>
+            <span>Edukasi dan Finansial</span>
+            </h5>
+            <span class="maulid-badge">Grow Insight</span>
+        </div>
+        <!--
+        <a href="maulid.html" class="maulid-more">
+            Lihat Semua <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+        </a>
+        
+        
+        <a href="#" onclick="navigateTo('maulid'); return false;" class="maulid-more">
+    Lihat Semua <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+</a>
+
+
+    </div>
+
+    <!-- Maulid Slider 
+    <div class="maulid-slider-wrapper">
+        <div class="maulid-slider-track" id="maulidSliderTrack">
+            <!-- Slide akan di-render oleh JavaScript 
         </div>
     </div>
 
-    <!-- LIGHTBOX -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-xmark"></i></button>
-        <img id="lightboxImage" src="" alt="Preview">
-        <button class="lightbox-download" id="lightboxDownload">
-            <i class="fa-solid fa-download"></i> Unduh Gambar HD
+    <!-- Controls
+    <div class="maulid-slider-controls">
+        <button class="maulid-nav-btn" id="maulidPrevBtn" onclick="prevMaulidSlide()">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="maulid-dots" id="maulidDots">
+            <!-- Dots akan di-render oleh JavaScript 
+        </div>
+        <button class="maulid-nav-btn" id="maulidNextBtn" onclick="nextMaulidSlide()">
+            <i class="fas fa-chevron-right"></i>
         </button>
     </div>
 
-    <!-- TOAST CONTAINER -->
-    <div class="toast-container" id="toastContainer"></div>
+    <!-- Update Info
+    <div class="maulid-update-notif">
+        <i class="fas fa-sync-alt fa-fw"></i>
+        Berita diperbarui secara otomatis · 
+        <span class="update-time" id="maulidUpdateTime"></span>
+    </div>
+    
+</div>
+      
+-->      
+<!-- ============================================================
+  BERITA CERDAS FINANSIAL
+  ============================================================ -->
+<div class="maulid-news-section fin-news-section">
+    <div class="maulid-header">
+        <div class="maulid-title">
+            <span class="maulid-icon fin-icon"><i class="fas fa-coins"></i></span>
+            <h5>
+            <span>Cerdas Finansial</span>
+            </h5>
+            <span class="maulid-badge fin-badge">Grow Insight</span>
+        </div>
+        
+        <a href="#" onclick="navigateTo('maulid'); return false;" class="maulid-more">
+            Lihat Semua <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+        </a>
+    </div>
 
-    <script>
-        (function() {
-            // === DOM ELEMENTS ===
-            const promptInput = document.getElementById('promptInput');
-            const generateBtn = document.getElementById('generateBtn');
-            const resultArea = document.getElementById('resultArea');
-            const resultImage = document.getElementById('resultImage');
-            const resultImageContainer = document.getElementById('resultImageContainer');
-            const downloadBtn = document.getElementById('downloadBtn');
-            const regenerateBtn = document.getElementById('regenerateBtn');
-            const copyPromptBtn = document.getElementById('copyPromptBtn');
-            const styleSelector = document.getElementById('styleSelector');
-            const historyGrid = document.getElementById('historyGrid');
-            const historySection = document.getElementById('historySection');
-            const randomPromptBtn = document.getElementById('randomPromptBtn');
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImage = document.getElementById('lightboxImage');
-            const lightboxClose = document.getElementById('lightboxClose');
-            const lightboxDownload = document.getElementById('lightboxDownload');
-            const toastContainer = document.getElementById('toastContainer');
+    <!-- Cerdas Finansial Slider -->
+    <div class="maulid-slider-wrapper">
+        <div class="maulid-slider-track" id="maulidSliderTrack">
+            <!-- Slide akan di-render oleh JavaScript -->
+        </div>
+    </div>
 
-            // Sidebar elements
-            const sidebar = document.getElementById('sidebar');
-            const sidebarOverlay = document.getElementById('sidebarOverlay');
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const sidebarClose = document.getElementById('sidebarClose');
-            const menuItems = document.querySelectorAll('.menu-item[data-page]');
-            const settingsPanel = document.getElementById('settingsPanel');
-            const privacyPanel = document.getElementById('privacyPanel');
-            const helpPanel = document.getElementById('helpPanel');
-            const aboutPanel = document.getElementById('aboutPanel');
-            const applySettingsBtn = document.getElementById('applySettingsBtn');
+    <!-- Controls -->
+    <div class="maulid-slider-controls">
+        <button class="maulid-nav-btn" id="maulidPrevBtn" onclick="prevMaulidSlideNews()">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="maulid-dots" id="maulidDots">
+            <!-- Dots akan di-render oleh JavaScript -->
+        </div>
+        <button class="maulid-nav-btn" id="maulidNextBtn" onclick="nextMaulidSlideNews()">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>
+      
+      
+      
+      
+      
+        
+      <div class="sticky-search">
+          
+          
 
-            // Settings elements
-            const aiModel = document.getElementById('aiModel');
-            const imageResolution = document.getElementById('imageResolution');
-            const detailLevel = document.getElementById('detailLevel');
-            const colorMode = document.getElementById('colorMode');
-            const historyToggle = document.getElementById('historyToggle');
-            const autoShowToggle = document.getElementById('autoShowToggle');
+<!-- ============================================================
+  HASIL PENCARIAN GOOGLE CSE - Muncul saat search aktif
+  ============================================================
+<div class="news-cse-container" id="newsCseContainer" style="display:none;">
+    <div class="news-cse-header">
+        <button class="news-cse-back" onclick="clearNewsGoogleSearch()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="news-cse-query" id="newsCseQuery">Hasil pencarian</div>
+    </div>
+    <div class="news-cse-body">
+        <div class="gcse-search" data-queryParameterName="q"></div>
+    </div>
+</div>
+          -->
+          
+          
+          
+          
+          
+        <div class="news-categories" id="newsCategories">
+            
+            
+            
+            
+            
+          <button class="active" onclick="loadNews('', this)">Semua</button>
+          
+          
+          
+          
+    <!-- TAMBAHKAN KATEGORI BARU DI BAWAH INI 
+    <button onclick="loadNews('independence81', this)" style="background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(255,255,255,0.05)); border-color: rgba(255,0,0,0.2); color: #ff6b6b;">
+        🇮🇩 HUT RI ke-81
+    </button>
+    
+    -->
+    
+<button onclick="loadNews('business', this)">Bisnis</button>
+          
+          <button onclick="loadNews('technology', this)">Teknologi</button>
+          <button onclick="loadNews('islam', this)">Islam</button>
+          <button onclick="loadNews('sports', this)">Olahraga</button>
+          <button onclick="loadNews('entertainment', this)">Hiburan</button>
+          
 
-            // === STATE ===
-            let selectedStyle = 'photorealistic';
-            let currentPrompt = '';
-            let currentImageUrl = '';
-            let history = [];
-            let settings = {
-                model: 'flux',
-                resolution: 1024,
-                detail: 'medium',
-                colorMode: 'natural',
-                showHistory: true,
-                autoShowResult: true
-            };
+          <button onclick="loadNews('politics', this)">Politik</button>
+          
+          <button onclick="loadNews('music', this)">Lagu</button>
+          <button onclick="loadNews('nature', this)">Alam</button>
+          <button onclick="loadNews('space', this)">Astronomi</button>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+<div class="section-title"><i class="fas fa-newspaper"></i><span>Berita Terkini</span></div>
+      
+      
+      <div class="news-grid" id="newsList"><div class="news-loading"><i class="fas fa-spinner fa-spin"></i> Memuat berita...</div></div>
+      
+      
+      
+  
+  <!-- Tambahkan setelah news-grid di halaman News -->
+<div class="load-more-wrap" id="newsLoadMoreWrap" style="display:none;">
+    <button class="btn-load-more" onclick="loadMoreIndependenceNews()">
+        <i class="fas fa-chevron-down"></i> Muat Lebih Banyak Berita HUT RI
+    </button>
+</div>
 
-            // Load settings from localStorage
-            try {
-                const savedSettings = localStorage.getItem('geodora_settings');
-                if (savedSettings) {
-                    const parsed = JSON.parse(savedSettings);
-                    settings = { ...settings, ...parsed };
-                    aiModel.value = settings.model || 'flux';
-                    imageResolution.value = settings.resolution || '1024';
-                    detailLevel.value = settings.detail || 'medium';
-                    colorMode.value = settings.colorMode || 'natural';
-                    if (!settings.showHistory) {
-                        historyToggle.classList.remove('active');
-                        historySection.style.display = 'none';
-                    }
-                    if (!settings.autoShowResult) {
-                        autoShowToggle.classList.remove('active');
-                    }
-                }
-            } catch (e) {}
+      
+      
+      
+      
+      
+      
+      <br><br><br>
+    </div>
+  </div>
+  
+  
+  
 
-            // Load history from localStorage
-            try {
-                const saved = localStorage.getItem('geodora_history');
-                if (saved) history = JSON.parse(saved);
-            } catch (e) {
-                history = [];
-            }
 
-            // === RANDOM PROMPTS ===
-            const randomPrompts = [
-                'A futuristic city floating in the clouds at sunset, photorealistic, 8K',
-                'A cozy cabin in a snowy forest with warm lights glowing from the windows, cinematic',
-                'A majestic white tiger with icy blue eyes in a mystical forest, fantasy art',
-                'An astronaut playing electric guitar on the moon with Earth in the background, digital art',
-                'A steampunk airship sailing through golden clouds at dawn, highly detailed',
-                'A beautiful mermaid sitting on a rock under the moonlight, oil painting style',
-                'A cyberpunk street market in Tokyo at night with neon signs, rain, and reflections',
-                'A giant ancient tree with a glowing door in its trunk, surrounded by fireflies',
-                'A crystal castle on a floating island above a purple ocean, fantasy, magical atmosphere',
-                'A samurai warrior standing in a field of cherry blossoms at sunrise, photorealistic',
-                'A dragon made of galaxies and stars coiled around a planet, cosmic art',
-                'A vintage coffee shop on a rainy Paris street, warm lighting, cinematic mood',
-            ];
+  <!-- ============================================================
+  PAGE: STOCK
+  ============================================================ -->
+  <div id="stockPage" class="page">
+    <div class="page-wrapper">
+        <br>
+        
+        <!--
+      <div class="section-title"><i class="fas fa-images"></i><span>Stock Gallery</span></div>
+-->
 
-            function getRandomPrompt() {
-                const random = randomPrompts[Math.floor(Math.random() * randomPrompts.length)];
-                promptInput.value = random;
-                promptInput.focus();
-            }
+      <div class="stock-search-wrap">
+        <div class="search-input-group">
+          <i class="fas fa-search search-icon-small"></i>
+          <input type="text" id="stockSearchInput" placeholder="Cari foto atau video..." />
+        </div>
+        <div class="btn-group">
+          <button class="btn-search" onclick="searchStock()"> Cari</button>
+          
+          
+          
+          <button class="btn-refresh" onclick="loadRandomStock()"><i class="fas fa-sync-alt"></i></button>
+          
+          
+   
+          
+        </div>
+      </div>
 
-            // === SIDEBAR FUNCTIONS ===
-            function openSidebar() {
-                sidebar.classList.add('open');
-                sidebarOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
 
-            function closeSidebar() {
-                sidebar.classList.remove('open');
-                sidebarOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
 
-            function toggleSidebar() {
-                if (sidebar.classList.contains('open')) {
-                    closeSidebar();
-                } else {
-                    openSidebar();
-                }
-            }
 
-            sidebarToggle.addEventListener('click', toggleSidebar);
-            sidebarClose.addEventListener('click', closeSidebar);
-            sidebarOverlay.addEventListener('click', closeSidebar);
 
-            // === MENU NAVIGATION ===
-            function showPage(page) {
-                menuItems.forEach(item => {
-                    item.classList.remove('active');
-                    if (item.dataset.page === page) {
-                        item.classList.add('active');
-                    }
-                });
 
-                [settingsPanel, privacyPanel, helpPanel, aboutPanel].forEach(p => {
-                    if (p) p.classList.remove('active');
-                });
+     
+      <!-- ============================================================
+  MAULID STOCK SLIDER - SPESIAL MAULID NABI
+  ============================================================
+<div class="maulid-stock-section">
+    <div class="maulid-stock-header">
+        <div class="maulid-stock-title">
+            
+            <!--
+            <span class="maulid-stock-icon"><i class="fas fa-star-and-crescent"></i></span>
+           
+            
+            <i class="fas fa-images"></i>
+            
+            <span>Karya Komunitas</span>
+            <span class="maulid-stock-badge">Grow Creative</span>
+        </div>
+        <div class="maulid-stock-actions">
+            <span style="font-size:11px;color:var(--text-muted);">
+                <i class="fas fa-arrows-left-right"></i> Geser
+            </span>
+            
+            <button class="maulid-stock-refresh" id="maulidStockRefresh" onclick="refreshMaulidStock()" title="Refresh">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+            
+        </div>
+    </div>
+    
+    <div class="maulid-stock-slider-wrapper" id="maulidStockWrapper">
+        <div class="maulid-stock-track" id="maulidStockTrack">
+            <div class="maulid-stock-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat galeri Maulid...</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="maulid-stock-dots" id="maulidStockDots">
+      
+    </div>
+</div>
+-->
+<!-- ============================================================
+  KARYA KOMUNITAS - GROW CREATIVE
+  ============================================================ -->
+<div class="maulid-stock-section fin-stock-section">
+    <div class="maulid-stock-header">
+        <div class="maulid-stock-title">
+            <span class="maulid-stock-icon fin-stock-icon"><i class="fas fa-images"></i></span>
+            <span>Karya Komunitas</span>
+            <span class="maulid-stock-badge fin-stock-badge">Grow Creative</span>
+        </div>
+        <div class="maulid-stock-actions">
+            <span style="font-size:11px;color:var(--text-muted);">
+                <i class="fas fa-arrows-left-right"></i> Geser
+            </span>
+        </div>
+    </div>
+    
+    <div class="maulid-stock-slider-wrapper" id="maulidStockWrapper">
+        <div class="maulid-stock-track" id="maulidStockTrack">
+            <div class="maulid-stock-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat galeri kreatif...</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="maulid-stock-dots" id="maulidStockDots">
+        <!-- Dots akan di-render oleh JavaScript -->
+    </div>
+</div>
 
-                switch (page) {
-                    case 'home':
-                        break;
-                    case 'settings':
-                        if (settingsPanel) settingsPanel.classList.add('active');
-                        break;
-                    case 'privacy':
-                        if (privacyPanel) privacyPanel.classList.add('active');
-                        break;
-                    case 'help':
-                        if (helpPanel) helpPanel.classList.add('active');
-                        break;
-                    case 'about':
-                        if (aboutPanel) aboutPanel.classList.add('active');
-                        break;
-                }
-            }
 
-            menuItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const page = item.dataset.page;
-                    showPage(page);
-                });
-            });
 
-            // === SETTINGS TOGGLES ===
-            historyToggle.addEventListener('click', function() {
-                this.classList.toggle('active');
-                const show = this.classList.contains('active');
-                historySection.style.display = show ? 'block' : 'none';
-                settings.showHistory = show;
-                saveSettings();
-            });
 
-            autoShowToggle.addEventListener('click', function() {
-                this.classList.toggle('active');
-                settings.autoShowResult = this.classList.contains('active');
-                saveSettings();
-            });
 
-            function saveSettings() {
-                settings.model = aiModel.value;
-                settings.resolution = parseInt(imageResolution.value) || 1024;
-                settings.detail = detailLevel.value;
-                settings.colorMode = colorMode.value;
-                try {
-                    localStorage.setItem('geodora_settings', JSON.stringify(settings));
-                } catch (e) {}
-            }
 
-            // === APPLY SETTINGS ===
-            applySettingsBtn.addEventListener('click', function() {
-                saveSettings();
-                showToast('Pengaturan berhasil diterapkan!', 'success');
-            });
 
-            // === STYLE SELECTOR ===
-            styleSelector.addEventListener('click', (e) => {
-                const chip = e.target.closest('.style-chip');
-                if (!chip) return;
-                document.querySelectorAll('.style-chip').forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-                selectedStyle = chip.dataset.style;
-            });
 
-            // === BUILD STYLE PROMPT SUFFIX ===
-            function getStyleSuffix() {
-                const styleMap = {
-                    'photorealistic': ', photorealistic, highly detailed, 8K, realistic lighting, sharp focus',
-                    'cinematic': ', cinematic lighting, film grain, anamorphic lens, dramatic atmosphere, movie poster quality',
-                    'anime': ', anime style, studio ghibli, vibrant colors, clean lines, manga aesthetic',
-                    'digital-art': ', digital art, trending on artstation, concept art, detailed illustration',
-                    'oil-painting': ', oil painting on canvas, thick brush strokes, classical art, masterpiece',
-                    '3d-render': ', 3D render, octane render, unreal engine 5, ray tracing, hyperrealistic CGI',
-                    'fantasy': ', fantasy art, magical, ethereal, glowing, mythical, enchanting atmosphere',
-                    'cyberpunk': ', cyberpunk, neon lights, futuristic, blade runner aesthetic, rain, reflections',
-                };
-                return styleMap[selectedStyle] || '';
-            }
+      <div class="stock-categories" id="stockCategories">
+        <button class="active" onclick="filterStockCategory('random', this)">Semua</button>
+        
+        
+          <!-- TAMBAHKAN KATEGORI BARU DI BAWAH INI 
+    <button onclick="filterStockCategory('independence', this)" style="background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(255,255,255,0.05)); border-color: rgba(255,0,0,0.2);">
+      🇮🇩 HUT RI ke-81
+    </button>
+        -->
+        
+        
+        
+        <button onclick="filterStockCategory('nature', this)">Estetika</button>
+        <button onclick="filterStockCategory('people', this)">Orang</button>
+        <button onclick="filterStockCategory('technology', this)">Teknologi</button>
+        <button onclick="filterStockCategory('animals', this)">Hewan</button>
+        <button onclick="filterStockCategory('food', this)">Makanan</button>
+        <button onclick="filterStockCategory('travel', this)">Travel</button>
+        <button onclick="filterStockCategory('architecture', this)">Arsitektur</button>
+        <button onclick="filterStockCategory('business', this)">Bisnis</button>
+        <button onclick="filterStockCategory('fashion', this)">Fashion</button>
+        <button onclick="filterStockCategory('sports', this)">Olahraga</button>
+        <button onclick="filterStockCategory('music', this)">Musik</button>
+        <button onclick="filterStockCategory('art', this)">Seni</button>
+        <button onclick="filterStockCategory('space', this)">Semesta</button>
+        <button onclick="filterStockCategory('design', this)">Desain Modern</button>
+      </div>
+      
+      
+      
+      
+      
+      
+ 
+      
+      
+      
+      
 
-            // === GET COLOR MODE SUFFIX ===
-            function getColorModeSuffix() {
-                const colorMap = {
-                    'vibrant': ', vibrant colors, high saturation, vivid',
-                    'natural': ', natural colors, balanced tones, realistic',
-                    'muted': ', muted colors, soft tones, pastel',
-                    'dramatic': ', dramatic lighting, high contrast, cinematic'
-                };
-                return colorMap[settings.colorMode] || '';
-            }
+      <div class="stock-grid" id="stockList">
+        <div class="stock-loading"><i class="fas fa-spinner fa-spin"></i> Memuat gallery...</div>
+      </div>
 
-            // === GENERATE IMAGE ===
-            async function generateImage(prompt, style) {
-                const styleSuffix = getStyleSuffix();
-                const colorSuffix = getColorModeSuffix();
-                const detailSuffix = settings.detail === 'high' ? ', masterpiece, ultra detailed, 8K' :
-                    settings.detail === 'medium' ? ', highly detailed, 4K' :
-                    ', detailed';
+      <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
+        <button class="btn-load-more" onclick="loadMoreStock()"><i class="fas fa-chevron-down"></i> Muat Lebih Banyak</button>
+      </div>
 
-                const fullPrompt = prompt + styleSuffix + colorSuffix + detailSuffix;
-                const seed = Math.floor(Math.random() * 999999);
-                const width = settings.resolution || 1024;
-                const height = settings.resolution || 1024;
-                const modelParam = settings.model === 'flux' ? 'flux' :
-                    settings.model === 'sdxl' ? 'sdxl' : 'sd3';
+      <br><br><br>
+    </div>
+  </div>
 
-                const encodedPrompt = encodeURIComponent(fullPrompt);
-                const url =
-                    `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${width}&height=${height}&seed=${seed}&nologo=true&model=${modelParam}`;
-                return url;
-            }
+  <!-- ============================================================
+  PAGE: BUKU / PERPUSTAKAAN
+  ============================================================ -->
+  <div id="booksPage" class="page">
+    <div class="page-wrapper">
+        
+        
+        <br>
+        <!--
+      <div class="section-title"><i class="fas fa-book-open"></i><span>Perpustakaan Buku</span></div>
+-->
 
-            // === RENDER HISTORY ===
-            function renderHistory() {
-                if (history.length === 0) {
-                    historyGrid.innerHTML =
-                        '<p class="history-empty">Belum ada gambar yang dibuat. Mulailah dengan menulis prompt di atas! <i class="fa-regular fa-face-smile"></i></p>';
-                } else {
-                    historyGrid.innerHTML = history.slice().reverse().map((item, index) => `
-                            <div class="history-item" data-index="${history.length - 1 - index}" title="${escapeHtml(item.prompt)}">
-                                <img src="${item.imageUrl}" alt="Generated image" loading="lazy">
-                                <div class="history-prompt">${escapeHtml(item.prompt.substring(0, 60))}${item.prompt.length > 60 ? '...' : ''}</div>
+      <div class="book-search-wrap">
+        <div class="search-input-group">
+          <i class="fas fa-search search-icon-small"></i>
+          <input type="text" id="bookSearchInput" placeholder="Cari judul atau penulis..." />
+        </div>
+        <div class="btn-group">
+          <button class="btn-search" onclick="searchBooks()"> Cari</button>
+          <button class="btn-refresh" onclick="loadRandomBooks()"><i class="fas fa-sync-alt"></i></button>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+  
+      
+      <!-- ============================================================
+  MAULID BOOKS SLIDER - SPESIAL MAULID NABI
+  ============================================================ 
+<div class="maulid-books-section">
+    <div class="maulid-books-header">
+        <div class="maulid-books-title">
+            
+            <!--
+            <span class="maulid-books-icon"><i class="fas fa-star-and-crescent"></i></span>
+            
+            
+            <i class="fas fa-book-open"></i>
+            
+            <span>Perpustakaan Buku</span>
+            <span class="maulid-books-badge">Grow Mindset</span>
+        </div>
+        <div class="maulid-books-actions">
+            <span style="font-size:11px;color:var(--text-muted);">
+                <i class="fas fa-arrows-left-right"></i> Geser
+            </span>
+            
+            
+            <!--
+            <button class="maulid-books-refresh" id="maulidBooksRefresh" onclick="refreshMaulidBooks()" title="Refresh">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+           
+            
+            
+        </div>
+    </div>
+    
+    <div class="maulid-books-slider-wrapper" id="maulidBooksWrapper">
+        <div class="maulid-books-track" id="maulidBooksTrack">
+            <div class="maulid-books-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat buku Maulid...</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="maulid-books-dots" id="maulidBooksDots">
+        <!-- Dots akan di-render oleh JavaScript 
+    </div>
+</div>
+      
+  -->
+  <!-- ============================================================
+  PUSTAKA WAWASAN - BUKU EDUKASI & GROW MINDSET
+  ============================================================ -->
+<div class="maulid-books-section fin-books-section">
+    <div class="maulid-books-header">
+        
+        <div class="maulid-books-title">
+            <span class="maulid-books-icon fin-books-icon"><i class="fas fa-book-open"></i></span>
+            <span>Terus Berkembang</span>
+            <span class="maulid-books-badge fin-books-badge">Grow Mindset</span>
+        </div>
+        
+        <div class="maulid-books-actions">
+            <span style="font-size:11px;color:var(--text-muted);">
+                <i class="fas fa-arrows-left-right"></i> Geser
+            </span>
+        </div>
+    </div>
+    
+    <div class="maulid-books-slider-wrapper" id="maulidBooksWrapper">
+        <div class="maulid-books-track" id="maulidBooksTrack">
+            <div class="maulid-books-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat buku pilihan...</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="maulid-books-dots" id="maulidBooksDots">
+        <!-- Dots akan di-render oleh JavaScript -->
+    </div>
+</div>
+      
+      
+      
+      
+      
+      
+      
+      <!--
+
+      <div class="book-categories" id="bookCategories">
+        <button class="active" onclick="filterBookCategory('random', this)">Semua</button>
+        
+        
+        
+   
+    <button onclick="filterBookCategory('indonesia_history', this)" style="background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(255,255,255,0.05)); border-color: rgba(255,0,0,0.2); color: #ff6b6b;">
+        🇮🇩 HUT RI ke-81
+    </button>
+    
+    
+    
+    
+        
+        
+        
+        <button onclick="filterBookCategory('fiction', this)">Fiksi</button>
+        <button onclick="filterBookCategory('science', this)">Sains</button>
+        <button onclick="filterBookCategory('history', this)">Sejarah</button>
+        <button onclick="filterBookCategory('technology', this)">Teknologi</button>
+        <button onclick="filterBookCategory('art', this)">Seni</button>
+        <button onclick="filterBookCategory('philosophy', this)">Filosofi</button>
+        <button onclick="filterBookCategory('psychology', this)">Psikologi</button>
+        <button onclick="filterBookCategory('business', this)">Bisnis</button>
+        <button onclick="filterBookCategory('health', this)">Kesehatan</button>
+        <button onclick="filterBookCategory('travel', this)">Travel</button>
+        <button onclick="filterBookCategory('religion', this)">Agama</button>
+        <button onclick="filterBookCategory('poetry', this)">Puisi</button>
+        <button onclick="filterBookCategory('biography', this)">Biografi</button>
+      </div>
+      
+      -->
+      
+<div class="book-categories" id="bookCategories">
+    <button class="active" onclick="filterBookCategory('random', this)">Semua</button>
+    <button onclick="filterBookCategory('business', this)">Bisnis</button>
+    <button onclick="filterBookCategory('finance', this)">Keuangan</button>
+    <button onclick="filterBookCategory('marketing', this)">Marketing</button>
+    <button onclick="filterBookCategory('self_improvement', this)">Pengembangan Diri</button>
+    <button onclick="filterBookCategory('psychology', this)">Psikologi</button>
+    <button onclick="filterBookCategory('leadership', this)">Kepemimpinan</button>
+    <button onclick="filterBookCategory('productivity', this)">Produktivitas</button>
+    <button onclick="filterBookCategory('economics', this)">Ekonomi</button>
+    <button onclick="filterBookCategory('philosophy', this)">Filosofi</button>
+    <button onclick="filterBookCategory('biography', this)">Biografi</button>
+    <button onclick="filterBookCategory('fiction', this)">Fiksi</button>
+</div>
+      
+    
+      
+      
+      
+      
+
+      <div class="book-grid" id="bookList">
+        <div class="book-loading"><i class="fas fa-spinner fa-spin"></i> Memuat buku...</div>
+      </div>
+
+      <div class="load-more-wrap" id="bookLoadMoreWrap" style="display:none;">
+        <button class="btn-load-more" onclick="loadMoreBooks()"><i class="fas fa-chevron-down"></i> Muat Lebih Banyak</button>
+      </div>
+
+      <br><br><br>
+    </div>
+  </div>
+
+  <!-- ============================================================
+  PAGE: CART (Diperbaiki)
+  ============================================================ -->
+  <div id="cartPage" class="page">
+    <div class="page-wrapper">
+        <!--
+      <div class="section-title"><i class="fas fa-shopping-cart"></i><span>Keranjang & Checkout</span></div>
+      -->
+      <div class="cart-checkout-wrapper">
+        <div id="cartItems"></div>
+        
+        <div class="checkout-form">
+          <h4><i class="fas fa-user"></i> Detail Pemesan</h4>
+          <input type="text" id="customerName" placeholder="Nama Lengkap" required>
+          <input type="text" id="customerPhone" placeholder="Nomor WhatsApp" required>
+          <input type="text" id="customerDesign" placeholder="Desain yang dibutuhkan" required>
+          <textarea id="customerNote" placeholder="Detail spesifikasi desain..."></textarea>
+        </div>
+        
+        <div class="checkout-summary" id="checkoutSummary">
+          <div class="row"><span>Subtotal</span><span id="subtotal">Rp 0</span></div>
+          <div class="row"><span>Ongkir</span><span>Rp 0</span></div>
+          <div class="row total"><span>Total</span><span id="totalPrice">Rp 0</span></div>
+          <button class="btn-checkout" id="submitOrderBtn" onclick="submitOrder()"><i class="fas fa-check-circle"></i> Konfirmasi Pesanan</button>
+        </div>
+      </div>
+      <br><br><br>
+    </div>
+  </div>
+
+  <!-- ============================================================
+  DETAIL POPUP
+  ============================================================ -->
+  <div class="detail-modal" id="detailModal" onclick="closeDetailOutside(event)">
+    <div class="detail-content">
+      <!--
+      <button class="close-detail" onclick="closeDetail()"><i class="fas fa-times"></i></button>
+      -->
+      <div id="detailBody"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+  POPUP PILIH PRO/HEMAT
+  ============================================================ -->
+  <div class="popup-overlay" id="popupOverlay" onclick="closePopupOutside(event)">
+    <div class="popup-box">
+      <button class="close-popup" onclick="closePopup()"><i class="fas fa-times"></i></button>
+      <h2 id="popupTitle"> Pilih Paket</h2>
+      <p id="popupDesc">Anda memilih tema <strong id="popupTema">GOLD</strong>. Silakan pilih paket yang sesuai dengan kebutuhan Anda.</p>
+      <div class="popup-buttons">
+        <a href="formulir1430120719951999msk.html" class="btn-popup-pro"><i class="fas fa-crown"></i> PRO</a>
+        <a href="formulir-hemat19s9k9199507301412.html" class="btn-popup-hemat"><i class="fas fa-coins"></i> HEMAT</a>
+      </div>
+    </div>
+  </div>
+
+<!-- ============================================================
+  PAGE: PROFIL
+  ============================================================ --><!-- ============================================================
+  PAGE: PROFIL
+  ============================================================ --><!-- ============================================================
+  PAGE: PROFIL
+  ============================================================ -->
+<div id="profilePage" class="page">
+    <div class="page-wrapper">
+        <br>
+        <!--
+        <div class="section-title">
+            <i class="fas fa-user"></i>
+            <span>Profil Saya</span>
+        </div>
+        -->
+        
+        <div class="profile-page-wrapper">
+            <!-- Profile Header - Instagram Style -->
+            <div class="profile-header-instagram">
+                <div class="profile-avatar-wrapper">
+                    <div class="profile-avatar-large" id="profileAvatarDisplay">
+                        <span id="profileAvatarText">U</span>
+                    </div>
+                    <div class="avatar-upload-overlay" id="avatarUploadOverlay">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <input type="file" id="avatarUpload" accept="image/*" onchange="uploadAvatar(event)">
+                </div>
+                <div class="profile-info-stats">
+                    <div class="profile-name-display" id="profileNameDisplay">Pengunjung</div>
+                    <div class="profile-email-display" id="profileEmailDisplay">-</div>
+                    <div class="profile-stats-row">
+                        <div class="stat-item">
+                            <div class="stat-number" id="statKarya">0</div>
+                            <div class="stat-label">Postingan</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="statLikes">0</div>
+                            <div class="stat-label">Like</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bio -->
+            <div class="profile-bio" id="profileBioDisplay">Login untuk membagikan karya Anda</div>
+            
+            <!-- Action Buttons
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px;">
+                <button class="btn-edit-profile" onclick="openEditProfileModal()" id="editProfileBtn" style="display:none;">
+                    <i class="fas fa-pen"></i> Edit Profil
+                </button>
+                <button class="btn-edit-profile" onclick="openSettingsModal()" id="settingsBtn" style="display:none;background:var(--bg-input);color:var(--text-secondary);">
+                    <i class="fas fa-cog"></i> Pengaturan
+                </button>
+                <button class="btn-logout" onclick="logoutUser()" id="logoutBtn" style="display:none;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            -->
+            <!-- Action Buttons - 3 TOMBOL -->
+<div style="display:flex;gap:3px;flex-wrap:wrap;margin:3px 0 10px; ">
+    <button class="btn-edit-profile" onclick="openEditProfileModal()" id="editProfileBtn" style="display:none;">
+        <i class="fas fa-pen"></i> Edit
+    </button>
+    
+    <!--
+    <button class="btn-edit-profile" onclick="openSettingsModal()" id="settingsBtn" style="display:none;background:var(--bg-input);color:var(--text-secondary);">
+        <i class="fas fa-cog"></i> Pengaturan
+    </button>
+    -->
+<button class="btn-edit-profile" onclick="navigateTo('settings')" id="settingsBtn" style="display:none;background:var(--bg-input);color:var(--text-secondary);">
+    <i class="fas fa-cog"></i> Pengaturan
+</button>
+
+
+
+    <!-- TAMBAHKAN TOMBOL NOTIFIKASI -->
+    <button class="btn-edit-profile" onclick="openNotificationModal()" id="notifProfileBtn" style="display:none;background:var(--bg-input);color:var(--text-secondary);position:relative;">
+        <i class="fas fa-heart"></i> Notifikasi
+        <span class="notif-dot-profile" id="notifDotProfile" style="position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:#ef4444;border:2px solid var(--bg-primary);display:none;"></span>
+    </button>
+
+    <!--
+    <button class="btn-logout" onclick="logoutUser()" id="logoutBtn" style="display:none;">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+    -->
+</div>
+
+
+
+            
+            <!-- Join Prompt (untuk guest) -->
+            <div class="profile-join-prompt" id="joinPrompt">
+                <h4>✨ Login untuk Berbagi Karya</h4>
+                <p>Masuk untuk mengupload foto/video dan berinteraksi dengan komunitas.</p>
+                <button class="btn-join-small" onclick="openAuthModal()">
+                    <i class="fas fa-sign-in-alt"></i> Login Sekarang
+                </button>
+            </div>
+            
+            <!-- Posts Grid -->
+            <div style="margin-top:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding:0 4px;">
+                    <span style="font-size:14px;font-weight:600;color:var(--text-primary);">
+                        <i class="fas fa-images"></i> Postingan
+                    </span>
+                </div>
+                <div class="profile-posts-grid" id="profilePostsGrid">
+                    <div class="profile-posts-empty">
+                        <i class="fas fa-image"></i>
+                        <span>Belum ada postingan</span>
+                    </div>
+                </div>
+            </div>
+            
+            <br><br><br>
+        </div>
+    
+        <!--
+    </div>
+</div>
+  -->
+  
+  
+        <!-- ======== CHART AKTIVITAS ======== -->
+        <div style="padding:0 16px;">
+            <div class="chart-container" id="chartContainer">
+                <div class="chart-header">
+                    <div class="chart-title">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Riwayat Aktivitas</span>
+                    </div>
+                    <div class="chart-stats">
+                        <span class="stat-item">
+                            <span class="dot news"></span> Berita
+                        </span>
+                        <span class="stat-item">
+                            <span class="dot stock"></span> Gallery
+                        </span>
+                        <span class="stat-item">
+                            <span class="dot ai"></span> AI
+                        </span>
+                        <span class="stat-item">
+                            <span class="dot book"></span> Buku
+                        </span>
+                        <span class="stat-item">
+                            <span class="dot shop"></span> Shop
+                        </span>
+                    </div>
+                </div>
+                <div class="chart-wrapper" id="chartWrapper">
+                    <canvas id="activityChart"></canvas>
+                </div>
+                <div class="chart-legend" id="chartLegend"></div>
+                <div class="chart-total" id="chartTotal"></div>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        <br><br><br>
+    </div>
+</div>
+
+
+
+
+<!-- ============================================================
+  PAGE: SETTINGS
+  ============================================================ -->
+<div id="settingsPage" class="page">
+    <div class="page-wrapper">
+        <div class="settings-page-wrapper">
+            <br>
+            <!-- Header -->
+            <div class="settings-header">
+                
+                <button class="settings-back" onclick="navigateTo('profile')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="settings-title"><i class="fas fa-cog"></i> Pengaturan</div>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="settings-profile-card" onclick="navigateTo('profile')">
+                <div class="sp-avatar" id="settingsAvatar">U</div>
+                <div class="sp-info">
+                    <div class="sp-name" id="settingsName">Pengunjung</div>
+                    <div class="sp-email" id="settingsEmail">-</div>
+                </div>
+                <div class="sp-arrow"><i class="fas fa-chevron-right"></i></div>
+            </div>
+
+            <!-- Menu Groups -->
+            <div class="settings-menu-group">
+                <div class="group-label">Akun</div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('account')">
+                    <div class="mi-icon purple"><i class="fas fa-user"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Akun</div>
+                        <div class="mi-desc">Edit profil, email, kata sandi</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('privacy')">
+                    <div class="mi-icon blue"><i class="fas fa-shield-alt"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Privasi</div>
+                        <div class="mi-desc">Kelola privasi akun Anda</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+
+            <div class="settings-menu-group">
+                <div class="group-label">Tampilan</div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('appearance')">
+                    <div class="mi-icon orange"><i class="fas fa-palette"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Tampilan & Tema</div>
+                        <div class="mi-desc">Gelap, Terang, HUT RI</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('language')">
+                    <div class="mi-icon green"><i class="fas fa-globe"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Bahasa Aplikasi</div>
+                        <div class="mi-desc">Indonesia / English</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+
+            <div class="settings-menu-group">
+                <div class="group-label">Notifikasi</div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('notifications')">
+                    <div class="mi-icon pink"><i class="fas fa-bell"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Notifikasi</div>
+                        <div class="mi-desc">Kelola notifikasi Anda</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+
+            <div class="settings-menu-group">
+                <div class="group-label">Lainnya</div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('storage')">
+                    <div class="mi-icon cyan"><i class="fas fa-database"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Penyimpanan & Data</div>
+                        <div class="mi-desc">Kelola data dan cache</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="settings-menu-item" onclick="window.location.href='privvcy.html'">
+                    <div class="mi-icon blue"><i class="fas fa-file-contract"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Kebijakan Privasi</div>
+                        <div class="mi-desc">Baca kebijakan privasi</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="settings-menu-item" onclick="window.location.href='hellpp.html'">
+                    <div class="mi-icon blue"><i class="fas fa-question-circle"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Pusat Bantuan</div>
+                        <div class="mi-desc">FAQ dan dukungan</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="settings-menu-item" onclick="window.location.href='tentngu67.html'">
+                    <div class="mi-icon blue"><i class="fas fa-info-circle"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Tentang Aplikasi</div>
+                        <div class="mi-desc">Versi 5.0.0</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+
+    <!-- TAMBAHKAN LOGOUT DI SINI -->
+    <div class="settings-menu-item" onclick="logoutUser()" style="border-color:rgba(239,68,68,0.15);">
+        <div class="mi-icon red"><i class="fas fa-sign-out-alt"></i></div>
+        <div class="mi-info">
+            <div class="mi-title" style="color:#ef4444;">Logout</div>
+            <div class="mi-desc">Keluar dari akun Anda</div>
+        </div>
+        <div class="mi-arrow" style="color:#ef4444;"><i class="fas fa-chevron-right"></i></div>
+    </div>
+    
+    
+    
+                
+                
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+</div>
+
+
+<!-- ============================================================
+  PREMIUM MODAL / POPUP
+  ============================================================ 
+<div class="premium-modal" id="premiumModal" onclick="closePremiumOutside(event)">
+    <div class="premium-modal-content">
+        <button class="premium-modal-close" onclick="closePremiumModal()"><i class="fas fa-times"></i></button>
+        
+        <!-- Form Section 
+        <div id="premiumFormSection">
+            <div class="premium-header">
+                <span class="premium-icon"><i class="fas fa-crown"></i></span>
+                <h2>Bergabung Menjadi <span class="highlight">Premium Creator</span></h2>
+                <p>Bagikan karya Anda di galeri Alovera dan dapatkan kesempatan untuk tampil di halaman utama.</p>
+            </div>
+
+            <form id="premiumForm" onsubmit="submitPremium(event)">
+                <div class="premium-form-group">
+                    <label>Email <span class="required">*</span></label>
+                    <input type="email" id="premiumEmail" placeholder="Masukkan email aktif Anda" required>
+                </div>
+
+                <div class="premium-form-group">
+                    <label>Nama Pengguna <span class="required">*</span></label>
+                    <input type="text" id="premiumUsername" placeholder="Nama lengkap atau nama panggilan" required>
+                </div>
+
+                <div class="premium-form-group">
+                    <label>Deskripsi Diri / Portofolio</label>
+                    <textarea id="premiumDescription" placeholder="Ceritakan tentang diri Anda, keahlian, dan pengalaman di bidang desain/fotografi..." maxlength="1000" oninput="updateCharCount(this)"></textarea>
+                    <div class="char-count" id="charCount">0 / 1000</div>
+                </div>
+
+                <div class="premium-form-group">
+                    <label>Upload Karya (Foto/Video) <span class="required">*</span></label>
+                    <div class="file-upload-area" id="fileUploadArea">
+                        <span class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                        <div class="upload-text">Drag & drop atau <strong>klik untuk pilih</strong> file</div>
+                        <div class="upload-hint">JPG, PNG, MP4 • Maks 20 MB</div>
+                        <input type="file" id="premiumFile" accept="image/*,video/*" onchange="handleFileSelect(this)" required>
+                        <div class="file-preview" id="filePreview">
+                            <div>
+                                <div class="file-name" id="fileName">nama-file.jpg</div>
+                                <div class="file-size" id="fileSize">0 MB</div>
                             </div>
-                        `).join('');
-                }
-                try {
-                    localStorage.setItem('geodora_history', JSON.stringify(history));
-                } catch (e) {
-                    if (history.length > 20) {
-                        history = history.slice(-20);
-                        localStorage.setItem('geodora_history', JSON.stringify(history));
-                    }
-                }
-            }
+                            <span class="file-remove" onclick="removeFile()"><i class="fas fa-times-circle"></i> Hapus</span>
+                        </div>
+                    </div>
+                </div>
 
-            function escapeHtml(str) {
-                const div = document.createElement('div');
-                div.textContent = str;
-                return div.innerHTML;
-            }
+                <div class="premium-info-box">
+                    <div class="info-row"><i class="fas fa-clock"></i>
+                   
+                    <strong>7 Hari</strong> •
+                    
+                    Proses revisi maksimal 7 hari kerja</div>
+                    <div class="info-row"><i class="fas fa-check-circle"></i> Karya akan direview oleh tim kurator kami</div>
+                    <div class="info-row"><i class="fas fa-star"></i> Jika lolos, karya akan tampil di galeri premium</div>
+                </div>
 
-            // === ADD TO HISTORY ===
-            function addToHistory(prompt, style, imageUrl) {
-                history.push({
-                    prompt,
-                    style,
-                    imageUrl,
-                    timestamp: Date.now(),
-                });
-                if (history.length > 50) history = history.slice(-50);
-                renderHistory();
-            }
+                <button type="submit" class="btn-premium-submit" id="premiumSubmitBtn">
+                    <i class="fas fa-paper-plane"></i> Kirim Permohonan
+                </button>
+            </form>
+        </div>
 
-            // === SHOW RESULT ===
-            function showResult(imageUrl) {
-                currentImageUrl = imageUrl;
-                resultImage.src = imageUrl;
-                resultArea.classList.add('visible');
-                if (settings.autoShowResult) {
-                    setTimeout(() => {
-                        resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 100);
-                }
-            }
+        <!-- Success Section
+        <div class="premium-success" id="premiumSuccess">
+            <span class="success-icon"><i class="fas fa-check-circle"></i></span>
+            <h3>Permohonan Terkirim!</h3>
+            <p>Terima kasih telah bergabung menjadi Premium Creator. Tim kurator kami akan mereview karya Anda dalam waktu maksimal 7 hari.</p>
+            <p style="margin-top:12px;color:#4a6a7a;font-size:13px;">Kami akan menghubungi Anda melalui email.</p>
+            <button class="btn-premium-submit" onclick="closePremiumModal()" style="margin-top:20px;max-width:200px;margin-left:auto;margin-right:auto;">
+                <i class="fas fa-check"></i> Tutup
+            </button>
+        </div>
+    </div>
+</div>
+-->
 
-            // === TOAST ===
-            function showToast(message, type = 'success') {
-                const toast = document.createElement('div');
-                toast.className = `toast ${type}`;
-                const icons = {
-                    success: 'fa-circle-check',
-                    error: 'fa-circle-exclamation',
-                    info: 'fa-circle-info'
-                };
-                toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.success}"></i> ${message}`;
-                toastContainer.appendChild(toast);
-                setTimeout(() => {
-                    toast.style.opacity = '0';
-                    toast.style.transform = 'translateX(40px)';
-                    toast.style.transition = '0.3s ease';
-                    setTimeout(() => toast.remove(), 300);
-                }, 4000);
-            }
 
-            // === HANDLE GENERATE ===
-            async function handleGenerate() {
-                const prompt = promptInput.value.trim();
-                if (!prompt) {
-                    showToast('Silakan tulis deskripsi gambar terlebih dahulu.', 'error');
-                    promptInput.focus();
-                    return;
-                }
-                currentPrompt = prompt;
 
-                generateBtn.classList.add('loading');
-                generateBtn.disabled = true;
 
-                try {
-                    const imageUrl = await generateImage(prompt, selectedStyle);
-                    const img = new Image();
-                    img.src = imageUrl;
-                    await new Promise((resolve, reject) => {
-                        img.onload = resolve;
-                        img.onerror = () => reject(new Error('Gagal memuat gambar'));
-                        setTimeout(() => reject(new Error('Timeout - server AI sibuk')), 45000);
-                    });
 
-                    showResult(imageUrl);
-                    addToHistory(prompt, selectedStyle, imageUrl);
-                    showToast('Gambar berhasil dibuat!', 'success');
-                } catch (error) {
-                    console.error(error);
-                    showToast(' Gagal membuat gambar: ' + (error.message || 'Coba lagi nanti'), 'error');
-                } finally {
-                    generateBtn.classList.remove('loading');
-                    generateBtn.disabled = false;
-                }
-            }
 
-            // === DOWNLOAD IMAGE - FIXED FOR ANDROID ===
-            function downloadImageAndroid(url, filename = 'geodora-image.png') {
-                // Cek apakah ini Android WebView
-                const isAndroid = /android/i.test(navigator.userAgent);
+
+<!-- ============================================================
+  POPUP HUT RI KE-81
+  ============================================================ 
+<div class="hut-popup-overlay" id="hutPopup">
+    <div class="hut-popup-content">
+        <button class="hut-popup-close" onclick="closeHutPopup()">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="hut-flag-decoration">🇮🇩</div>
+
+        <div class="hut-popup-title">
+            <span class="hut-year">HUT RI ke-81</span>
+         
+        </div>
+
+        <div class="hut-popup-subtitle">
+            Dirgahayu Indonesiaku! Rayakan semarak kemerdekaan dengan fitur-fitur spesial kami.
+        </div>
+
+        <div class="hut-popup-divider">
+            <span>✦ SEMARAK MERDEKA ✦</span>
+        </div>
+
+        <div class="hut-popup-features">
+            <a href="#" onclick="navigateTo('news'); closeHutPopup();" class="hut-feature-item">
+                <div class="feature-icon news"><i class="fas fa-newspaper"></i></div>
+                <div class="feature-info">
+                    <div class="feature-name"> Berita HUT RI</div>
+                    <div class="feature-desc">Update terkini perayaan kemerdekaan di seluruh Indonesia</div>
+                </div>
+                <div class="feature-arrow"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <a href="#" onclick="navigateTo('stock');  
+            
+
+            
+            
+            closeHutPopup();" class="hut-feature-item">
+                <div class="feature-icon stock"><i class="fas fa-images"></i></div>
+                <div class="feature-info">
+                    <div class="feature-name"> Galeri Kemerdekaan</div>
+                    <div class="feature-desc">Koleksi foto dan video spesial HUT RI dari seluruh nusantara</div>
+                </div>
+                <div class="feature-arrow"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <a href="#" onclick="navigateTo('books');
+            
+            closeHutPopup();" class="hut-feature-item">
+                <div class="feature-icon books"><i class="fas fa-book"></i></div>
+                <div class="feature-info">
+                    <div class="feature-name"> Pustaka Sejarah</div>
+                    <div class="feature-desc">Koleksi buku sejarah dan perjuangan kemerdekaan Indonesia</div>
+                </div>
+                <div class="feature-arrow"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <a href="#" onclick="navigateTo('stock'); closeHutPopup();" class="hut-feature-item">
+                <div class="feature-icon video"><i class="fas fa-video"></i></div>
+                <div class="feature-info">
+                    <div class="feature-name"> Video Spesial</div>
+                    <div class="feature-desc">Dokumentasi perjuangan dan kemeriahan HUT RI ke-81</div>
+                </div>
+                <div class="feature-arrow"><i class="fas fa-chevron-right"></i></div>
+            </a>
+        </div>
+
+        <div class="hut-popup-footer">
+            
+            <div class="hut-countdown">
+                 <strong>Klik Kategori HUT RI ke-81</strong>
+            </div>
+            <br>
+            
+            <button class="btn-hut-explore" onclick="closeHutPopup()">
+                <i class="fas fa-rocket"></i> Jelajahi Kategori HUT RI
+            </button>
+        </div>
+    </div>
+</div>
+-->
+
+
+<!-- ============================================================
+  TOMBOL MELAYANG HUT RI
+  ============================================================ 
+<button class="hut-float-btn" id="hutFloatBtn" onclick="openHutPopup()" title="Semarak HUT RI ke-81">
+    🇮🇩
+    <span class="hut-float-tooltip">✨ HUT RI ke-81</span>
+    <span class="hut-float-badge">81</span>
+</button>
+
+-->
+<!-- ============================================================
+  NOTIFICATION MODAL
+  ============================================================ -->
+<div class="notif-modal" id="notifModal" onclick="closeNotifOutside(event)">
+    <div class="notif-content">
+        <button class="notif-close" onclick="closeNotificationModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="notif-title">
+            <i class="fas fa-heart"></i> Notifikasi
+        </div>
+        <div class="notif-subtitle">Aktivitas terbaru dari komunitas</div>
+        <div id="notifList">
+            <div class="notif-empty">
+                <i class="fas fa-inbox"></i>
+                <p>Belum ada notifikasi</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- ============================================================
+  AI LIGHTBOX
+  ============================================================ 
+<div class="ai-lightbox-overlay" id="aiLightbox">
+    <button class="ai-lightbox-close" id="aiLightboxClose">
+        <i class="fas fa-times"></i>
+    </button>
+    <img id="aiLightboxImage" src="" alt="Preview" />
+    <button class="ai-lightbox-download" id="aiLightboxDownload">
+        <i class="fas fa-download"></i> Unduh Gambar HD
+    </button>
+</div>
+-->
+
+
+
+
+
+
+<!-- ============================================================
+  GOOGLE SEARCH MODAL
+  ============================================================ -->
+<div class="google-search-modal" id="googleSearchModal" onclick="closeGoogleSearchOutside(event)">
+    <div class="google-search-content">
+        <div class="google-search-header">
+            <div class="google-search-title">
+                <i class="fab fa-google" style="color:#ea4335;"></i>
+                <span>Google Search with Alovera</span>
+            </div>
+            <button class="google-search-close" onclick="closeGoogleSearch()" aria-label="Tutup">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="google-search-body">
+            <!-- Placeholder untuk Google CSE -->
+            <div class="gcse-search" data-queryParameterName="q"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+  AI LIGHTBOX
+  ============================================================ -->
+<div class="ai-lightbox-overlay" id="aiLightbox" onclick="closeAloveraLightboxOutside(event)">
+    <button class="ai-lightbox-close" id="aiLightboxClose" onclick="closeAloveraLightbox()" aria-label="Tutup">
+        <i class="fas fa-times"></i>
+    </button>
+    <img id="aiLightboxImage" src="" alt="Preview" onclick="event.stopPropagation()" />
+    <button class="ai-lightbox-download" id="aiLightboxDownload" onclick="downloadAloveraLightboxImage()">
+        <i class="fas fa-download"></i> Unduh Gambar HD
+    </button>
+    
+    
+    
+
+    <!-- ============================================================
+  GOOGLE SEARCH MODAL
+  ============================================================
+  
+<div class="gcse-search">
+
+
+<div class="google-search-modal" id="googleSearchModal" onclick="closeGoogleSearchOutside(event)">
+    <div class="google-search-content">
+        <div class="google-search-header">
+            <div class="google-search-title">
+                <i class="fab fa-google" style="color:#ea4335;"></i>
+                <span>Google Search</span>
+            </div>
+            <button class="google-search-close" onclick="closeGoogleSearch()" aria-label="Tutup">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="google-search-body">
+            <!-- Placeholder untuk Google CSE 
+            <div class="gcse-search" data-queryParameterName="q"></div>
+        </div>
+    </div>
+</div>
+
+    </div>
+    -->
+
+
+
+</div>
+
+
+
+
+<!-- ============================================================
+  MODAL EDIT PROFIL
+  ============================================================ 
+<div class="edit-profile-modal" id="editProfileModal" onclick="closeEditProfileOutside(event)">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeEditProfile()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-title">Edit Profil</div>
+        <div class="modal-subtitle">Perbarui informasi profil Anda</div>
+        
+        <form id="editProfileForm" onsubmit="saveProfile(event)">
+            <div class="form-group">
+                <label>Nama Pengguna <span class="required">*</span></label>
+                <input type="text" id="editProfileName" placeholder="Masukkan nama Anda" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email <span class="required">*</span></label>
+                <input type="email" id="editProfileEmail" placeholder="Masukkan email Anda" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Bio / Deskripsi</label>
+                <textarea id="editProfileBio" placeholder="Ceritakan sedikit tentang diri Anda..." maxlength="200"></textarea>
+                <div style="text-align:right;font-size:11px;color:var(--text-muted);margin-top:2px;">
+                    <span id="bioCharCount">0</span>/200
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-save-profile">
+                <i class="fas fa-save"></i> Simpan Profil
+            </button>
+        </form>
+    </div>
+</div>
+
+-->
+
+<!-- ============================================================
+  EDIT PROFIL MODAL
+  ============================================================ -->
+<div class="edit-profile-modal" id="editProfileModal" onclick="closeEditProfileOutside(event)">
+    <div class="edit-content">
+        <button class="edit-close" onclick="closeEditProfileModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="edit-title">Edit Profil</div>
+        <div class="edit-subtitle">Perbarui informasi profil Anda</div>
+        
+        <form id="editProfileForm" onsubmit="saveEditProfile(event)">
+            <div class="form-group">
+                <label>Nama Pengguna</label>
+                <input type="text" id="editUsername" placeholder="Masukkan nama pengguna">
+            </div>
+            <div class="form-group">
+                <label>Bio</label>
+                <textarea id="editBio" placeholder="Ceritakan tentang diri Anda..." maxlength="200"></textarea>
+                <div style="text-align:right;font-size:11px;color:var(--text-muted);margin-top:2px;">
+                    <span id="editBioCount">0</span>/200
+                </div>
+            </div>
+            <button type="submit" class="btn-save-profile">
+                <i class="fas fa-save"></i> Simpan Perubahan
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- ============================================================
+  POPUP IKLAN FULLSCREEN
+  ============================================================ -->
+<div class="ad-popup-overlay" id="adPopup" onclick="closeAdPopupOutside(event)">
+    <div class="ad-popup-content">
+        <button class="ad-popup-close" onclick="closeAdPopup()">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="adPopupImage" src="" alt="Iklan" />
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================================================
+  PAGE: MAULID NEWS - DAFTAR BERITA SPESIAL MAULID
+  ============================================================ 
+<div id="maulidPage" class="page">
+    <div class="page-wrapper">
+        <div class="maulid-page-wrapper">
+            <!-- Header 
+            <br>
+            <div class="maulid-page-header">
                 
-                if (isAndroid) {
-                    // Method 1: Gunakan XMLHttpRequest untuk fetch gambar
-                    showToast(' Menyiapkan unduhan...', 'info');
-                    
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('GET', url, true);
-                    xhr.responseType = 'blob';
-                    
-                    xhr.onload = function() {
-                        if (xhr.status === 200) {
-                            try {
-                                // Buat link download
-                                const blob = xhr.response;
-                                const blobUrl = URL.createObjectURL(blob);
-                                
-                                // Buat elemen anchor dan trigger download
-                                const a = document.createElement('a');
-                                a.href = blobUrl;
-                                a.download = filename;
-                                document.body.appendChild(a);
-                                a.click();
-                                document.body.removeChild(a);
-                                
-                                // Revoke URL setelah beberapa detik
-                                setTimeout(() => {
-                                    URL.revokeObjectURL(blobUrl);
-                                }, 10000);
-                                
-                                showToast(' Gambar berhasil diunduh!', 'success');
-                            } catch (e) {
-                                console.error('Download error:', e);
-                                // Fallback: buka di tab baru
-                                window.open(url, '_blank');
-                                showToast(' Gambar dibuka di tab baru untuk diunduh.', 'info');
-                            }
-                        } else {
-                            showToast(' Gagal mengunduh gambar. Status: ' + xhr.status, 'error');
-                        }
-                    };
-                    
-                    xhr.onerror = function() {
-                        // Fallback: buka di browser
-                        showToast(' Coba unduh melalui browser default', 'info');
-                        window.open(url, '_blank');
-                    };
-                    
-                    xhr.send();
-                } else {
-                    // Desktop / browser biasa
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    showToast(' Gambar berhasil diunduh!', 'success');
-                }
-            }
-
-            // === DOWNLOAD IMAGE WITH FETCH (Alternative) ===
-            async function downloadImageWithFetch(url, filename = 'geodora-image.png') {
-                const isAndroid = /android/i.test(navigator.userAgent);
                 
-                if (isAndroid) {
-                    try {
-                        showToast(' Mengunduh gambar...', 'info');
-                        const response = await fetch(url);
-                        if (!response.ok) throw new Error('Network response was not ok');
-                        
-                        const blob = await response.blob();
-                        const blobUrl = URL.createObjectURL(blob);
-                        
-                        const a = document.createElement('a');
-                        a.href = blobUrl;
-                        a.download = filename;
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                        
-                        setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
-                        showToast(' Gambar berhasil diunduh!', 'success');
-                    } catch (e) {
-                        console.error('Fetch download error:', e);
-                        // Fallback ke XMLHttpRequest
-                        downloadImageAndroid(url, filename);
-                    }
-                } else {
-                    // Desktop
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    showToast(' Gambar berhasil diunduh!', 'success');
-                }
-            }
+                <!--
+                <div class="maulid-page-icon"><i class="fas fa-star-and-crescent"></i></div>
+                
+                 <i class="fas fa-bank"></i>
+                
+                <div class="maulid-page-title">Edukasi dan Finansial</div>
+                <span class="maulid-page-badge">Grow Insight</span>
+            </div>
+            <div class="maulid-page-subtitle">
+                Kumpulan berita dan edukasi seputar bisnis, ekonomi, finansial dan informasi lainnya yang mendukung kamu untuk menambah wawasan
+            </div>
+            
+            <!-- News Grid 
+            <div class="maulid-news-grid" id="maulidNewsGrid">
+                <div class="maulid-page-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Memuat berita Maulid...</span>
+                </div>
+            </div>
+            
+            <!-- Load More 
+            <div class="maulid-page-loadmore" id="maulidLoadMore">
+                <button class="btn-load-more" onclick="loadMoreMaulidNews()">
+                    <i class="fas fa-chevron-down"></i> Muat Lebih Banyak
+                </button>
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+</div>
 
-            // === EVENT LISTENERS ===
-            generateBtn.addEventListener('click', handleGenerate);
-            promptInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') handleGenerate();
-            });
-            randomPromptBtn.addEventListener('click', getRandomPrompt);
+-->
 
-            downloadBtn.addEventListener('click', () => {
-                if (currentImageUrl) {
-                    const filename = `geodora-${Date.now()}.png`;
-                    // Gunakan downloadImageAndroid untuk Android
-                    downloadImageAndroid(currentImageUrl, filename);
-                } else {
-                    showToast(' Tidak ada gambar untuk diunduh.', 'error');
-                }
-            });
 
-            regenerateBtn.addEventListener('click', () => {
-                if (currentPrompt) {
-                    promptInput.value = currentPrompt;
-                    handleGenerate();
-                } else {
-                    handleGenerate();
-                }
-            });
 
-            copyPromptBtn.addEventListener('click', () => {
-                if (currentPrompt) {
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(currentPrompt).then(() => {
-                            showToast(' Prompt disalin ke clipboard!', 'success');
-                        }).catch(() => {
-                            fallbackCopyPrompt();
-                        });
-                    } else {
-                        fallbackCopyPrompt();
-                    }
-                } else {
-                    showToast(' Tidak ada prompt untuk disalin.', 'error');
-                }
-            });
+<!-- ============================================================
+  PAGE: EDUKASI & FINANSIAL - GROW INSIGHT
+  ============================================================ -->
+<div id="maulidPage" class="page">
+    <div class="page-wrapper">
+        <div class="maulid-page-wrapper fin-page-wrapper">
+            <!-- Header -->
+            <br>
+            <div class="maulid-page-header fin-page-header">
+                <div class="maulid-page-icon fin-page-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="maulid-page-title">Edukasi dan Finansial</div>
+                <span class="maulid-page-badge fin-page-badge">Tips</span>
+            </div>
+            <div class="maulid-page-subtitle">
+                Kumpulan berita dan edukasi seputar bisnis, ekonomi, finansial dan informasi bermanfaat lainnya untuk menambah wawasan Anda.
+            </div>
+            
+            <!-- News Grid -->
+            <div class="maulid-news-grid" id="maulidNewsGrid">
+                <div class="maulid-page-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Memuat berita...</span>
+                </div>
+            </div>
+            
+            <!-- Load More -->
+            <div class="maulid-page-loadmore" id="maulidLoadMore">
+                <button class="btn-load-more" onclick="loadMoreMaulidNews()">
+                    <i class="fas fa-chevron-down"></i> Muat Lebih Banyak
+                </button>
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+</div>
 
-            function fallbackCopyPrompt() {
-                try {
-                    const textArea = document.createElement('textarea');
-                    textArea.value = currentPrompt;
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                    showToast(' Prompt disalin ke clipboard!', 'success');
-                } catch (e) {
-                    showToast(' Gagal menyalin prompt.', 'error');
-                }
-            }
 
-            // Lightbox
-            resultImageContainer.addEventListener('click', () => {
-                if (currentImageUrl) {
-                    lightboxImage.src = currentImageUrl;
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-            lightboxClose.addEventListener('click', () => {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    lightbox.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-            lightboxDownload.addEventListener('click', () => {
-                if (currentImageUrl) {
-                    const filename = `geodora-hd-${Date.now()}.png`;
-                    downloadImageAndroid(currentImageUrl, filename);
-                }
-            });
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                    lightbox.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
+<!-- ============================================================
+  PAGE: Short VIDEO - SEPERTI TIKTOK/REELS
+  ============================================================
+<div id="feedPage" class="page">
+    <div class="page-wrapper" style="padding-bottom:0;height:100vh;background:#000;">
+       
+        
+        
+        <div class="feed-container" id="feedContainer">
+          
+            <div class="feed-loading" id="feedLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat video...</span>
+            </div>
+        </div>
+    </div>
+</div>
+-->
 
-            // History item click
-            historyGrid.addEventListener('click', (e) => {
-                const item = e.target.closest('.history-item');
-                if (!item) return;
-                const index = parseInt(item.dataset.index);
-                if (index >= 0 && index < history.length) {
-                    const historyItem = history[index];
-                    currentPrompt = historyItem.prompt;
-                    currentImageUrl = historyItem.imageUrl;
-                    selectedStyle = historyItem.style || 'photorealistic';
-                    promptInput.value = historyItem.prompt;
-                    document.querySelectorAll('.style-chip').forEach(c => {
-                        c.classList.remove('active');
-                        if (c.dataset.style === selectedStyle) c.classList.add('active');
-                    });
-                    showResult(historyItem.imageUrl);
-                    showToast(' Gambar dari riwayat dimuat.', 'success');
-                }
-            });
+<!--
+<div id="feedPage" class="page">
+    <div class="page-wrapper" style="padding-bottom:0;height:100vh;background:#000;">
+        
+         ============================================================
+        KATEGORI FEED VIDEO - TRANSPARAN & MODERN
+        ============================================================ 
+        <div class="feed-categories-wrapper" id="feedCategoriesWrapper">
+            <div class="feed-categories-track" id="feedCategoriesTrack">
+               
+            </div>
+        </div>
+        
+        <div class="feed-container" id="feedContainer">
+           
+            <div class="feed-loading" id="feedLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat video...</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-            // === KEYBOARD SHORTCUT ===
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
-                    closeSidebar();
-                }
-            });
+-->
 
-            // === SWIPE TO CLOSE SIDEBAR ===
-            let touchStartX = 0;
-            let touchEndX = 0;
-            sidebar.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-            sidebar.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                if (touchEndX - touchStartX > 80) {
-                    closeSidebar();
-                }
-            }, { passive: true });
+<div id="feedPage" class="page">
+    <div class="page-wrapper" style="padding-bottom:0;height:100vh;background:#000;position:relative;">
+        
+              <!-- ============================================================
+        HEADER TITLE - Bawa Santai Aja Dulu
+        ============================================================ -->
+        <div class="feed-header-title">
+            <i class="fas fa-coffee"></i>
+            <span class="feed-header-text">Bawa Santai Aja Dulu</span>
+            <span class="feed-header-badge">Grow Happy</span>
+        </div>
+        
+        
+        
+        
+        
+        <div class="feed-categories-wrapper" id="feedCategoriesWrapper">
+            
+            
+            <div class="feed-categories-track" id="feedCategoriesTrack"></div>
+        </div>
+        <div class="feed-container" id="feedContainer">
+            <div class="feed-loading" id="feedLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat video...</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-            // === INIT ===
-            renderHistory();
 
-            if (history.length > 0) {
-                const last = history[history.length - 1];
-                selectedStyle = last.style || 'photorealistic';
-                document.querySelectorAll('.style-chip').forEach(c => {
-                    c.classList.remove('active');
-                    if (c.dataset.style === selectedStyle) c.classList.add('active');
-                });
-            }
 
-            // Detect Android and log
-            if (/android/i.test(navigator.userAgent)) {
-                console.log('📱 Android device detected - download method optimized');
-            }
 
-            console.log(' Geodora Magic AI siap digunakan!');
-            console.log(' Didukung oleh Pollinations.ai (gratis, tanpa API key)');
-            console.log('Tulis prompt, pilih style, lalu klik Generate!');
 
-        })();
-    </script>
+
+
+
+<!-- ============================================================
+  LOGIN MODAL
+  ============================================================ -->
+<div class="auth-modal" id="authModal" onclick="closeAuthOutside(event)">
+    <div class="auth-content">
+        <button class="auth-close" onclick="closeAuthModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="auth-title" id="authTitle">Masuk</div>
+        <div class="auth-subtitle" id="authSubtitle">Login untuk mengakses semua fitur</div>
+        <div class="auth-error" id="authError"></div>
+        
+        <form id="authForm" onsubmit="handleAuth(event)">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="authEmail" placeholder="Masukkan email Anda" required>
+            </div>
+            <div class="form-group">
+                <label>Kata Sandi</label>
+                <input type="password" id="authPassword" placeholder="Masukkan kata sandi" required>
+            </div>
+            <div class="form-group" id="authBioGroup" style="display:none;">
+                <label>Bio (opsional)</label>
+                <textarea id="authBio" placeholder="Ceritakan tentang diri Anda..." maxlength="200"></textarea>
+            </div>
+            <button type="submit" class="btn-auth" id="authBtn">Masuk</button>
+        </form>
+        
+        <div class="auth-switch">
+            <span id="authSwitchText">Belum punya akun?</span>
+            <a id="authSwitchLink" onclick="toggleAuthMode()">Daftar</a>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+  UPLOAD MODAL
+  ============================================================ -->
+<div class="upload-modal" id="uploadModal" onclick="closeUploadOutside(event)">
+    <div class="upload-content">
+        <button class="upload-close" onclick="closeUploadModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="upload-title">Upload Postingan</div>
+        
+        <br>
+        
+        <form id="uploadForm" onsubmit="handleUploadPost(event)">
+            <div class="form-group">
+                <label>Deskripsi (max 500 karakter)</label>
+                <textarea id="uploadDescription" placeholder="Tulis deskripsi postingan Anda..." maxlength="500" oninput="updateUploadCharCount(this)"></textarea>
+                <div class="char-count" id="uploadCharCount">0 / 500</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Upload File <span style="color:#ef4444;">*</span></label>
+                <div class="upload-area" id="uploadArea">
+                    <span class="upload-icon-big"><i class="fas fa-cloud-upload-alt"></i></span>
+                    <div class="upload-text">Drag & drop atau <strong>klik untuk pilih</strong> file</div>
+                    <div class="upload-hint">JPG, PNG, MP4 • Maks 10 MB</div>
+                    <input type="file" id="uploadFile" accept="image/*,video/*" onchange="handleUploadFileSelect(this)" required>
+                    <div class="file-preview" id="uploadFilePreview">
+                        <div class="file-info">
+                            <span class="file-name" id="uploadFileName">nama-file.jpg</span>
+                            <span class="file-size" id="uploadFileSize">0 MB</span>
+                            <span class="file-remove" onclick="removeUploadFile()"><i class="fas fa-times-circle"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        <div class="upload-subtitle">Pastikan Anda telah membaca dan mematuhi kebijakan privasi baru kami.</div>
+        
+            <button type="submit" class="btn-upload-submit" id="uploadSubmitBtn">
+                <i class="fas fa-paper-plane"></i> Posting
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- ============================================================
+  POPUP POSTINGAN DETAIL
+  ============================================================ -->
+<div class="post-detail-modal" id="postDetailModal" onclick="closePostDetailOutside(event)">
+    <div class="post-detail-content">
+        <button class="post-detail-close" onclick="closePostDetail()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div id="postDetailBody">
+            <!-- Di-render oleh JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+  EDIT PROFIL MODAL
+  ============================================================ 
+<div class="edit-profile-modal" id="editProfileModal" onclick="closeEditProfileOutside(event)">
+    <div class="edit-content">
+        <button class="edit-close" onclick="closeEditProfileModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="edit-title">Edit Profil</div>
+        <div class="edit-subtitle">Perbarui informasi profil Anda</div>
+        
+        <form id="editProfileForm" onsubmit="saveEditProfile(event)">
+            <div class="form-group">
+                <label>Nama Pengguna</label>
+                <input type="text" id="editUsername" placeholder="Masukkan nama pengguna">
+            </div>
+            <div class="form-group">
+                <label>Bio</label>
+                <textarea id="editBio" placeholder="Ceritakan tentang diri Anda..." maxlength="200"></textarea>
+            </div>
+            <button type="submit" class="btn-save-profile">
+                <i class="fas fa-save"></i> Simpan Perubahan
+            </button>
+        </form>
+    </div>
+</div>
+-->
+
+
+<!-- ============================================================
+  SETTINGS MODAL
+  ============================================================ 
+<div class="settings-modal" id="settingsModal" onclick="closeSettingsOutside(event)">
+    <div class="settings-content">
+        <button class="settings-close" onclick="closeSettingsModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="settings-title">⚙️ Pengaturan</div>
+        <div class="settings-subtitle">Kelola preferensi aplikasi Anda</div>
+        
+      
+        <div class="settings-group">
+            <div class="group-title"><i class="fas fa-globe"></i> Bahasa</div>
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="setLanguage('id', this)">🇮🇩 Indonesia</button>
+                <button class="lang-btn" onclick="setLanguage('en', this)">🇬🇧 English</button>
+            </div>
+        </div>
+        
+       
+        <div class="settings-group">
+            <div class="group-title"><i class="fas fa-link"></i> Informasi</div>
+            <div class="settings-links">
+                <a href="privvcy.html"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</a>
+                <a href="hellpp.html"><i class="fas fa-question-circle"></i> Pusat Bantuan</a>
+                <a href="tentngu67.html"><i class="fas fa-info-circle"></i> Tentang Aplikasi</a>
+            </div>
+        </div>
+        
+        
+        <div class="settings-group">
+            <div class="group-title"><i class="fas fa-palette"></i> Tema</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button class="lang-btn" onclick="setThemeFromSettings('dark')">🌙 Gelap</button>
+                <button class="lang-btn" onclick="setThemeFromSettings('light')">☀️ Terang</button>
+                <button class="lang-btn" onclick="setThemeFromSettings('hutri')">🇮🇩 HUT RI</button>
+            </div>
+        </div>
+        
+        <button class="btn-save-profile" onclick="closeSettingsModal()" style="margin-top:8px;">
+            <i class="fas fa-check"></i> Tutup
+        </button>
+    </div>
+</div>
+-->
+
+
+<!-- ============================================================
+  SETTINGS DETAIL MODAL
+  ============================================================ -->
+<div class="settings-detail-modal" id="settingsDetailModal" onclick="closeSettingsDetailOutside(event)">
+    <div class="sd-content">
+        <button class="sd-close" onclick="closeSettingsDetail()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="sd-title" id="sdTitle">Pengaturan</div>
+        <div class="sd-subtitle" id="sdSubtitle">Kelola preferensi Anda</div>
+        <div id="sdBody">
+            <!-- Di-render oleh JavaScript -->
+        </div>
+    </div>
+</div>
+
+
+
+  <!-- ============================================================
+  BOTTOM NAV (4 Menu: Home, Berita, Stock, Buku)
+  ============================================================ -->
+  <nav class="bottom-nav">
+      
+      <!--
+    <button class="nav-item active" onclick="navigateTo('home')" id="navHome"><i class="fas fa-home"></i><span>Home</span></button>
+    -->
+
+    
+
+    
+<button class="nav-item" onclick="navigateTo('news')" id="navNews"><i class="fas fa-newspaper"></i><span>News</span></button>
+    
+    
+
+    <button class="nav-item" onclick="navigateTo('feed')" id="navFeed">
+        <i class="fas fa-play-circle"></i><span>Play</span>
+    </button>
+    
+    
+
+    <button class="btn-ai-chat" id="btnAiChat" onclick="navigateTo('home')" id="navHome">
+    <span class="ai-gradient-text">AI</span></button>
+    
+
+    
+
+
+    <button class="nav-item" onclick="navigateTo('stock')" id="navStock"><i class="fas fa-search"></i><span>Stock</span></button>
+    
+    
+    <button class="nav-item" onclick="navigateTo('books')" id="navBooks"><i class="fas fa-book"></i><span>Books</span></button>
+    
+    
+    
+    
+    <!--
+    <button class="nav-item" onclick="navigateTo('profile')" id="navProfile">
+        <div>
+           
+            <i class="fas fa-user"></i>
+        </div>
+        <span>Profil</span>
+    </button>
+    -->
+  </nav>
+
+  
+ 
+  
+    <script src="apxz240726.assets.js"></script>
+    
+  <script src="ai.assets.js"></script>
+  <script src="chat.assets.js"></script>
+  
+  <script src="video.assets.js"></script>
+
+
+
+  <script src="post.assets.js"></script>
+  
+  
+  <script src="notif.assets.js"></script>
+  
+  
+  <!--
+  <script src="https://assetsbcb.netlify.app/apxz240726.assets.js"></script>
+<script src="https://assetsbcb.netlify.app/ai.assets.js"></script>
+<script src="https://assetsbcb.netlify.app/chat.assets.js"></script>
+<script src="https://assetsbcb.netlify.app/video.assets.js"></script>
+<script src="https://assetsbcb.netlify.app/post.assets.js"></script>
+<script src="https://assetsbcb.netlify.app/notif.assets.js"></script>
+-->
+
 </body>
 </html>

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bantuan dan Saran</title>
+  <style>
+    * {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      box-sizing: border-box;
+    }
+    body {
+      background: black;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0 20px 20px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid dimgrey;
+    }
+    .back-arrow {
+      font-size: 22px;
+      color: white;
+      margin-right: 12px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    header h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+      color: white;
+    }
+    .info {
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+      margin: 20px 0;
+    }
+    
+    
+    
+    
+    .prof {
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      margin: 20px 0;
+    }
+    
+    
+    
+    .prof2 {
+      text-align: center;
+      color: darkgrey;
+      font-size: 18px;
+      margin: 40px 0;
+    }
+    
+    
+    label {
+      font-weight: 600;
+      color: white;
+      margin-bottom: 6px;
+      display: block;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 0px solid #535356;
+      border-radius: 10px;
+      font-size: 16px;
+      background-color: #1C1C1C;
+      color: white ;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    button:hover {
+      background: mediumseagreen;
+    }
+    
+    
+    
+    
+      /*ini untuk merubah kolom chat user & ai*/
+    .chat-container {
+      width: 107%;
+      height: auto;
+      margin-top: 55px;
+      max-width: 110px;
+      background:  black; /* #1E1E1; */
+      border-radius: 10px;
+      box-shadow: #FFFFFF;
+      /* 0 0 10px rgba(0,0,0,0.2); */
+      margin-left: 105px;
+      display: center; /*absolute;*/
+      flex-direction: column;
+      overflow: auto;
+      
+    }
+    .upload-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.upload-box {
+  width: 110px;
+  height: 110px;
+  border: 2px dashed #444;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: #111;
+  color: white;
+  transition: 0.2s;
+}
+
+.upload-box:hover {
+  border-color: #888;
+  transform: scale(1.05);
+}
+
+.plus {
+  font-size: 30px;
+}
+
+/*
+.preview {
+  display: flex;
+  gap: 10px;
+}
+
+.preview {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  max-width: 100%;
+  padding-bottom: 5px;
+}
+
+.preview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 100%;
+}
+*/
+
+.preview {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  max-width: 100%;
+  padding-bottom: 5px;
+  scroll-snap-type: x mandatory;
+}
+
+.preview img {
+  scroll-snap-align: start;
+}
+
+/* scroll halus */
+.preview::-webkit-scrollbar {
+  height: 6px;
+}
+
+.preview::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+
+
+
+.preview-item {
+  position: relative;
+}
+
+.preview img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/*
+.remove-btn {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+*/
+.count {
+  font-size: 17px;
+  font-weight: bold;
+  color: white;
+}
+
+.preview-audio {
+  color: white;
+  font-size: 12px;
+}
+
+
+
+
+
+
+
+
+.remove-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;/*rgba(0,0,0,0.6);*/
+  backdrop-filter: blur(5px);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.remove-btn:hover {
+  background: red;
+}
+
+.remove-btn::before {
+  content: "×";
+  color: white;
+  font-size: 14px;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <span class="back-arrow" onclick="history.back()">&#8592;</span>
+    <h2>Hubungi Tim Pengembang</h2>
+  </header>
+  
+  
+<!--
+<div class="chat-container">
+	<img src="images19991995/logo.png" width="110">
+  </div>
+  
+  
+  <div class="prof">
+    <h3>
+    Selamat Datang!
+    </h3>
+  </div>
+  
+  
+  <div class="prof2">
+    <h3>
+    Anda berada di mode PROFESIONAL dalam pembuatan Undangan Pernikahan berbasis Digital 👏🏻
+    </h3>
+  </div>
+  
+  
+  <div class="info">
+    _________________
+  </div>
+    
+    <br>
+  
+-->
+
+
+  <form id="formulir">
+    
+    
+    <!--
+  <div class="info">
+    Jika menyertakan Opsional, maka tulis bagian mana yang perlu di tinggal. Misal "PRO+ga pakai foto dan musik".
+  </div>
+  
+  
+  
+    <label for="promo" style="color: indianred">Promo Pilihan Anda - HEMAT :</label>
+    <input type="text" id="promo" name="promo" required />
+    
+
+    <label for="tipe" style="color: indianred">Tema Undangan :</label>
+   
+ <input type="text" id="tipe" name="tipe" required />
+
+
+  
+ 
+
+  <div class="info">
+    Black/Green/Golden/Sakura/Sky/Luxury
+  </div>
+   
+    <label for="tipe" style="color: darkseagreen">Tema Undangan :</label>
+    
+    
+  
+    <input type="text" id="tipe" name="tipe" required />
+    
+   
+    
+  <div class="info">
+    °°°
+  </div>
+    
+    -->
+    
+    
+    
+    
+    <!--
+    
+  <div class="info">
+    Silahkan isi form data pernikahan di bawah ini.Silahkan isi form di bawah ini dengan baik dan benar lalu periksa kembali sebelum mengirimkannya.
+  </div>
+    
+    
+    <label for="namawanita" style="color: lightgray">Nama Lengkap Mempelai Wanita :</label>
+    <input type="text" id="namawanita" name="namawanita" required />
+    
+    
+
+    <label for="ortuwanita" style="color: lightgray">Nama Orang Tua Wanita (Ayah & Ibu) :</label>
+    <input type="text" id="ortuwanita" name="ortuwanita" required />
+    
+
+  
+    <label for="namacallwan" style="color: lightgray">Nama Panggilan Mempelai Wanita :</label>
+    <input type="text" id="namacallwan" name="namacallwan" required />
+
+
+
+
+    <label for="namapria" style="color: gray">Nama Lengkap Mempelai Pria :</label>
+    <input type="text" id="namapria" name="namapria" required />
+    
+    <label for="ortupria" style="color: gray">Nama Orang Tua Pria (Ayah & Ibu) :</label>
+    <input type="text" id="ortupria" name="ortupria" required />
+    
+    <label for="namacallpria" style="color: gray">Nama Panggilan Mempelai Pria :</label>
+    <input type="text" id="namacallpria" name="namacallpria" required />
+    
+    
+    
+  <div class="info">
+    Jika Akad Nikah & Resepsi di hari yang sama, mohon tetap isi semua kolomnya.
+  </div>
+
+
+    <label for="akad" style="color: lightgray" >Hari/Tanggal Akad Nikah :</label>
+    <input type="text" id="akad" name="akad" required />
+
+    <label for="alamatakad" style="color: lightgray" >Tempat Akad Nikah :</label>
+    <textarea id="alamatakad" name="alamatakad" rows="3" required></textarea>
+    
+    
+    
+    <label for="maps" style="color: lightgray" >Link Google Maps :</label>
+    <input type="text" id="maps" name="maps" required />
+    
+    
+
+    <label for="resepsi" style="color: gray"> Hari/Tanggal Resepsi Nikah :</label>
+    <input type="text" id="resepsi" name="resepsi" required />
+
+
+    <label for="alamatresepsi" style="color: gray">Tempat Resepsi Nikah:</label>
+    <textarea id="alamatresepsi" name="alamatresepsi" rows="3" required></textarea>
+
+    <label for="mapsresepsi" style="color: gray">Link Google Maps :</label>
+    <input type="text" id="mapsresepsi" name="mapsresepsi" required />
+    
+
+  <div class="info">
+    Pastikan Link Google Maps tepat dan sertakan juga foto screenshot Google Maps di kolom Upload Album Foto.
+  </div>
+  
+  
+    
+    <label for="rekening" style="color: lightgray">Nomor Rekening (Amplop Digital) :</label>
+    <input type="text" id="rekening" name="rekening" required />
+    
+    <label for="kado" style="color: lightgray">Alamat Penerima Kado :</label>
+    <input type="text" id="kado" name="kado" required />
+    
+    <label for="musik" style="color: lightgray">Request Musik (Ya/Tidak) :</label>
+    <input type="text" id="musik" name="musik" required />
+    
+
+  <div class="info">
+    File musik dan semua berkas foto, akan di arahkan setelah data ini terkirim dan tunggu balasan dari WhatsApp kami.
+  </div>
+
+    <label for="foto" style="color: lightgray">Pakai Foto (Ya/Tidak) :</label>
+    <input type="text" id="foto" name="foto" required />
+    
+    
+    
+    <label for="instagram" style="color: lightgray">Akun Instagram (Sertakan/Tidak) :</label>
+    <input type="text" id="instagram" name="instagram" required />
+    
+    
+    
+    <label for="catatan" style="color: lightgray">Catatan Tambahan :</label>
+    <input type="text" id="catatan" name="catatan" required />
+   -->
+    
+   
+    <!--
+    
+    <label style="color: darkseagreen">Catatan Tambahan :</label>
+    <input type="text" id="catatan" required />
+    
+    
+    
+    <!--
+    <br>
+    
+    Silahkan kirim ke WhatsApp kami untuk proses selanjutnya.
+    <br>
+    -->
+    
+  
+  
+  <div class="info">
+    Silahkan isi form di bawah ini dengan baik dan benar lalu periksa kembali sebelum mengirimkannya.
+  </div>
+  
+  
+  
+  <label style="color: white">Nama Pemohon/Email :</label>
+<input type="text" id="nama_user" required maxlength="30" />
+
+
+
+    <label for="alamatakad" style="color: lightgray" >Masukkan Ulasan Anda :</label>
+    <textarea id="alamatakad" name="alamatakad" rows="8" required maxlength="500"></textarea>
+    
+<div id="charCount" style="color: dimgray">0 / 500</div>
+    
+    
+<!--
+  <div class="info">
+    Nama yang tertera di bawah ini adalah nama yang anda cantumkan di metode pembayaran.
+  </div>
+ 
+    
+    <label for="nama" style="color: indianred">No. WhatsApp (Penerima Link Undangan):</label>
+    <input type="text" id="nama" name="nama" required />
+    -->
+    
+    
+    
+
+<!--
+<label style="color: darkseagreen">Upload Bukti Transfer (opsional) :</label>
+
+<input type="file" id="media" multiple accept=".jpg,.png,.mp3" />
+
+<div id="previewMedia" style="color:white;font-size:12px;"></div>
+-->
+
+
+<br>
+<br>
+
+
+<label style="color: white">Upload File Tambahan (Opsional) :</label>
+
+<div class="upload-container">
+  
+  <div class="upload-box" id="uploadTrigger">
+    <div class="plus">+</div>
+    <span>Tambah File</span>
+  </div>
+  
+  <input type="file" id="media" accept="image/*" multiple hidden>
+  
+  
+  <div id="previewImages" class="preview"></div>
+  
+  
+</div>
+
+<br>
+<br>
+
+<!--
+
+<label style="color: white">Upload Lagu/mp3 :</label>
+
+<div class="upload-container">
+  <div class="upload-box" id="audioTrigger">
+    <div class="plus">+</div>
+    <span>Tambah File</span>
+  </div>
+  
+  <input type="file" id="audio" accept=".mp3" multiple hidden>
+  
+  <div id="previewAudio" class="preview-audio"></div>
+</div>
+-->
+
+
+
+    
+<!--
+  <div class="info">
+    Periksa dan pastikan data di atas sudah benar, pastikan nama pemohon harus sama dengan nama di metode pembayaran atau tulis nama pembayar di catatan. Silahkan kirim data anda pada tombol di bawah ini dan pilih metode pembayaran.
+    
+    </div>
+    
+    -->
+    
+   
+   
+   <!-- dua tombol hemat/pro
+<button id="btnPro">Pro</button>
+<button id="btnHemat">Hemat</button>
+
+<button type="submit" id="uploadBtn">Unggah Dokumen</button>
+-->
+
+<!--
+    <button type="submit">Kirim ke WhatsApp</button>
+ -->
+ <button type="submit" id="btnKirim">Ajukan Permohonan</button>
+ 
+ 
+ 
+ 
+    <!--
+          <a id="buyNow" class="btn hemat" href="server-admin.html">Paket HEMAT</a>
+          -->
+ 
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+
+
+  
+  
+const supabaseUrl = "https://ercfjeabaeaduilaatyf.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyY2ZqZWFiYWVhZHVpbGFhdHlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzMTg5ODEsImV4cCI6MjA5MTg5NDk4MX0.7dWxXP-HJ5krJUSo-Vrb7VZD2RJJl4EA59kxRJcNI3o";
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+
+
+  const preview = document.getElementById("previewImages");
+
+
+
+document.getElementById("formulir").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const btn = document.getElementById("btnKirim");
+  btn.innerText = "Mengirim...";
+  btn.disabled = true;
+
+
+
+
+
+  // ambil data
+  const nama_user = document.getElementById("nama_user").value;
+  
+  const alamatakad = document.getElementById("alamatakad").value;
+  
+  
+  
+  
+  
+  const files = getImages();
+  
+  
+  
+  
+  
+  
+
+let mediaUrls = [];
+
+
+const images = getImages();
+/*
+const audios = getAudio();
+*/
+for (let file of images)
+
+
+{
+  const fileName = Date.now() + "-" + file.name;
+
+
+
+const { data, error } = await supabaseClient.storage
+  .from('media')
+  .upload(fileName, file);
+
+if (error) {
+  console.log("UPLOAD ERROR:", error);
+  alert("Upload gagal: " + error.message);
+} else {
+  console.log("UPLOAD SUCCESS:", data);
+}
+
+
+  if (!error) {
+    const { data: urlData } = supabaseClient
+      .storage
+      .from('media')
+      .getPublicUrl(fileName);
+
+    mediaUrls.push(urlData.publicUrl);
+  }
+ 
+}
+
+
+const { error: insertError } = await supabaseClient
+  .from("pesanan")
+  .insert([{
+    nama_user,
+    kategori: "promo",
+    alamatakad,
+    media: mediaUrls,
+    created_at: new Date()
+  }]);
+
+
+if(insertError){
+  console.log(insertError);
+  alert("Gagal kirim!");
+  btn.innerText = "Kirim Data";
+  btn.disabled = false;
+  return;
+}
+
+
+// sukses
+btn.innerText = "✔ Terkirim";
+
+setTimeout(()=>{
+  alert("Terimakasih atas partisipasi Anda");
+  
+  btn.innerText = "Kirim Data";
+  btn.disabled = false;
+  
+  document.getElementById("formulir").reset();
+
+
+  // redirect ke halaman baru
+  window.location.href = "index.html";
+
+},1500);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const inputMedia = document.getElementById("media");
+  const previewImages = document.getElementById("previewImages");
+  const countInfo = document.getElementById("countInfo");
+  const trigger = document.getElementById("uploadTrigger");
+
+
+
+  const inputAudio = document.getElementById("audio");
+  const previewAudio = document.getElementById("previewAudio");
+  const triggerAudio = document.getElementById("audioTrigger");
+
+
+  let selectedImages = [];
+/*
+  let selectedAudio = [];
+*/
+
+  // klik tombol
+  trigger.onclick = () => inputMedia.click();
+  
+/*
+  triggerAudio.onclick = () => inputAudio.click();
+*/
+
+  // ========================
+  // 📸 HANDLE IMAGE
+  // ========================
+  inputMedia.addEventListener("change", handleImages);
+
+  function handleImages(e) {
+    const files = Array.from(e.target.files);
+
+    files.forEach(file => {
+
+      if (!file.type.startsWith("image/")) return;
+
+
+if (selectedImages.length >= 3) {
+  alert("Maksimal 3 foto!");
+  return;
+}
+
+
+
+      if (file.size > 10 * 1024 * 1024) {
+        alert("Max 10MB!");
+        return;
+      }
+
+      selectedImages.push(file);
+
+      const reader = new FileReader();
+      reader.onload = function (event) {
+
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("preview-item");
+
+        const img = document.createElement("img");
+        img.src = event.target.result;
+
+        const remove = document.createElement("div");
+        remove.classList.add("remove-btn");
+        
+        /*
+        remove.innerText = "×";
+        */
+        
+
+        remove.onclick = () => {
+          wrapper.remove();
+          selectedImages = selectedImages.filter(f => f !== file);
+          updateCount();
+        };
+
+        wrapper.appendChild(img);
+        wrapper.appendChild(remove);
+        previewImages.appendChild(wrapper);
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    updateCount();
+    inputMedia.value = "";
+  }
+
+  function updateCount() {
+    
+    /*
+    const sisa = 9 - selectedImages.length;
+    */
+    const sisa = 3 - selectedImages.length;
+    
+    countInfo.innerText = sisa > 0 ? sisa + "+" : "0";
+  }
+
+
+/*
+//Audio 
+inputAudio.addEventListener("change", (e) => {
+  const files = Array.from(e.target.files);
+
+  // 🚫 hanya 1 file
+  if (files.length > 1 || selectedAudio.length >= 1) {
+    alert("Hanya boleh 1 file MP3!");
+    inputAudio.value = "";
+    return;
+  }
+
+  const file = files[0];
+
+  // 🚫 cek tipe
+  if (file.type !== "audio/mpeg") {
+    alert("Harus file MP3!");
+    return;
+  }
+
+  // 🚫 max 10MB
+  if (file.size > 10 * 1024 * 1024) {
+    alert("Max ukuran 10MB!");
+    return;
+  }
+
+  // reset (biar cuma 1)
+  selectedAudio = [];
+
+  selectedAudio.push(file);
+
+  // tampilkan preview
+  previewAudio.innerHTML = "";
+
+
+const wrapper = document.createElement("div");
+wrapper.classList.add("preview-item"); // 🔥 sama seperti gambar
+
+const audioIcon = document.createElement("div");
+audioIcon.style.display = "flex";
+audioIcon.style.alignItems = "center";
+audioIcon.style.justifyContent = "center";
+audioIcon.style.height = "100%";
+audioIcon.style.color = "white";
+
+
+
+
+audioIcon.innerHTML = "<span style='font-size:30px'>File Mp3 🔸</span>";
+
+
+const remove = document.createElement("div");
+remove.classList.add("remove-btn"); // 🔥 pakai class yang sama
+
+remove.onclick = () => {
+  wrapper.remove();
+  selectedAudio = [];
+};
+
+wrapper.appendChild(audioIcon);
+wrapper.appendChild(remove);
+
+previewAudio.innerHTML = ""; // biar cuma 1
+previewAudio.appendChild(wrapper);
+
+
+
+  
+});
+*/
+
+
+  // ========================
+  // 🌐 GLOBAL (biar bisa dipakai upload lama kamu)
+  // ========================
+  window.getImages = () => selectedImages;
+  
+  /*
+  window.getAudio = () => selectedAudio;
+*/
+});
+
+
+
+
+
+
+
+
+
+
+const textarea = document.getElementById("alamatakad");
+const charCount = document.getElementById("charCount");
+
+textarea.addEventListener("input", () => {
+  charCount.innerText = textarea.value.length + " / 500";
+});
+
+
+</script>
+  
+  
+  
+
+
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+-->
+
+
+</body>
+</html>
