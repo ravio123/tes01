@@ -12,17 +12,12 @@ if (keystorePropertiesFile.exists()) {
 
 
 android {
-<<<<<<< HEAD
+
     namespace = "com.alovera8.app"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.alovera8.app"
-=======
-    namespace = "com.alovera8.app"
-    compileSdk = rootProject.ext.compileSdkVersion
-    defaultConfig {
-        applicationId "com.alovera8.app"
->>>>>>> d771a21 (Nexa AI)
+
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

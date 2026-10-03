@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "appId": "com.alovera7.ai",
-=======
   "appId": "com.alovera8.app",
->>>>>>> d771a21 (Nexa AI)
   "appName": "Alovera AI",
   "webDir": "www"
 }
