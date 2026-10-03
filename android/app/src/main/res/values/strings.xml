@@ -3,8 +3,8 @@
     <string name="app_name">Alovera AI</string>
     <string name="title_activity_main">Alovera AI</string>
 <<<<<<< HEAD
-    <string name="package_name">com.alovera7.ai</string>
-    <string name="custom_url_scheme">com.alovera7.ai</string>
+    <string name="package_name">com.alovera8.app</string>
+    <string name="custom_url_scheme">com.alovera8.app</string>
 =======
     <string name="package_name">com.alovera8.app</string>
     <string name="custom_url_scheme">com.alovera8.app</string>
