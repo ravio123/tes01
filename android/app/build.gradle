@@ -12,10 +12,10 @@ if (keystorePropertiesFile.exists()) {
 
 
 android {
-    namespace = "com.alovera7.app"
+    namespace = "com.alovera7.ai"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.alovera7.app"
+        applicationId "com.alovera7.ai"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
